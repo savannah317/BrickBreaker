@@ -46,9 +46,9 @@ namespace BrickBreaker
         Image hearts = Properties.Resources.heartIcon2;
 
         //Lives
-        public Rectangle life1 = new Rectangle(1060, 750, 50, 50);
-        public Rectangle life2 = new Rectangle(1130, 750, 50, 50);
-        public Rectangle life3 = new Rectangle(1200, 750, 50, 50);
+        public Rectangle life1 = new Rectangle(265, 350, 25, 25);
+        public Rectangle life2 = new Rectangle(315, 350, 25, 25);
+        public Rectangle life3 = new Rectangle(365, 350, 25, 25);
 
         #endregion
 

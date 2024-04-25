@@ -14,7 +14,7 @@ namespace BrickBreaker
     {
 
         Image minecraftLogo = Properties.Resources.minecraftLogo;
-        Rectangle titleRec = new Rectangle(140, -120, 1000, 500);
+        Rectangle titleRec = new Rectangle(25, -150, 800, 500);
         public MenuScreen()
         {
             InitializeComponent();
