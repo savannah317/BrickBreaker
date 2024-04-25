@@ -12,6 +12,9 @@ namespace BrickBreaker
 {
     public partial class MenuScreen : UserControl
     {
+
+        Image minecraftLogo = Properties.Resources.minecraftLogo;
+        Rectangle titleRec = new Rectangle(140, -120, 1000, 500);
         public MenuScreen()
         {
             InitializeComponent();
@@ -34,5 +37,9 @@ namespace BrickBreaker
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
         }
 
+        private void MenuScreen_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(minecraftLogo, titleRec);
+        }
     }
 }
