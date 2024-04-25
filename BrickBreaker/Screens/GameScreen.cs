@@ -103,6 +103,12 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = true;
                     break;
+                case Keys.A:
+                    leftArrowDown = true;
+                    break;
+                case Keys.D:
+                    rightArrowDown = true;
+                    break;
                 default:
                     break;
             }
@@ -117,6 +123,12 @@ namespace BrickBreaker
                     leftArrowDown = false;
                     break;
                 case Keys.Right:
+                    rightArrowDown = false;
+                    break;
+                case Keys.A:
+                    leftArrowDown = false;
+                    break;
+                case Keys.D:
                     rightArrowDown = false;
                     break;
                 default:
