@@ -46,7 +46,7 @@
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "GameScreen";
-            this.Size = new System.Drawing.Size(1280, 812);
+            this.Size = new System.Drawing.Size(975, 578);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GameScreen_PreviewKeyDown);
