@@ -59,11 +59,11 @@ namespace BrickBreaker {
             return true;
         }
 
-        public bool PaddleCollision ( Paddle paddle, Label label ) {
+        public bool PaddleCollision ( Paddle paddle ) {
 
             Random rand = new Random();
             float speedMult = (float)(rand.Next(-15, 16) * 0.01 + 1);
-            label.Text = xVel.ToString();
+            
 
             switch (Form1.CheckCollision(this, paddle, paddle.lastCollisionTimeStamp)) {
                 case 0:

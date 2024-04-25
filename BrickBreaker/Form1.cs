@@ -1,4 +1,5 @@
 ﻿using System;
+using BrickBreaker.Properties;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Numerics;
+using System.Xml;
 
 namespace BrickBreaker {
     public partial class Form1 : Form {
@@ -17,6 +19,11 @@ namespace BrickBreaker {
 
         public static int globalTimer;
         public static int tickDeltaTime = 10;
+
+
+
+        #region helperFunctions
+
 
         public static int timeSincePoint ( int checkedTime ) {
             return checkedTime < globalTimer ? (globalTimer - checkedTime) : -1;  // returns -1 if checkedtime is in the future
@@ -46,7 +53,9 @@ namespace BrickBreaker {
 
         public static bool IsWithinRange ( float num, float lowerBound, float upperBound ) { return num >= lowerBound && num <= upperBound; }
 
+        #endregion
 
+        #region gameLogic
 
         public static int CheckCollision ( Ball ball, Paddle rectObject, int collisionTimeStamp ) { //returns 0 (no collision) or 1-4 (collides from the rectangle's top, right side, bottom and left side respectively)
 
@@ -93,6 +102,43 @@ namespace BrickBreaker {
 
             return 0; //return 0 if no collision was detected
         }
+
+        #endregion
+
+
+
+        #region XMLPacking
+
+        string x, y, width, height, id;
+        List<Block> blocks = new List<Block>();
+
+
+        public void LevelReader () {
+            XmlReader reader = XmlReader.Create("Resources/GenXML.xml");
+
+            while (reader.Read()) {
+                if (reader.NodeType == XmlNodeType.Text) {
+                    x = reader.ReadString();
+
+                    reader.ReadToNextSibling("y");
+                    y = reader.ReadString();
+
+                    reader.ReadToNextSibling("width");
+                    width = reader.ReadString();
+
+                    reader.ReadToNextSibling("height");
+                    height = reader.ReadString();
+
+                    reader.ReadToNextSibling("id");
+                    id = reader.ReadString();
+
+                }
+            }
+        }
+
+        #endregion
+
+
 
         private void Form1_Load ( object sender, EventArgs e ) {
             // Start the program centred on the Menu Screen

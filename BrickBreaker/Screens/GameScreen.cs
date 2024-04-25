@@ -60,7 +60,7 @@ namespace BrickBreaker {
 
             // setup starting ball values
             int ballX = this.Width / 2 - 10;
-            int ballY = this.Height - paddle.height - 80;
+            int ballY = this.Height - paddle.height - 90;
 
             // Creates a new ball
             int xSpeed = 5;
@@ -96,6 +96,12 @@ namespace BrickBreaker {
                 case Keys.Right:
                     rightArrowDown = true;
                     break;
+                case Keys.A:
+                    leftArrowDown = true;
+                    break;
+                case Keys.D:
+                    rightArrowDown = true;
+                    break;
                 default:
                     break;
             }
@@ -108,6 +114,12 @@ namespace BrickBreaker {
                     leftArrowDown = false;
                     break;
                 case Keys.Right:
+                    rightArrowDown = false;
+                    break;
+                case Keys.A:
+                    leftArrowDown = false;
+                    break;
+                case Keys.D:
                     rightArrowDown = false;
                     break;
                 default:
@@ -142,7 +154,7 @@ namespace BrickBreaker {
             }
 
             // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle, label1);
+            ball.PaddleCollision(paddle);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks) {
