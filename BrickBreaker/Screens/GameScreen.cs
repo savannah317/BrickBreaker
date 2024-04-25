@@ -1,7 +1,7 @@
 ﻿/*  Created by: 
  *  Project: Brick Breaker
  *  Date: 
- */ 
+ */
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,11 +12,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
+using BrickBreaker.Properties;
+using System.Resources;
 
 namespace BrickBreaker
 {
     public partial class GameScreen : UserControl
     {
+
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
@@ -37,6 +41,15 @@ namespace BrickBreaker
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
 
+        Image dirtBlock = Properties.Resources.dirt;
+        Image stoneBlock = Properties.Resources.stone;
+        Image hearts = Properties.Resources.heartIcon2;
+
+        //Lives
+        public Rectangle life1 = new Rectangle(1060, 750, 50, 50);
+        public Rectangle life2 = new Rectangle(1130, 750, 50, 50);
+        public Rectangle life3 = new Rectangle(1200, 750, 50, 50);
+
         #endregion
 
         public GameScreen()
@@ -50,6 +63,7 @@ namespace BrickBreaker
         {
             //set life counter
             lives = 3;
+
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
@@ -73,10 +87,11 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
-            
+
             //TODO - replace all the code in this region eventually with code that loads levels from xml files
-            
+
             blocks.Clear();
+
             int x = 10;
 
             while (blocks.Count < 12)
@@ -90,6 +105,18 @@ namespace BrickBreaker
 
             // start the game engine loop
             gameTimer.Enabled = true;
+
+        }
+
+        static void WriteData(XmlWriter writer, Point point, int id, Size size)
+        {
+            writer.WriteStartElement("brick");
+            writer.WriteElementString("x", "" + point.X);
+            writer.WriteElementString("y", "" + point.Y);
+            writer.WriteElementString("width", "" + size.Width);
+            writer.WriteElementString("height", "" + size.Height);
+            writer.WriteElementString("id", "" + id);
+            writer.WriteEndElement();
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -151,11 +178,24 @@ namespace BrickBreaker
                 ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
                 ball.y = (this.Height - paddle.height) - 85;
 
+                if (lives == 2)
+                {
+                    life1 = new Rectangle(1050, 900, 50, 50);
+                    Refresh();
+                }
+                if (lives == 1)
+                {
+                    life2 = new Rectangle(1120, 900, 50, 50);
+                    Refresh();
+                }
                 if (lives == 0)
                 {
+                    life3 = new Rectangle(1190, 900, 50, 50);
+                    Refresh();
                     gameTimer.Enabled = false;
                     OnEnd();
                 }
+
             }
 
             // Check for collision of ball with paddle, (incl. paddle movement)
@@ -187,7 +227,7 @@ namespace BrickBreaker
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
-            
+
             ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
 
             form.Controls.Add(ps);
@@ -204,7 +244,16 @@ namespace BrickBreaker
             foreach (Block b in blocks)
             {
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                e.Graphics.DrawImage(dirtBlock, b.x, b.y, b.width + 2, b.height + 2);
             }
+
+            //Draw Hearts
+
+            e.Graphics.DrawImage(hearts, life1);
+            e.Graphics.DrawImage(hearts, life2);
+            e.Graphics.DrawImage(hearts, life3);
+
+
 
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
