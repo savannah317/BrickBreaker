@@ -136,7 +136,16 @@
   <data name="minecraftLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minecraftLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="snowball" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\snowball.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="stone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="xpBarEmpty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\xpBarEmpty.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="xpBarFull" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\xpBarFull.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
