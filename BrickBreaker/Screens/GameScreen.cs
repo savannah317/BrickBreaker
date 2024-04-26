@@ -13,14 +13,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Xml;
-using BrickBreaker.Properties;
-using System.Resources;
 
-namespace BrickBreaker
-{
-    public partial class GameScreen : UserControl
-    {
-
+namespace BrickBreaker {
+    public partial class GameScreen : UserControl {
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
@@ -30,6 +25,7 @@ namespace BrickBreaker
         int lives;
         int score;
         int blocksNum;
+        int x, y, width, height, id;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -59,21 +55,17 @@ namespace BrickBreaker
         Rectangle xpFullRect = new Rectangle(-300, 370, 250, 10);
 
 
-
         #endregion
 
-        public GameScreen()
-        {
+        public GameScreen () {
             InitializeComponent();
             OnStart();
         }
 
 
-        public void OnStart()
-        {
+        public void OnStart () {
             //set life counter
             lives = 3;
-
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
@@ -83,59 +75,63 @@ namespace BrickBreaker
             int paddleHeight = 20;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
-            int paddleSpeed = 8;
+            int paddleSpeed = 9;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
 
             // setup starting ball values
             int ballX = this.Width / 2 - 10;
-            int ballY = this.Height - paddle.height - 80;
+            int ballY = this.Height - paddle.height - 90;
 
             // Creates a new ball
-            int xSpeed = 6;
-            int ySpeed = 6;
+            int xSpeed = 5;
+            int ySpeed = 5;
             int ballSize = 20;
             
 
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
-
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
-
-            blocks.Clear();
-
-            int x = 10;
-
-            while (blocks.Count < 11)
-            {
-                blocksNum = blocks.Count;
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
-            }
-            #endregion
+            LevelReader(1);
 
             // start the game engine loop
             gameTimer.Enabled = true;
-
         }
 
-        static void WriteData(XmlWriter writer, Point point, int id, Size size)
+        public void LevelReader(int levelNumber)
         {
-            writer.WriteStartElement("brick");
-            writer.WriteElementString("x", "" + point.X);
-            writer.WriteElementString("y", "" + point.Y);
-            writer.WriteElementString("width", "" + size.Width);
-            writer.WriteElementString("height", "" + size.Height);
-            writer.WriteElementString("id", "" + id);
-            writer.WriteEndElement();
+            string path = "Resources/Level" + levelNumber + ".xml";
+            XmlReader reader = XmlReader.Create(path);
+
+
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Text)
+                {
+                    x = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("y");
+                    y = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("width");
+                    width = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("height");
+                    height = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("id");
+                    id = Convert.ToInt32(reader.ReadString());
+
+                    Block newBlock = new Block(x, y, width, height, id);
+                    blocks.Add(newBlock);
+                }
+
+            }
+
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             //player 1 button presses
-            switch (e.KeyCode)
-            {
+            switch (e.KeyCode) {
                 case Keys.Left:
                     leftArrowDown = true;
                     break;
@@ -153,11 +149,9 @@ namespace BrickBreaker
             }
         }
 
-        private void GameScreen_KeyUp(object sender, KeyEventArgs e)
-        {
+        private void GameScreen_KeyUp ( object sender, KeyEventArgs e ) {
             //player 1 button releases
-            switch (e.KeyCode)
-            {
+            switch (e.KeyCode) {
                 case Keys.Left:
                     leftArrowDown = false;
                     break;
@@ -175,62 +169,40 @@ namespace BrickBreaker
             }
         }
 
-        private void gameTimer_Tick(object sender, EventArgs e)
-        {
+        private void gameTimer_Tick ( object sender, EventArgs e ) {
+            Form1.globalTimer++;
             // Move the paddle
-            if (leftArrowDown && paddle.x > 0)
-            {
-                paddle.Move("left");
-            }
-            if (rightArrowDown && paddle.x < (this.Width - paddle.width))
-            {
-                paddle.Move("right");
-            }
+            paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown));
 
             // Move ball
             ball.Move();
+
 
             // Check for collision with top and side walls
             ball.WallCollision(this);
 
             // Check for ball hitting bottom of screen
-            if (ball.BottomCollision(this))
-            {
+            if (ball.BottomCollision(this)) {
                 lives--;
 
                 // Moves the ball back to origin
-                ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
+                ball.x = ((paddle.x - (ball.radius)) + (paddle.width / 2));
                 ball.y = (this.Height - paddle.height) - 85;
 
-                if (lives == 2)
-                {
-                    life1 = new Rectangle(1050, 900, 50, 50);
-                    Refresh();
-                }
-                if (lives == 1)
-                {
-                    life2 = new Rectangle(1120, 900, 50, 50);
-                    Refresh();
-                }
-                if (lives == 0)
-                {
-                    life3 = new Rectangle(1190, 900, 50, 50);
-                    Refresh();
+                if (lives == 0) {
                     gameTimer.Enabled = false;
                     OnEnd();
                 }
-
             }
 
             // Check for collision of ball with paddle, (incl. paddle movement)
             ball.PaddleCollision(paddle);
 
             // Check if ball has collided with any blocks
-            foreach (Block b in blocks)
-            {
-                if (ball.BlockCollision(b))
-                {
+            foreach (Block b in blocks) {
+                if (ball.BlockCollision(b)) {
                     blocks.Remove(b);
+
 
                     if (blocks.Count > blocksNum * 0.30 && blocks.Count < blocksNum * 0.45)
                     {
@@ -251,6 +223,8 @@ namespace BrickBreaker
                     if (blocks.Count == 0)
                     {
                         xpFullRect = new Rectangle(200, 367, 250, 10);
+
+                    if (blocks.Count == 0) {
                         gameTimer.Enabled = false;
                         OnEnd();
                         Refresh();
@@ -264,8 +238,7 @@ namespace BrickBreaker
             Refresh();
         }
 
-        public void OnEnd()
-        {
+        public void OnEnd () {
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
@@ -276,8 +249,11 @@ namespace BrickBreaker
             form.Controls.Remove(this);
         }
 
-        public void GameScreen_Paint(object sender, PaintEventArgs e)
-        {
+        private void GameScreen_Load ( object sender, EventArgs e ) {
+            gameTimer.Interval = 20;
+        }
+
+        public void GameScreen_Paint ( object sender, PaintEventArgs e ) {
             // Draws paddle
             paddleBrush.Color = paddle.colour;
             //e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
@@ -304,6 +280,7 @@ namespace BrickBreaker
             //e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
             e.Graphics.DrawImage(snowBall, ballRect);
+
         }
     }
 }
