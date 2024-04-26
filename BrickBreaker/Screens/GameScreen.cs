@@ -70,28 +70,16 @@ namespace BrickBreaker {
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
-            LevelReader();
-
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
-
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12) {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
-            }
-
-            #endregion
+            LevelReader(1);
 
             // start the game engine loop
             gameTimer.Enabled = true;
         }
 
-        public void LevelReader()
+        public void LevelReader(int levelNumber)
         {
-            XmlReader reader = XmlReader.Create("Resources/TempXML.xml");
+            string path = "Resources/Level" + levelNumber + ".xml";
+            XmlReader reader = XmlReader.Create(path);
 
             while (reader.Read())
             {

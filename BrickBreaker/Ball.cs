@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 
 namespace BrickBreaker {
@@ -34,25 +35,33 @@ namespace BrickBreaker {
             switch (Form1.CheckCollision(this, brick, brick.lastCollisionTimeStamp)) {
                 case 0:
                     return false;
-                case 1:
+                case 1: //top
                     yVel *= -1;
                     xVel *= speedMult;
                     brick.lastCollisionTimeStamp = Form1.globalTimer;
+
+                    y = brick.y - (radius * 2);
                     break;
-                case 2:
+                case 2: //right side
                     xVel *= -1;
                     yVel *= speedMult;
                     brick.lastCollisionTimeStamp = Form1.globalTimer;
+
+                    x = brick.x - (radius * 2);
                     break;
-                case 3:
+                case 3: //bottom
                     yVel *= -1;
                     xVel *= speedMult;
                     brick.lastCollisionTimeStamp = Form1.globalTimer;
+
+                    y = brick.y + brick.height;
                     break;
-                case 4:
+                case 4: //left
                     xVel *= -1;
                     yVel *= speedMult;
                     brick.lastCollisionTimeStamp = Form1.globalTimer;
+
+                    x = brick.x + brick.height;
                     break;
             }
 
@@ -68,12 +77,13 @@ namespace BrickBreaker {
             switch (Form1.CheckCollision(this, paddle, paddle.lastCollisionTimeStamp)) {
                 case 0:
                     return false;
-                case 1:
+                case 1: //top
                     yVel *= -1;
                     xVel *= speedMult;
                     paddle.lastCollisionTimeStamp = Form1.globalTimer;
                     break;
-                case 2:
+                case 2: //
+                    //one of them?
                     xVel *= -1;
                     yVel *= speedMult;
                     paddle.lastCollisionTimeStamp = Form1.globalTimer;
