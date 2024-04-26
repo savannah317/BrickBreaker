@@ -17,6 +17,8 @@ namespace BrickBreaker
         public int width = 50;
         public int height = 25;
         public int id;
+        public int lastCollisionTimeStamp;
+
         public Color colour;
 
         public static Random rand = new Random();
@@ -28,8 +30,6 @@ namespace BrickBreaker
             width = width_;
             height = height_;
             id = id_;
-
-            //blow up
         }
     }
 }

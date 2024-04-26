@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<level1>
+	<brick>
+		<x>300</x>
+		<y>50</y>
+		<hp>1</hp>
+	</brick>
+	<brick>
+		<x>350</x>
+		<y>50</y>
+		<hp>2</hp>
+	</brick>
+</level1>
