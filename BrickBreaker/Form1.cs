@@ -15,8 +15,6 @@ namespace BrickBreaker
 {
     public partial class Form1 : Form
     {
-        string x, y, width, height, id;
-        List<Block> blocks = new List<Block>();
 
         public Form1()
         {
@@ -30,34 +28,6 @@ namespace BrickBreaker
             this.Controls.Add(ms);
 
             ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
-
-        }
-
-        public void LevelReader()
-        {
-            XmlReader reader = XmlReader.Create("Resources/GenXML.xml");
-
-            while (reader.Read())
-            {
-                if (reader.NodeType == XmlNodeType.Text)
-                {
-                    x = reader.ReadString();
-
-                    reader.ReadToNextSibling("y");
-                    y = reader.ReadString();
-
-                    reader.ReadToNextSibling("width");
-                    width = reader.ReadString();
-
-                    reader.ReadToNextSibling("height");
-                    height = reader.ReadString();
-
-                    reader.ReadToNextSibling("id");
-                    id = reader.ReadString();
-
-                }
-
-            }
 
         }
     }
