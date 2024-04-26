@@ -28,6 +28,8 @@ namespace BrickBreaker
 
         // Game values
         int lives;
+        int score;
+        int blocksNum;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -38,17 +40,25 @@ namespace BrickBreaker
 
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
-        SolidBrush ballBrush = new SolidBrush(Color.White);
+        SolidBrush ballBrush = new SolidBrush(Color.Transparent);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+        Pen ballPen = new Pen(Color.Black);
 
         Image dirtBlock = Properties.Resources.dirt;
         Image stoneBlock = Properties.Resources.stone;
         Image hearts = Properties.Resources.heartIcon2;
+        Image snowBall = Properties.Resources.snowball;
+        Image xpBar = Properties.Resources.xpBarEmpty;
+        Image fullXpBar = Properties.Resources.xpBarFull;
 
         //Lives
-        public Rectangle life1 = new Rectangle(265, 350, 25, 25);
-        public Rectangle life2 = new Rectangle(315, 350, 25, 25);
-        public Rectangle life3 = new Rectangle(365, 350, 25, 25);
+        Rectangle life1 = new Rectangle(265, 330, 25, 25);
+        Rectangle life2 = new Rectangle(315, 330, 25, 25);
+        Rectangle life3 = new Rectangle(365, 330, 25, 25);
+        Rectangle xpRect = new Rectangle(200, 370, 250, 5);
+        Rectangle xpFullRect = new Rectangle(-300, 370, 250, 10);
+
+
 
         #endregion
 
@@ -84,6 +94,8 @@ namespace BrickBreaker
             int xSpeed = 6;
             int ySpeed = 6;
             int ballSize = 20;
+            
+
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
@@ -94,13 +106,13 @@ namespace BrickBreaker
 
             int x = 10;
 
-            while (blocks.Count < 12)
+            while (blocks.Count < 11)
             {
+                blocksNum = blocks.Count;
                 x += 57;
                 Block b1 = new Block(x, 10, 1, Color.White);
                 blocks.Add(b1);
             }
-
             #endregion
 
             // start the game engine loop
@@ -220,10 +232,28 @@ namespace BrickBreaker
                 {
                     blocks.Remove(b);
 
+                    if (blocks.Count > blocksNum * 0.30 && blocks.Count < blocksNum * 0.45)
+                    {
+                        xpFullRect = new Rectangle(140, 367, 250, 10);
+                        Refresh();
+                    }
+                    if (blocks.Count == blocksNum/2 + 1)
+                    {
+                        xpFullRect = new Rectangle(90, 367, 250, 10);
+                        Refresh();
+                    }
+                    if (blocks.Count > blocksNum * 0.70 + 1)
+                    {
+                        xpFullRect = new Rectangle(50, 367, 250, 10);
+                        Refresh();
+                    }
+
                     if (blocks.Count == 0)
                     {
+                        xpFullRect = new Rectangle(200, 367, 250, 10);
                         gameTimer.Enabled = false;
                         OnEnd();
+                        Refresh();
                     }
 
                     break;
@@ -250,12 +280,14 @@ namespace BrickBreaker
         {
             // Draws paddle
             paddleBrush.Color = paddle.colour;
-            e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            //e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            Rectangle paddleRect = new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height);
+            e.Graphics.DrawImage(stoneBlock, paddleRect);
 
             // Draws blocks
             foreach (Block b in blocks)
             {
-                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                //e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
                 e.Graphics.DrawImage(dirtBlock, b.x, b.y, b.width + 2, b.height + 2);
             }
 
@@ -265,10 +297,13 @@ namespace BrickBreaker
             e.Graphics.DrawImage(hearts, life2);
             e.Graphics.DrawImage(hearts, life3);
 
-
+            e.Graphics.DrawImage(xpBar, xpRect);
+            e.Graphics.DrawImage(fullXpBar, xpFullRect);
 
             // Draws ball
-            e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            //e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
+            e.Graphics.DrawImage(snowBall, ballRect);
         }
     }
 }
