@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 
 namespace BrickBreaker {
     public partial class GameScreen : UserControl {
@@ -22,6 +23,7 @@ namespace BrickBreaker {
 
         // Game values
         int lives;
+        int x, y, width, height, id;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -68,9 +70,9 @@ namespace BrickBreaker {
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
+            LevelReader();
 
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
+            #region Creates blocks for generic level. Need to replace with code that loads levels.
 
             blocks.Clear();
             int x = 10;
@@ -87,7 +89,38 @@ namespace BrickBreaker {
             gameTimer.Enabled = true;
         }
 
-        private void GameScreen_PreviewKeyDown ( object sender, PreviewKeyDownEventArgs e ) {
+        public void LevelReader()
+        {
+            XmlReader reader = XmlReader.Create("Resources/TempXML.xml");
+
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Text)
+                {
+                    x = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("y");
+                    y = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("width");
+                    width = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("height");
+                    height = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("id");
+                    id = Convert.ToInt32(reader.ReadString());
+
+                    Block newBlock = new Block(x, y, width, height, id);
+                    blocks.Add(newBlock);
+                }
+
+            }
+
+        }
+
+        private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
             //player 1 button presses
             switch (e.KeyCode) {
                 case Keys.Left:

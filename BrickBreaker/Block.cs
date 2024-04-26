@@ -5,21 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace BrickBreaker {
-    public class Block {
+namespace BrickBreaker
+{
+    public class Block
+    {
+        
+
+        public int x;
+        public int y; 
+        public int hp;
         public int width = 50;
         public int height = 25;
+        public int id;
+        public int lastCollisionTimeStamp;
 
-        public int x, y, hp, lastCollisionTimeStamp;
         public Color colour;
 
         public static Random rand = new Random();
 
-        public Block ( int _x, int _y, int _hp, Color _colour ) {
+        public Block(int _x, int _y, int width_, int height_, int id_)
+        {
             x = _x;
             y = _y;
-            hp = _hp;
-            colour = _colour;
+            width = width_;
+            height = height_;
+            id = id_;
         }
     }
 }
