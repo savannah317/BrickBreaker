@@ -20,7 +20,7 @@ namespace BrickBreaker
             InitializeComponent();
         }
 
-        #region Block ID Data
+        #region Block ID & Level Data
         public string[][] blockData = new string[][]
         {
         new string [] {"Hp", "Weak To", "Png"},
@@ -49,6 +49,11 @@ namespace BrickBreaker
         new string [] {"1", "Sword", "Nether_Portal"}, //Nether Portal
         new string [] {"12", "Sword", "Bedrock"}, //Bedrock
         new string [] {"6", "Sword", "Dragon_Egg"}, //Dragon Egg
+        };
+
+        public string[][] levelData = new string[][]
+        {
+        new string[] {"Player Sprite", "Background Image" }
         };
         #endregion
 
