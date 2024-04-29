@@ -137,9 +137,9 @@ namespace BrickBreaker.Properties {
         ///		&lt;width&gt;50&lt;/width&gt;
         ///		&lt;height&gt;50 [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string level1 {
+        internal static string Level11 {
             get {
-                return ResourceManager.GetString("level1", resourceCulture);
+                return ResourceManager.GetString("Level11", resourceCulture);
             }
         }
         
