@@ -133,7 +133,32 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\stone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dirt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minecraftLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heartIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heartIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\snowball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xpBarEmpty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xpBarFull.png" />
+
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
