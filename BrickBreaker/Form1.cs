@@ -24,13 +24,31 @@ namespace BrickBreaker
         public string[][] blockData = new string[][]
         {
         new string [] {"Hp", "Weak To", "Png"},
-        new string [] {},
-        new string [] {},
-        new string [] {},
-        new string [] {},
-        new string [] {},
-        new string [] {},
-        new string [] {},
+        new string [] {"", "", ""}, //Grass Block
+        new string [] {"", "", ""}, //Oak Wood Log
+        new string [] {"", "", ""}, //Oak Leaves
+        new string [] {"", "", ""}, //Oak Planks
+        new string [] {"", "", ""}, //Stone
+        new string [] {"", "", ""}, //Iron Ore
+        new string [] {"", "", ""}, //Gold Ore
+        new string [] {"", "", ""}, //Diamond Ore
+        new string [] {"", "", ""}, //Obsidian
+        new string [] {"", "", ""}, //Netherack
+        new string [] {"", "", ""}, //Quartz Ore
+        new string [] {"", "", ""}, //Netherite
+        new string [] {"", "", ""}, //End Portal Block
+        new string [] {"", "", ""}, //Stone Bricks
+        new string [] {"", "", ""}, //Endstone
+        new string [] {"", "", ""}, //Endstone Bricks
+        new string [] {"", "", ""}, //Sand
+        new string [] {"", "", ""}, //Gravel
+        new string [] {"", "", ""}, //Cobblestone
+        new string [] {"", "", ""}, //Coal Ore
+        new string [] {"", "", ""}, //Lava
+        new string [] {"", "", ""}, //Water
+        new string [] {"", "", ""}, //Nether Portal
+        new string [] {"", "", ""}, //Bedrock
+        new string [] {"", "", ""}, //Dragon Egg
         };
         #endregion
 
