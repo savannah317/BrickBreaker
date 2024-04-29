@@ -21,37 +21,37 @@ namespace BrickBreaker
         }
 
         #region Block ID & Level Data
-        public string[][] blockData = new string[][]
+        public static string[][] blockData = new string[][]
         {
         new string [] {"Hp", "Weak To", "Png"},
-        new string [] {"2", "Shovel", "Grass_Block"}, //Grass Block
-        new string [] {"3", "Axe", "Oak_Wood_Log"}, //Oak Wood Log
-        new string [] {"1", "Hoe", "Oak_Leaves"}, //Oak Leaves
-        new string [] {"3", "Axe", "Oak_Planks"}, //Oak Planks
-        new string [] {"5", "Pick", "Stone"}, //Stone
-        new string [] {"4", "Pick", "Iron_Ore"}, //Iron Ore
-        new string [] {"3", "Pick", "Gold_Ore"}, //Gold Ore
-        new string [] {"2", "Pick", "Diamond_Ore"}, //Diamond Ore
-        new string [] {"8", "Pick", "Obsidian"}, //Obsidian
-        new string [] {"2", "Pick", "Netherack"}, //Netherack
-        new string [] {"3", "Pick", "Quartz_Ore"}, //Quartz Ore
-        new string [] {"4", "Pick", "Netherite"}, //Netherite
-        new string [] {"10", "Sword", "End_Portal_Block"}, //End Portal Block
-        new string [] {"5", "Pick", "Stone_Bricks"}, //Stone Bricks
-        new string [] {"4", "Pick", "Endstone"}, //Endstone
-        new string [] {"4", "Pick", "Endstone_Bricks"}, //Endstone Bricks
-        new string [] {"2", "Shovel", "Sand"}, //Sand
-        new string [] {"2", "Shovel", "Gravel"}, //Gravel
-        new string [] {"3", "Pick", "Cobblestone"}, //Cobblestone
-        new string [] {"4", "Pick", "Coal_Ore"}, //Coal Ore
-        new string [] {"1", "Sword", "Lava"}, //Lava
-        new string [] {"1", "Sword", "Water"}, //Water
-        new string [] {"1", "Sword", "Nether_Portal"}, //Nether Portal
-        new string [] {"12", "Sword", "Bedrock"}, //Bedrock
-        new string [] {"6", "Sword", "Dragon_Egg"}, //Dragon Egg
+        new string [] {"2", "Shovel", "grass_block"}, //Grass Block
+        new string [] {"3", "Axe", "oak_log"}, //Oak Wood Log
+        new string [] {"1", "Hoe", "oak_leaves"}, //Oak Leaves
+        new string [] {"3", "Axe", "oak_planks"}, //Oak Planks
+        new string [] {"5", "Pick", "stone"}, //Stone
+        new string [] {"4", "Pick", "iron_ore"}, //Iron Ore
+        new string [] {"3", "Pick", "gold_ore"}, //Gold Ore
+        new string [] {"2", "Pick", "diamond_ore"}, //Diamond Ore
+        new string [] {"8", "Pick", "obsidian"}, //Obsidian
+        new string [] {"2", "Pick", "netherrack"}, //Netherack
+        new string [] {"3", "Pick", "quartz_ore"}, //Quartz Ore
+        new string [] {"4", "Pick", "netherite"}, //Netherite
+        new string [] {"10", "Sword", "endframe_side"}, //End Portal Block
+        new string [] {"5", "Pick", "stonebrick"}, //Stone Bricks
+        new string [] {"4", "Pick", "end_stone"}, //Endstone
+        new string [] {"4", "Pick", "end_bricks"}, //Endstone Bricks
+        new string [] {"2", "Shovel", "sand"}, //Sand
+        new string [] {"2", "Shovel", "gravel"}, //Gravel
+        new string [] {"3", "Pick", "cobblestone"}, //Cobblestone
+        new string [] {"4", "Pick", "coal_ore"}, //Coal Ore
+        new string [] {"1", "Sword", "lava"}, //Lava
+        new string [] {"1", "Sword", "water"}, //Water
+        new string [] {"1", "Sword", "portal"}, //Nether Portal
+        new string [] {"12", "Sword", "bedrock"}, //Bedrock
+        new string [] {"6", "Sword", "dragon_egg"}, //Dragon Egg
         };
 
-        public string[][] levelData = new string[][]
+        public static string[][] levelData = new string[][]
         {
         new string[] {"Player Sprite", "Background Image" }
         };
@@ -59,6 +59,8 @@ namespace BrickBreaker
 
         public static int globalTimer;
         public static int tickDeltaTime = 10;
+
+        public static int currentLevel = 1;
 
         #region helperFunctions
 

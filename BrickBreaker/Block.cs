@@ -14,6 +14,7 @@ namespace BrickBreaker
         public int x;
         public int y; 
         public int hp;
+        public Image image;
         public int width = 50;
         public int height = 25;
         public int id;
@@ -30,6 +31,13 @@ namespace BrickBreaker
             width = width_;
             height = height_;
             id = id_;
+        }
+
+        public void runCollision() {
+            //handle the removal of health
+            //removal of block
+            //sprite changes
+            //any other stuff
         }
     }
 }

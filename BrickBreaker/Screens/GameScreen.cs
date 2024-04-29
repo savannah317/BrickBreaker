@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Xml;
+using BrickBreaker.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using System.Resources;
 
 namespace BrickBreaker
 {
@@ -95,7 +98,7 @@ namespace BrickBreaker
 
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
-            LevelReader(1);
+            LevelReader(Form1.currentLevel);
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -126,6 +129,10 @@ namespace BrickBreaker
                     id = Convert.ToInt32(reader.ReadString());
 
                     Block newBlock = new Block(x, y, width, height, id);
+                    newBlock.hp = Convert.ToInt16(Form1.blockData[id][0]);
+                    ResourceManager rm = Resources.ResourceManager;
+                                     newBlock.image = (Image)rm.GetObject(Form1.blockData[id][2]);
+                    //newBlock.image = (Image)rm.GetObject("oak_planks");
                     blocks.Add(newBlock);
                 }
 
@@ -187,16 +194,13 @@ namespace BrickBreaker
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             Form1.globalTimer++;
-            // Move the paddle
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
-            // Move ball
             ball.Move();
-            ball.WallCollision(this);
+            ball.PaddleCollision(paddle);
 
-            // Check for ball hitting bottom of screen
-            if (ball.BottomCollision(this))
-            {
+            if (ball.WallCollision(this))
+            { //run wall collision and respond if the ball has touched the bottom
                 lives--;
 
                 // Moves the ball back to origin
@@ -210,9 +214,6 @@ namespace BrickBreaker
                 }
             }
 
-            // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle);
-
             //Check if ball has collided with any blocks
             for (int i = 0; i < blocks.Count; i++)
             {
@@ -220,40 +221,16 @@ namespace BrickBreaker
                 if (ball.BlockCollision(b))
                 {
                     blocks.Remove(b);
-
-                    
-                    //if (blocks.Count > blocksNum * 0.30 && blocks.Count < blocksNum * 0.45)
-                    //{
-                    //    xpFullRect = new Rectangle(140, 367, 250, 10);
-                    //    //Refresh();
-                    //}
-                    //else if (blocks.Count == blocksNum / 2 + 1)
-                    //{
-                    //    xpFullRect = new Rectangle(90, 367, 250, 10);
-                    //    //Refresh();
-                    //}
-                    //else if (blocks.Count > blocksNum * 0.70 + 1)
-                    //{
-                    //    xpFullRect = new Rectangle(50, 367, 250, 10);
-                    //    //Refresh();
-                    //}
-
-                    //else if (blocks.Count == 0)
-                    //{
-                    //    xpFullRect = new Rectangle(200, 367, 250, 10);
-                    //    gameTimer.Enabled = false;
-                    //    OnEnd();
-                    //    //Refresh();
-
-
-                    //    break;
-                    //  }
+                    b.runCollision(); //unused but should be switched to, rather than relying on the above line
                 }
             }
 
-            // redraw the screen
-            Refresh();
+            //float xpBarMult = blocks.Count / blocksNum;    **BLOCKS NUM IS NEVER USED, THIS LOGIC WORKS FOR XP / GAME ENDING IF IT REPRESENTS TOTAL NUM OF BLOCKS
+            //xpFullRect = new Rectangle (50, 367, (int)(1000 * xpBarMult), 50); //scale the xp bar mask based on the % of blocks remaining
 
+            //if (xpBarMult == 0) { /*endGame*/ }
+
+            Refresh();
         }
 
         public void OnEnd()
@@ -285,7 +262,7 @@ namespace BrickBreaker
             foreach (Block b in blocks)
             {
                 //e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
-                e.Graphics.DrawImage(dirtBlock, b.x, b.y, b.width + 2, b.height + 2);
+                e.Graphics.DrawImage(b.image, b.x, b.y, b.width + 2, b.height + 2);
             }
 
             //Draw Hearts
@@ -298,7 +275,6 @@ namespace BrickBreaker
             e.Graphics.DrawImage(fullXpBar, xpFullRect);
 
             // Draws ball
-            //e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
             e.Graphics.DrawImage(snowBall, ballRect);
 

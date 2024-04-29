@@ -164,6 +164,96 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oak_planks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dirt1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\bedrock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coal_ore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nether-portal-gif-i-got-it-from-the-game-files-and-upscaled-v0-841666uly00b1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oak_log.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grass_block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bedrock %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Netherite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bedrock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iron_ore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gold_ore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diamond_ore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\obsidian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\netherrack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quartz_ore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\end_bricks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\end_stone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\endframe_side.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\endframe_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cobblestone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stonebrick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gravel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coal_ore %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dragon_egg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lava.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oak_leaves.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\portal_placeholder.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
