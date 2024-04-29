@@ -24,31 +24,31 @@ namespace BrickBreaker
         public string[][] blockData = new string[][]
         {
         new string [] {"Hp", "Weak To", "Png"},
-        new string [] {"", "", ""}, //Grass Block
-        new string [] {"", "", ""}, //Oak Wood Log
-        new string [] {"", "", ""}, //Oak Leaves
-        new string [] {"", "", ""}, //Oak Planks
-        new string [] {"", "", ""}, //Stone
-        new string [] {"", "", ""}, //Iron Ore
-        new string [] {"", "", ""}, //Gold Ore
-        new string [] {"", "", ""}, //Diamond Ore
-        new string [] {"", "", ""}, //Obsidian
-        new string [] {"", "", ""}, //Netherack
-        new string [] {"", "", ""}, //Quartz Ore
-        new string [] {"", "", ""}, //Netherite
-        new string [] {"", "", ""}, //End Portal Block
-        new string [] {"", "", ""}, //Stone Bricks
-        new string [] {"", "", ""}, //Endstone
-        new string [] {"", "", ""}, //Endstone Bricks
-        new string [] {"", "", ""}, //Sand
-        new string [] {"", "", ""}, //Gravel
-        new string [] {"", "", ""}, //Cobblestone
-        new string [] {"", "", ""}, //Coal Ore
-        new string [] {"", "", ""}, //Lava
-        new string [] {"", "", ""}, //Water
-        new string [] {"", "", ""}, //Nether Portal
-        new string [] {"", "", ""}, //Bedrock
-        new string [] {"", "", ""}, //Dragon Egg
+        new string [] {"2", "Shovel", "Grass_Block"}, //Grass Block
+        new string [] {"3", "Axe", "Oak_Wood_Log"}, //Oak Wood Log
+        new string [] {"1", "Hoe", "Oak_Leaves"}, //Oak Leaves
+        new string [] {"3", "Axe", "Oak_Planks"}, //Oak Planks
+        new string [] {"5", "Pick", "Stone"}, //Stone
+        new string [] {"4", "Pick", "Iron_Ore"}, //Iron Ore
+        new string [] {"3", "Pick", "Gold_Ore"}, //Gold Ore
+        new string [] {"2", "Pick", "Diamond_Ore"}, //Diamond Ore
+        new string [] {"8", "Pick", "Obsidian"}, //Obsidian
+        new string [] {"2", "Pick", "Netherack"}, //Netherack
+        new string [] {"3", "Pick", "Quartz_Ore"}, //Quartz Ore
+        new string [] {"4", "Pick", "Netherite"}, //Netherite
+        new string [] {"10", "Sword", "End_Portal_Block"}, //End Portal Block
+        new string [] {"5", "Pick", "Stone_Bricks"}, //Stone Bricks
+        new string [] {"4", "Pick", "Endstone"}, //Endstone
+        new string [] {"4", "Pick", "Endstone_Bricks"}, //Endstone Bricks
+        new string [] {"2", "Shovel", "Sand"}, //Sand
+        new string [] {"2", "Shovel", "Gravel"}, //Gravel
+        new string [] {"3", "Pick", "Cobblestone"}, //Cobblestone
+        new string [] {"4", "Pick", "Coal_Ore"}, //Coal Ore
+        new string [] {"1", "Sword", "Lava"}, //Lava
+        new string [] {"1", "Sword", "Water"}, //Water
+        new string [] {"1", "Sword", "Nether_Portal"}, //Nether Portal
+        new string [] {"12", "Sword", "Bedrock"}, //Bedrock
+        new string [] {"6", "Sword", "Dragon_Egg"}, //Dragon Egg
         };
         #endregion
 
