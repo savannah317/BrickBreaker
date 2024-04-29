@@ -180,7 +180,7 @@ namespace BrickBreaker
         {
             Form1.globalTimer++;
             // Move the paddle
-            paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown));
+            paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
             // Move ball
             ball.Move();
