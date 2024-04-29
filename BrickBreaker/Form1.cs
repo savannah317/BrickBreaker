@@ -57,6 +57,7 @@ namespace BrickBreaker
 
         #region helperFunctions
 
+        public static bool isNegative(float num) { return (Math.Abs(num) != num); }
 
         public static int timeSincePoint(int checkedTime)
         {
@@ -114,17 +115,9 @@ namespace BrickBreaker
             //prioritize collisions with the top / bottom of an object unless rectTop < ballY < rectBottom
 
             if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height)) {
-                if (ball.x > rectObject.x) {
-                    ball.x = rectObject.x - 2 * ball.radius;
-                    return 2;
-                } else {
-                    ball.x = rectObject.x + rectObject.width;
-                    return 4;
-                }
-
+                return (ball.x > rectObject.x) ? 2 : 4;
             }
-            if (CollidesY)
-            {
+            if (CollidesY) {
                 return (ball.y > rectObject.y) ? 3 : 1;
             }
 
@@ -147,17 +140,10 @@ namespace BrickBreaker
             //prioritize collisions with the top / bottom of an object unless rectTop < ballY < rectBottom
 
             if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height)) {
-                if (ball.x > rectObject.x) {
-                    ball.x = rectObject.x - 2 * ball.radius;
-                    return 2;
-                } else {
-                    ball.x = rectObject.x + rectObject.width;
-                    return 4;
-                }
+                return (ball.x > rectObject.x) ? 2 : 4;
             }
 
             if (CollidesY) {
-
                 return (ball.y > rectObject.y) ? 3 : 1;
             }
 
