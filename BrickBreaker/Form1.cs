@@ -74,10 +74,10 @@ namespace BrickBreaker {
             //prioritize collisions with the top / bottom of an object unless rectTop < ballY < rectBottom
             if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height)) {
                 if (ball.x > rectObject.x) {
-                    ball.x = rectObject.x + rectObject.width;
+                    ball.x = rectObject.x - 2 * ball.radius;
                     return 2;
                 } else {
-                    ball.x = rectObject.x - 2 * ball.radius;
+                    ball.x = rectObject.x + rectObject.width;
                     return 4;
                 }
             }
@@ -103,11 +103,12 @@ namespace BrickBreaker {
             //prioritize collisions with the top / bottom of an object unless rectTop < ballY < rectBottom
             if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height)) {
                 if (ball.x > rectObject.x) {
-                    ball.x = rectObject.x + rectObject.width;
+                    ball.x = rectObject.x - 2 * ball.radius;
                     return 2;
-                } else { 
-                    ball.x = rectObject.x - 2 * ball.radius; 
-                    return 4; }
+                } else {
+                    ball.x = rectObject.x + rectObject.width;
+                    return 4;
+                }
             }
 
             if (CollidesY) {
