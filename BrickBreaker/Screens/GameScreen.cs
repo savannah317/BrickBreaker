@@ -187,77 +187,42 @@ namespace BrickBreaker
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             Form1.globalTimer++;
-            // Move the paddle
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
-            // Move ball
             ball.Move();
-            ball.WallCollision(this);
+            ball.PaddleCollision(paddle);
 
-            // Check for ball hitting bottom of screen
-            if (ball.BottomCollision(this))
-            {
+            if (ball.WallCollision(this)) { //run wall collision and respond if the ball has touched the bottom
                 lives--;
 
                 // Moves the ball back to origin
                 ball.x = ((paddle.x - (ball.radius)) + (paddle.width / 2));
                 ball.y = (this.Height - paddle.height) - 85;
 
-                if (lives == 0)
-                {
+                if (lives == 0) {
                     gameTimer.Enabled = false;
                     OnEnd();
                 }
             }
 
-            // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle);
-
             //Check if ball has collided with any blocks
-            for (int i = 0; i < blocks.Count; i++)
-            {
+            for (int i = 0; i < blocks.Count; i++) {
                 Block b = blocks[i];
-                if (ball.BlockCollision(b))
-                {
+                if (ball.BlockCollision(b)) {
                     blocks.Remove(b);
-
-                    
-                    //if (blocks.Count > blocksNum * 0.30 && blocks.Count < blocksNum * 0.45)
-                    //{
-                    //    xpFullRect = new Rectangle(140, 367, 250, 10);
-                    //    //Refresh();
-                    //}
-                    //else if (blocks.Count == blocksNum / 2 + 1)
-                    //{
-                    //    xpFullRect = new Rectangle(90, 367, 250, 10);
-                    //    //Refresh();
-                    //}
-                    //else if (blocks.Count > blocksNum * 0.70 + 1)
-                    //{
-                    //    xpFullRect = new Rectangle(50, 367, 250, 10);
-                    //    //Refresh();
-                    //}
-
-                    //else if (blocks.Count == 0)
-                    //{
-                    //    xpFullRect = new Rectangle(200, 367, 250, 10);
-                    //    gameTimer.Enabled = false;
-                    //    OnEnd();
-                    //    //Refresh();
-
-
-                    //    break;
-                    //  }
+                    b.runCollision(); //unused but should be switched to, rather than relying on the above line
                 }
             }
 
-            // redraw the screen
-            Refresh();
+            //float xpBarMult = blocks.Count / blocksNum;    **BLOCKS NUM IS NEVER USED, THIS LOGIC WORKS FOR XP / GAME ENDING IF IT REPRESENTS TOTAL NUM OF BLOCKS
+            //xpFullRect = new Rectangle (50, 367, (int)(1000 * xpBarMult), 50); //scale the xp bar mask based on the % of blocks remaining
 
+            //if (xpBarMult == 0) { /*endGame*/ }
+
+            Refresh();
         }
 
-        public void OnEnd()
-        {
+        public void OnEnd() {
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
@@ -268,13 +233,11 @@ namespace BrickBreaker
             form.Controls.Remove(this);
         }
 
-        private void GameScreen_Load(object sender, EventArgs e)
-        {
+        private void GameScreen_Load(object sender, EventArgs e) {
             gameTimer.Interval = 10;
         }
 
-        public void GameScreen_Paint(object sender, PaintEventArgs e)
-        {
+        public void GameScreen_Paint(object sender, PaintEventArgs e) {
             // Draws paddle
             paddleBrush.Color = paddle.colour;
             //e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
