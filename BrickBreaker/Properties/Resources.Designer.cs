@@ -133,9 +133,7 @@ namespace BrickBreaker.Properties {
         ///	&lt;/brick&gt;
         ///	&lt;brick&gt;
         ///		&lt;x&gt;461&lt;/x&gt;
-        ///		&lt;y&gt;173&lt;/y&gt;
-        ///		&lt;width&gt;50&lt;/width&gt;
-        ///		&lt;height&gt;50 [rest of string was truncated]&quot;;.
+        ///		&lt;y&gt;173&lt;/y&gt;        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string level1 {
             get {
@@ -169,6 +167,16 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap stone {
             get {
                 object obj = ResourceManager.GetObject("stone", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap titleBackground {
+            get {
+                object obj = ResourceManager.GetObject("titleBackground", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

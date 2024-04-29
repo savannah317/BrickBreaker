@@ -169,7 +169,8 @@ namespace BrickBreaker {
             }
         }
 
-        private void gameTimer_Tick ( object sender, EventArgs e ) {
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
             Form1.globalTimer++;
             // Move the paddle
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown));
@@ -182,14 +183,16 @@ namespace BrickBreaker {
             ball.WallCollision(this);
 
             // Check for ball hitting bottom of screen
-            if (ball.BottomCollision(this)) {
+            if (ball.BottomCollision(this))
+            {
                 lives--;
 
                 // Moves the ball back to origin
                 ball.x = ((paddle.x - (ball.radius)) + (paddle.width / 2));
                 ball.y = (this.Height - paddle.height) - 85;
 
-                if (lives == 0) {
+                if (lives == 0)
+                {
                     gameTimer.Enabled = false;
                     OnEnd();
                 }
@@ -199,8 +202,10 @@ namespace BrickBreaker {
             ball.PaddleCollision(paddle);
 
             // Check if ball has collided with any blocks
-            foreach (Block b in blocks) {
-                if (ball.BlockCollision(b)) {
+            foreach (Block b in blocks)
+            {
+                if (ball.BlockCollision(b))
+                {
                     blocks.Remove(b);
 
 
@@ -209,7 +214,7 @@ namespace BrickBreaker {
                         xpFullRect = new Rectangle(140, 367, 250, 10);
                         Refresh();
                     }
-                    if (blocks.Count == blocksNum/2 + 1)
+                    if (blocks.Count == blocksNum / 2 + 1)
                     {
                         xpFullRect = new Rectangle(90, 367, 250, 10);
                         Refresh();
@@ -224,18 +229,20 @@ namespace BrickBreaker {
                     {
                         xpFullRect = new Rectangle(200, 367, 250, 10);
 
-                    if (blocks.Count == 0) {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                        Refresh();
+                        if (blocks.Count == 0)
+                        {
+                            gameTimer.Enabled = false;
+                            OnEnd();
+                            Refresh();
+                        }
+
+                        break;
                     }
-
-                    break;
                 }
-            }
 
-            //redraw the screen
-            Refresh();
+                //redraw the screen
+                Refresh();
+            }
         }
 
         public void OnEnd () {

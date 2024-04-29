@@ -75,6 +75,18 @@
     <Compile Include="Paddle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\EndScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screens\EndScreen.Designer.cs">
+      <DependentUpon>EndScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\LevelScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screens\LevelScreen.Designer.cs">
+      <DependentUpon>LevelScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -100,6 +112,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Screens\EndScreen.resx">
+      <DependentUpon>EndScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\LevelScreen.resx">
+      <DependentUpon>LevelScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,7 +176,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\xpBarFull.png" />
-
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minecraftBkgd.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
