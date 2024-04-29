@@ -11,11 +11,28 @@ using System.Windows.Forms;
 using System.Numerics;
 using System.Xml;
 
-namespace BrickBreaker {
-    public partial class Form1 : Form {
-        public Form1 () {
+namespace BrickBreaker
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
             InitializeComponent();
         }
+
+        #region Block ID Data
+        public string[][] blockData = new string[][]
+        {
+        new string [] {"Hp", "Weak To", "Png"},
+        new string [] {},
+        new string [] {},
+        new string [] {},
+        new string [] {},
+        new string [] {},
+        new string [] {},
+        new string [] {},
+        };
+        #endregion
 
         public static int globalTimer;
         public static int tickDeltaTime = 10;
@@ -23,21 +40,27 @@ namespace BrickBreaker {
         #region helperFunctions
 
 
-        public static int timeSincePoint ( int checkedTime ) {
+        public static int timeSincePoint(int checkedTime)
+        {
             return checkedTime < globalTimer ? (globalTimer - checkedTime) : -1;  // returns -1 if checkedtime is in the future
         }
 
-        public static float clamp ( float value, float min, float max ) {
+        public static float clamp(float value, float min, float max)
+        {
             return Math.Max(min, Math.Min(max, value));
         }
 
-        public static void ChangeScreen ( object sender, UserControl next ) {
+        public static void ChangeScreen(object sender, UserControl next)
+        {
 
             Form f; // will either be the sender or parent of sender 
 
-            if (sender is Form) {
+            if (sender is Form)
+            {
                 f = (Form)sender;
-            } else {
+            }
+            else
+            {
                 UserControl current = (UserControl)sender;
                 f = current.FindForm();
                 f.Controls.Remove(current);
@@ -49,13 +72,14 @@ namespace BrickBreaker {
             next.Focus();
         }
 
-        public static bool IsWithinRange ( float num, float lowerBound, float upperBound ) { return num >= lowerBound && num <= upperBound; }
+        public static bool IsWithinRange(float num, float lowerBound, float upperBound) { return num >= lowerBound && num <= upperBound; }
 
         #endregion
 
         #region gameLogic
 
-        public static int CheckCollision ( Ball ball, Paddle rectObject, int collisionTimeStamp ) { //returns 0 (no collision) or 1-4 (collides from the rectangle's top, right side, bottom and left side respectively)
+        public static int CheckCollision(Ball ball, Paddle rectObject, int collisionTimeStamp)
+        { //returns 0 (no collision) or 1-4 (collides from the rectangle's top, right side, bottom and left side respectively)
 
             if (timeSincePoint(collisionTimeStamp) <= 4) { return 0; }
 
@@ -68,17 +92,20 @@ namespace BrickBreaker {
             if (!CollidesX || !CollidesY) { return 0; } //return false values if there is no chance of collision
 
             //prioritize collisions with the top / bottom of an object unless rectTop < ballY < rectBottom
-            if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height)) {
+            if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height))
+            {
                 return (ball.x > rectObject.x) ? 2 : 4;
             }
-            if (CollidesY) {
+            if (CollidesY)
+            {
                 return (ball.y > rectObject.y) ? 3 : 1;
             }
 
             return 0; //return 0 if no collision was detected
         }
 
-        public static int CheckCollision ( Ball ball, Block rectObject, int collisionTimeStamp ) { //returns 0 (no collision) or 1-4 (collides from the rectangle's top, right side, bottom and left side respectively)
+        public static int CheckCollision(Ball ball, Block rectObject, int collisionTimeStamp)
+        { //returns 0 (no collision) or 1-4 (collides from the rectangle's top, right side, bottom and left side respectively)
 
             if (timeSincePoint(collisionTimeStamp) <= 4) { return 0; }
 
@@ -91,10 +118,12 @@ namespace BrickBreaker {
             if (!CollidesX || !CollidesY) { return 0; } //return false values if there is no chance of collision
 
             //prioritize collisions with the top / bottom of an object unless rectTop < ballY < rectBottom
-            if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height)) {
+            if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height))
+            {
                 return (ball.x > rectObject.x) ? 2 : 4;
             }
-            if (CollidesY) {
+            if (CollidesY)
+            {
                 return (ball.y > rectObject.y) ? 3 : 1;
             }
 
@@ -111,11 +140,14 @@ namespace BrickBreaker {
         List<Block> blocks = new List<Block>();
 
 
-        public void LevelReader () {
+        public void LevelReader()
+        {
             XmlReader reader = XmlReader.Create("Resources/GenXML.xml");
 
-            while (reader.Read()) {
-                if (reader.NodeType == XmlNodeType.Text) {
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Text)
+                {
                     x = reader.ReadString();
 
                     reader.ReadToNextSibling("y");
@@ -138,7 +170,8 @@ namespace BrickBreaker {
 
 
 
-        private void Form1_Load ( object sender, EventArgs e ) {
+        private void Form1_Load(object sender, EventArgs e)
+        {
             // Start the program centred on the Menu Screen
             MenuScreen ms = new MenuScreen();
             this.Controls.Add(ms);

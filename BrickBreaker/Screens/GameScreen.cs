@@ -14,8 +14,10 @@ using System.Windows.Forms;
 using System.Media;
 using System.Xml;
 
-namespace BrickBreaker {
-    public partial class GameScreen : UserControl {
+namespace BrickBreaker
+{
+    public partial class GameScreen : UserControl
+    {
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
@@ -57,13 +59,15 @@ namespace BrickBreaker {
 
         #endregion
 
-        public GameScreen () {
+        public GameScreen()
+        {
             InitializeComponent();
             OnStart();
         }
 
 
-        public void OnStart () {
+        public void OnStart()
+        {
             //set life counter
             lives = 3;
 
@@ -86,7 +90,7 @@ namespace BrickBreaker {
             int xSpeed = 5;
             int ySpeed = 5;
             int ballSize = 20;
-            
+
 
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
@@ -125,13 +129,14 @@ namespace BrickBreaker {
                 }
 
             }
-
         }
+
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             //player 1 button presses
-            switch (e.KeyCode) {
+            switch (e.KeyCode)
+            {
                 case Keys.Left:
                     leftArrowDown = true;
                     break;
@@ -149,9 +154,11 @@ namespace BrickBreaker {
             }
         }
 
-        private void GameScreen_KeyUp ( object sender, KeyEventArgs e ) {
+        private void GameScreen_KeyUp(object sender, KeyEventArgs e)
+        {
             //player 1 button releases
-            switch (e.KeyCode) {
+            switch (e.KeyCode)
+            {
                 case Keys.Left:
                     leftArrowDown = false;
                     break;
@@ -169,7 +176,8 @@ namespace BrickBreaker {
             }
         }
 
-        private void gameTimer_Tick ( object sender, EventArgs e ) {
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
             Form1.globalTimer++;
             // Move the paddle
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown));
@@ -182,14 +190,16 @@ namespace BrickBreaker {
             ball.WallCollision(this);
 
             // Check for ball hitting bottom of screen
-            if (ball.BottomCollision(this)) {
+            if (ball.BottomCollision(this))
+            {
                 lives--;
 
                 // Moves the ball back to origin
                 ball.x = ((paddle.x - (ball.radius)) + (paddle.width / 2));
                 ball.y = (this.Height - paddle.height) - 85;
 
-                if (lives == 0) {
+                if (lives == 0)
+                {
                     gameTimer.Enabled = false;
                     OnEnd();
                 }
@@ -198,47 +208,51 @@ namespace BrickBreaker {
             // Check for collision of ball with paddle, (incl. paddle movement)
             ball.PaddleCollision(paddle);
 
-            // Check if ball has collided with any blocks
-            foreach (Block b in blocks) {
-                if (ball.BlockCollision(b)) {
+            //Check if ball has collided with any blocks
+            for (int i = 0; i < blocks.Count; i++)
+            {
+                Block b = blocks[i];
+                if (ball.BlockCollision(b))
+                {
                     blocks.Remove(b);
 
 
-                    if (blocks.Count > blocksNum * 0.30 && blocks.Count < blocksNum * 0.45)
-                    {
-                        xpFullRect = new Rectangle(140, 367, 250, 10);
-                        Refresh();
-                    }
-                    if (blocks.Count == blocksNum/2 + 1)
-                    {
-                        xpFullRect = new Rectangle(90, 367, 250, 10);
-                        Refresh();
-                    }
-                    if (blocks.Count > blocksNum * 0.70 + 1)
-                    {
-                        xpFullRect = new Rectangle(50, 367, 250, 10);
-                        Refresh();
-                    }
+                    //if (blocks.Count > blocksNum * 0.30 && blocks.Count < blocksNum * 0.45)
+                    //{
+                    //    xpFullRect = new Rectangle(140, 367, 250, 10);
+                    //    //Refresh();
+                    //}
+                    //else if (blocks.Count == blocksNum / 2 + 1)
+                    //{
+                    //    xpFullRect = new Rectangle(90, 367, 250, 10);
+                    //    //Refresh();
+                    //}
+                    //else if (blocks.Count > blocksNum * 0.70 + 1)
+                    //{
+                    //    xpFullRect = new Rectangle(50, 367, 250, 10);
+                    //    //Refresh();
+                    //}
 
-                    if (blocks.Count == 0)
-                    {
-                        xpFullRect = new Rectangle(200, 367, 250, 10);
+                    //else if (blocks.Count == 0)
+                    //{
+                    //    xpFullRect = new Rectangle(200, 367, 250, 10);
+                    //    gameTimer.Enabled = false;
+                    //    OnEnd();
+                    //    //Refresh();
 
-                    if (blocks.Count == 0) {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                        Refresh();
-                    }
 
-                    break;
+                    //    break;
+                    //  }
                 }
             }
 
-            //redraw the screen
+            // redraw the screen
             Refresh();
+
         }
 
-        public void OnEnd () {
+        public void OnEnd()
+        {
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
@@ -249,11 +263,13 @@ namespace BrickBreaker {
             form.Controls.Remove(this);
         }
 
-        private void GameScreen_Load ( object sender, EventArgs e ) {
+        private void GameScreen_Load(object sender, EventArgs e)
+        {
             gameTimer.Interval = 20;
         }
 
-        public void GameScreen_Paint ( object sender, PaintEventArgs e ) {
+        public void GameScreen_Paint(object sender, PaintEventArgs e)
+        {
             // Draws paddle
             paddleBrush.Color = paddle.colour;
             //e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
