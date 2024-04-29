@@ -31,5 +31,12 @@ namespace BrickBreaker
             height = height_;
             id = id_;
         }
+
+        public void runCollision() {
+            //handle the removal of health
+            //removal of block
+            //sprite changes
+            //any other stuff
+        }
     }
 }

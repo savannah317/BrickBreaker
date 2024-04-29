@@ -108,30 +108,12 @@ namespace BrickBreaker {
             return true;
         }
 
-        public void WallCollision ( UserControl UC ) {
-            // Collision with left wall
-            if (x <= 0) {
-                xVel *= -1;
-            }
-            // Collision with right wall
-            if (x >= (UC.Width - radius)) {
-                xVel *= -1;
-            }
-            // Collision with top wall
-            if (y <= 2) {
-                yVel *= -1;
-            }
+        public bool WallCollision ( UserControl UC ) {
+            
+            xVel *= (x <= 0 || x >= (UC.Width - radius)) ? -1 : 1;
+            yVel *= (y <= radius) ? -1 : 1;
+
+            return (y >= UC.Height - radius);
         }
-
-        public bool BottomCollision ( UserControl UC ) {
-            Boolean didCollide = false;
-
-            if (y >= UC.Height) {
-                didCollide = true;
-            }
-
-            return didCollide;
-        }
-
     }
 }
