@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 
 namespace BrickBreaker {
     public partial class GameScreen : UserControl {
@@ -22,6 +23,9 @@ namespace BrickBreaker {
 
         // Game values
         int lives;
+        int score;
+        int blocksNum;
+        int x, y, width, height, id;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -32,8 +36,24 @@ namespace BrickBreaker {
 
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
-        SolidBrush ballBrush = new SolidBrush(Color.White);
+        SolidBrush ballBrush = new SolidBrush(Color.Transparent);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+        Pen ballPen = new Pen(Color.Black);
+
+        Image dirtBlock = Properties.Resources.dirt;
+        Image stoneBlock = Properties.Resources.stone;
+        Image hearts = Properties.Resources.heartIcon2;
+        Image snowBall = Properties.Resources.snowball;
+        Image xpBar = Properties.Resources.xpBarEmpty;
+        Image fullXpBar = Properties.Resources.xpBarFull;
+
+        //Lives
+        Rectangle life1 = new Rectangle(265, 330, 25, 25);
+        Rectangle life2 = new Rectangle(315, 330, 25, 25);
+        Rectangle life3 = new Rectangle(365, 330, 25, 25);
+        Rectangle xpRect = new Rectangle(200, 370, 250, 5);
+        Rectangle xpFullRect = new Rectangle(-300, 370, 250, 10);
+
 
         #endregion
 
@@ -66,28 +86,50 @@ namespace BrickBreaker {
             int xSpeed = 5;
             int ySpeed = 5;
             int ballSize = 20;
+            
+
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
-
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
-
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12) {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
-            }
-
-            #endregion
+            LevelReader(1);
 
             // start the game engine loop
             gameTimer.Enabled = true;
         }
 
-        private void GameScreen_PreviewKeyDown ( object sender, PreviewKeyDownEventArgs e ) {
+        public void LevelReader(int levelNumber)
+        {
+            string path = "Resources/Level" + levelNumber + ".xml";
+            XmlReader reader = XmlReader.Create(path);
+
+
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Text)
+                {
+                    x = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("y");
+                    y = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("width");
+                    width = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("height");
+                    height = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("id");
+                    id = Convert.ToInt32(reader.ReadString());
+
+                    Block newBlock = new Block(x, y, width, height, id);
+                    blocks.Add(newBlock);
+                }
+
+            }
+
+        }
+
+        private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
             //player 1 button presses
             switch (e.KeyCode) {
                 case Keys.Left:
@@ -161,9 +203,31 @@ namespace BrickBreaker {
                 if (ball.BlockCollision(b)) {
                     blocks.Remove(b);
 
+
+                    if (blocks.Count > blocksNum * 0.30 && blocks.Count < blocksNum * 0.45)
+                    {
+                        xpFullRect = new Rectangle(140, 367, 250, 10);
+                        Refresh();
+                    }
+                    if (blocks.Count == blocksNum/2 + 1)
+                    {
+                        xpFullRect = new Rectangle(90, 367, 250, 10);
+                        Refresh();
+                    }
+                    if (blocks.Count > blocksNum * 0.70 + 1)
+                    {
+                        xpFullRect = new Rectangle(50, 367, 250, 10);
+                        Refresh();
+                    }
+
+                    if (blocks.Count == 0)
+                    {
+                        xpFullRect = new Rectangle(200, 367, 250, 10);
+
                     if (blocks.Count == 0) {
                         gameTimer.Enabled = false;
                         OnEnd();
+                        Refresh();
                     }
 
                     break;
@@ -192,15 +256,31 @@ namespace BrickBreaker {
         public void GameScreen_Paint ( object sender, PaintEventArgs e ) {
             // Draws paddle
             paddleBrush.Color = paddle.colour;
-            e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            //e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            Rectangle paddleRect = new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height);
+            e.Graphics.DrawImage(stoneBlock, paddleRect);
 
             // Draws blocks
-            foreach (Block b in blocks) {
-                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+            foreach (Block b in blocks)
+            {
+                //e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                e.Graphics.DrawImage(dirtBlock, b.x, b.y, b.width + 2, b.height + 2);
             }
 
+            //Draw Hearts
+
+            e.Graphics.DrawImage(hearts, life1);
+            e.Graphics.DrawImage(hearts, life2);
+            e.Graphics.DrawImage(hearts, life3);
+
+            e.Graphics.DrawImage(xpBar, xpRect);
+            e.Graphics.DrawImage(fullXpBar, xpFullRect);
+
             // Draws ball
-            e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.radius * 2, ball.radius * 2);
+            //e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
+            e.Graphics.DrawImage(snowBall, ballRect);
+
         }
     }
 }
