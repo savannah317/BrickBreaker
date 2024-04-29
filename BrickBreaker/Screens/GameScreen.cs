@@ -65,6 +65,7 @@ namespace BrickBreaker
             OnStart();
         }
 
+        #region levelBuilder
 
         public void OnStart()
         {
@@ -131,6 +132,9 @@ namespace BrickBreaker
             }
         }
 
+        #endregion
+
+        #region inputKeys
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -176,6 +180,10 @@ namespace BrickBreaker
             }
         }
 
+        #endregion
+
+
+
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             Form1.globalTimer++;
@@ -184,9 +192,6 @@ namespace BrickBreaker
 
             // Move ball
             ball.Move();
-
-
-            // Check for collision with top and side walls
             ball.WallCollision(this);
 
             // Check for ball hitting bottom of screen
@@ -216,7 +221,7 @@ namespace BrickBreaker
                 {
                     blocks.Remove(b);
 
-
+                    
                     //if (blocks.Count > blocksNum * 0.30 && blocks.Count < blocksNum * 0.45)
                     //{
                     //    xpFullRect = new Rectangle(140, 367, 250, 10);
@@ -265,7 +270,7 @@ namespace BrickBreaker
 
         private void GameScreen_Load(object sender, EventArgs e)
         {
-            gameTimer.Interval = 20;
+            gameTimer.Interval = 10;
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
