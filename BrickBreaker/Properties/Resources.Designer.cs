@@ -584,14 +584,19 @@ namespace BrickBreaker.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
 
-        internal static System.Drawing.Bitmap titleBackground {
-            get {
+        internal static System.Drawing.Bitmap titleBackground
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("titleBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
 
         internal static System.Drawing.Bitmap stonebrick {
             get {

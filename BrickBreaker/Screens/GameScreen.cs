@@ -187,7 +187,7 @@ namespace BrickBreaker
             }
         }
 
-
+        #endregion
 
 
 
@@ -227,7 +227,7 @@ namespace BrickBreaker
                     if (b.hp < 1) { blocks.Remove(b); }
 
                 }
-
+            }
 
             //float xpBarMult = blocks.Count / blocksNum;    **BLOCKS NUM IS NEVER USED, THIS LOGIC WORKS FOR XP / GAME ENDING IF IT REPRESENTS TOTAL NUM OF BLOCKS
             //xpFullRect = new Rectangle (50, 367, (int)(1000 * xpBarMult), 50); //scale the xp bar mask based on the % of blocks remaining

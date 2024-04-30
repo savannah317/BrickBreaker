@@ -87,7 +87,7 @@
     </Compile>
     <Compile Include="Screens\LevelScreen.Designer.cs">
       <DependentUpon>LevelScreen.cs</DependentUpon>
-
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

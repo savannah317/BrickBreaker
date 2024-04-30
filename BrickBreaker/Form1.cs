@@ -59,9 +59,9 @@ namespace BrickBreaker
 
         public static int globalTimer;
         public static int tickDeltaTime = 10;
-        public static int currentLevel = 1;
 
         public static int currentLevel = 5;
+
 
         #region helperFunctions
 
