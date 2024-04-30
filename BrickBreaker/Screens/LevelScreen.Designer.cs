@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LevelScreen));
             this.level1 = new System.Windows.Forms.Label();
             this.level2 = new System.Windows.Forms.Label();
             this.level3 = new System.Windows.Forms.Label();
@@ -208,7 +209,7 @@
             this.label2.BackColor = System.Drawing.Color.Black;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(225, 163);
+            this.label2.Location = new System.Drawing.Point(224, 163);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(187, 35);
             this.label2.TabIndex = 14;
@@ -328,7 +329,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::BrickBreaker.Properties.Resources.titleBackground;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);

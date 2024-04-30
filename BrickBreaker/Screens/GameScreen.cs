@@ -106,7 +106,7 @@ namespace BrickBreaker
 
         public void LevelReader(int levelNumber)
         {
-            string path = "Resources/level" + levelNumber + ".xml";
+            string path = "Resources/Level" + levelNumber + ".xml";
             XmlReader reader = XmlReader.Create(path);
 
 
