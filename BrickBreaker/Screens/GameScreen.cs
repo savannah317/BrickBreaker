@@ -106,7 +106,7 @@ namespace BrickBreaker
 
         public void LevelReader(int levelNumber)
         {
-            string path = "Resources/Level" + levelNumber + ".xml";
+            string path = "Resources/level" + levelNumber + ".xml";
             XmlReader reader = XmlReader.Create(path);
 
 
@@ -187,7 +187,7 @@ namespace BrickBreaker
             }
         }
 
-        #endregion
+
 
 
 
@@ -196,11 +196,13 @@ namespace BrickBreaker
             Form1.globalTimer++;
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
+
             ball.Move();
             ball.PaddleCollision(paddle);
 
             if (ball.WallCollision(this))
             { //run wall collision and respond if the ball has touched the bottom
+
                 lives--;
 
                 // Moves the ball back to origin
@@ -214,6 +216,7 @@ namespace BrickBreaker
                 }
             }
 
+
             //Check if ball has collided with any blocks
             for (int i = 0; i < blocks.Count; i++)
             {
@@ -222,8 +225,9 @@ namespace BrickBreaker
                 {
                     b.runCollision(); //should be switched to entirely, no lines below
                     if (b.hp < 1) { blocks.Remove(b); }
+
                 }
-            }
+
 
             //float xpBarMult = blocks.Count / blocksNum;    **BLOCKS NUM IS NEVER USED, THIS LOGIC WORKS FOR XP / GAME ENDING IF IT REPRESENTS TOTAL NUM OF BLOCKS
             //xpFullRect = new Rectangle (50, 367, (int)(1000 * xpBarMult), 50); //scale the xp bar mask based on the % of blocks remaining
@@ -231,6 +235,7 @@ namespace BrickBreaker
             //if (xpBarMult == 0) { /*endGame*/ }
 
             Refresh();
+
         }
 
         public void OnEnd()
