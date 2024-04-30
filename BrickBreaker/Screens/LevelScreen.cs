@@ -44,67 +44,56 @@ namespace BrickBreaker.Screens
             Form1.currentLevel = 1;
             ToGameScreen();
         }
-
         private void level2_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 2;
             ToGameScreen();
         }
-
         private void level3_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 3;
             ToGameScreen();
         }
-
         private void level4_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 4;
             ToGameScreen();
         }
-
         private void level5_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 5;
             ToGameScreen();
         }
-
         private void level6_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 6;
             ToGameScreen();
         }
-
         private void level7_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 7;
             ToGameScreen();
         }
-
         private void level8_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 8;
             ToGameScreen();
         }
-
         private void level9_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 9;
             ToGameScreen();
         }
-
         private void level10_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 10;
             ToGameScreen();
         }
-
         private void level11_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 11;
             ToGameScreen();
         }
-
         private void level12_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 12;
