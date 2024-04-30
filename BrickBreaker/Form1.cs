@@ -28,8 +28,8 @@ namespace BrickBreaker
         new string [] {"3", "Axe", "oak_log"}, //Oak Wood Log
         new string [] {"1", "Hoe", "oak_leaves"}, //Oak Leaves
         new string [] {"3", "Axe", "oak_planks"}, //Oak Planks
-        new string [] {"5", "Pick", "stone"}, //Stone
-        new string [] {"4", "Pick", "iron_ore"}, //Iron Ore
+        new string [] {"1", "Pick", "stone"}, //Stone
+        new string [] {"2", "Pick", "iron_ore"}, //Iron Ore
         new string [] {"3", "Pick", "gold_ore"}, //Gold Ore
         new string [] {"2", "Pick", "diamond_ore"}, //Diamond Ore
         new string [] {"8", "Pick", "obsidian"}, //Obsidian
@@ -60,7 +60,7 @@ namespace BrickBreaker
         public static int globalTimer;
         public static int tickDeltaTime = 10;
 
-        public static int currentLevel = 2;
+        public static int currentLevel = 5;
 
         #region helperFunctions
 
