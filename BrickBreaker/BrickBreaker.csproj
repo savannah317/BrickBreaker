@@ -75,6 +75,7 @@
     <Compile Include="Paddle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+
     <Compile Include="Screens\EndScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +87,12 @@
     </Compile>
     <Compile Include="Screens\LevelScreen.Designer.cs">
       <DependentUpon>LevelScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+
     </Compile>
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
@@ -104,9 +111,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -118,6 +126,7 @@
     <EmbeddedResource Include="Screens\LevelScreen.resx">
       <DependentUpon>LevelScreen.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="Screens\MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,7 +187,120 @@
     <None Include="Resources\xpBarFull.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\minecraftBkgd.jpg" />
+
+    <None Include="Resources\Level1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oak_planks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dirt1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\bedrock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coal_ore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nether-portal-gif-i-got-it-from-the-game-files-and-upscaled-v0-841666uly00b1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oak_log.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grass_block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bedrock %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Netherite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bedrock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iron_ore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gold_ore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diamond_ore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\obsidian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\netherrack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quartz_ore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\end_bricks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\end_stone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\endframe_side.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\endframe_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cobblestone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stonebrick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gravel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coal_ore %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dragon_egg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lava.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oak_leaves.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\portal_placeholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Level2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Level3.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Level4.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Level5.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
