@@ -103,7 +103,6 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-
         internal static System.Drawing.Bitmap dirt {
             get {
                 object obj = ResourceManager.GetObject("dirt", resourceCulture);
@@ -114,7 +113,6 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-
         internal static System.Drawing.Bitmap dragon_egg {
             get {
                 object obj = ResourceManager.GetObject("dragon_egg", resourceCulture);
@@ -195,7 +193,6 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-
         internal static System.Drawing.Bitmap heart {
             get {
                 object obj = ResourceManager.GetObject("heart", resourceCulture);
@@ -224,7 +221,6 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
-
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap iron_ore {
@@ -277,9 +273,7 @@ namespace BrickBreaker.Properties {
         ///	&lt;/brick&gt;
         ///	&lt;brick&gt;
         ///		&lt;x&gt;461&lt;/x&gt;
-        ///		&lt;y&gt;173&lt;/y&gt;
-        ///		&lt;width&gt;50&lt;/width&gt;
-        ///		&lt;height&gt;50 [rest of string was truncated]&quot;;.
+        ///		&lt;y&gt;173&lt;/y&gt;        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Level1 {
             get {
@@ -444,8 +438,7 @@ namespace BrickBreaker.Properties {
         ///	&lt;/brick&gt;
         ///	&lt;brick&gt;
         ///		&lt;x&gt;161&lt;/x&gt;
-        ///		&lt;y&gt;93&lt;/y&gt;
-        /// [rest of string was truncated]&quot;;.
+        ///		&lt;y&gt;93&lt;/y&gt;        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Level5 {
             get {
@@ -466,7 +459,6 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-
         internal static System.Drawing.Bitmap nether_portal {
             get {
                 object obj = ResourceManager.GetObject("nether_portal", resourceCulture);
@@ -567,7 +559,6 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-
         internal static System.Drawing.Bitmap snowball {
             get {
                 object obj = ResourceManager.GetObject("snowball", resourceCulture);
@@ -584,20 +575,10 @@ namespace BrickBreaker.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-
-        internal static System.Drawing.Bitmap titleBackground
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("titleBackground", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
         internal static System.Drawing.Bitmap stonebrick {
             get {
                 object obj = ResourceManager.GetObject("stonebrick", resourceCulture);
@@ -608,10 +589,19 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap titleBackground {
+            get {
+                object obj = ResourceManager.GetObject("titleBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap water {
             get {
                 object obj = ResourceManager.GetObject("water", resourceCulture);
-
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
