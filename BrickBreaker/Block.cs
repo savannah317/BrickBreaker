@@ -35,9 +35,10 @@ namespace BrickBreaker
 
         public void runCollision() {
             //handle the removal of health
-            //removal of block
+            hp--;
             //sprite changes
             //any other stuff
+            //removal of block
         }
     }
 }

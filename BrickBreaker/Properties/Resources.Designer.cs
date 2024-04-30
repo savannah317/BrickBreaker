@@ -277,9 +277,91 @@ namespace BrickBreaker.Properties {
         ///		&lt;width&gt;50&lt;/width&gt;
         ///		&lt;height&gt;50 [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Level11 {
+        internal static string Level1 {
             get {
-                return ResourceManager.GetString("Level11", resourceCulture);
+                return ResourceManager.GetString("Level1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;level&gt;
+        ///	&lt;brick&gt;
+        ///		&lt;x&gt;261&lt;/x&gt;
+        ///		&lt;y&gt;273&lt;/y&gt;
+        ///		&lt;width&gt;50&lt;/width&gt;
+        ///		&lt;height&gt;50&lt;/height&gt;
+        ///		&lt;id&gt;19&lt;/id&gt;
+        ///	&lt;/brick&gt;
+        ///	&lt;brick&gt;
+        ///		&lt;x&gt;711&lt;/x&gt;
+        ///		&lt;y&gt;273&lt;/y&gt;
+        ///		&lt;width&gt;50&lt;/width&gt;
+        ///		&lt;height&gt;50&lt;/height&gt;
+        ///		&lt;id&gt;19&lt;/id&gt;
+        ///	&lt;/brick&gt;
+        ///	&lt;brick&gt;
+        ///		&lt;x&gt;661&lt;/x&gt;
+        ///		&lt;y&gt;273&lt;/y&gt;
+        ///		&lt;width&gt;50&lt;/width&gt;
+        ///		&lt;height&gt;50&lt;/height&gt;
+        ///		&lt;id&gt;19&lt;/id&gt;
+        ///	&lt;/brick&gt;
+        ///	&lt;brick&gt;
+        ///		&lt;x&gt;761&lt;/x&gt;
+        ///		&lt;y&gt;273&lt;/y&gt;
+        ///		&lt;width&gt;50&lt;/width&gt;
+        ///		&lt;height&gt;50&lt;/height&gt;
+        ///		&lt;id&gt;5&lt;/id&gt;
+        ///	&lt;/brick&gt;
+        ///	&lt;brick&gt;
+        ///		&lt;x&gt;261&lt;/x&gt;
+        ///		&lt;y&gt;373 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Level2 {
+            get {
+                return ResourceManager.GetString("Level2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;level&gt;
+        ///	&lt;brick&gt;
+        ///		&lt;x&gt;511&lt;/x&gt;
+        ///		&lt;y&gt;23&lt;/y&gt;
+        ///		&lt;width&gt;50&lt;/width&gt;
+        ///		&lt;height&gt;50&lt;/height&gt;
+        ///		&lt;id&gt;19&lt;/id&gt;
+        ///	&lt;/brick&gt;
+        ///	&lt;brick&gt;
+        ///		&lt;x&gt;111&lt;/x&gt;
+        ///		&lt;y&gt;123&lt;/y&gt;
+        ///		&lt;width&gt;50&lt;/width&gt;
+        ///		&lt;height&gt;50&lt;/height&gt;
+        ///		&lt;id&gt;19&lt;/id&gt;
+        ///	&lt;/brick&gt;
+        ///	&lt;brick&gt;
+        ///		&lt;x&gt;661&lt;/x&gt;
+        ///		&lt;y&gt;273&lt;/y&gt;
+        ///		&lt;width&gt;50&lt;/width&gt;
+        ///		&lt;height&gt;50&lt;/height&gt;
+        ///		&lt;id&gt;7&lt;/id&gt;
+        ///	&lt;/brick&gt;
+        ///	&lt;brick&gt;
+        ///		&lt;x&gt;61&lt;/x&gt;
+        ///		&lt;y&gt;323&lt;/y&gt;
+        ///		&lt;width&gt;50&lt;/width&gt;
+        ///		&lt;height&gt;50&lt;/height&gt;
+        ///		&lt;id&gt;6&lt;/id&gt;
+        ///	&lt;/brick&gt;
+        ///	&lt;brick&gt;
+        ///		&lt;x&gt;111&lt;/x&gt;
+        ///		&lt;y&gt;273&lt;/y [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Level3 {
+            get {
+                return ResourceManager.GetString("Level3", resourceCulture);
             }
         }
         

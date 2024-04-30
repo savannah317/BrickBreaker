@@ -131,7 +131,7 @@ namespace BrickBreaker
                     Block newBlock = new Block(x, y, width, height, id);
                     newBlock.hp = Convert.ToInt16(Form1.blockData[id][0]);
                     ResourceManager rm = Resources.ResourceManager;
-                                     newBlock.image = (Image)rm.GetObject(Form1.blockData[id][2]);
+                    newBlock.image = (Image)rm.GetObject(Form1.blockData[id][2]);
                     //newBlock.image = (Image)rm.GetObject("oak_planks");
                     blocks.Add(newBlock);
                 }
@@ -220,8 +220,8 @@ namespace BrickBreaker
                 Block b = blocks[i];
                 if (ball.BlockCollision(b))
                 {
-                    blocks.Remove(b);
-                    b.runCollision(); //unused but should be switched to, rather than relying on the above line
+                    b.runCollision(); //should be switched to entirely, no lines below
+                    if (b.hp < 1) { blocks.Remove(b); }
                 }
             }
 
