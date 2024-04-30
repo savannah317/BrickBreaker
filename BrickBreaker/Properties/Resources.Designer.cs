@@ -449,6 +449,16 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap minecraftBkgd {
+            get {
+                object obj = ResourceManager.GetObject("minecraftBkgd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap minecraftLogo {
             get {
                 object obj = ResourceManager.GetObject("minecraftLogo", resourceCulture);
