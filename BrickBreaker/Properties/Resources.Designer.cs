@@ -273,7 +273,9 @@ namespace BrickBreaker.Properties {
         ///	&lt;/brick&gt;
         ///	&lt;brick&gt;
         ///		&lt;x&gt;461&lt;/x&gt;
-        ///		&lt;y&gt;173&lt;/y&gt;        /// [rest of string was truncated]&quot;;.
+        ///		&lt;y&gt;173&lt;/y&gt;
+        ///		&lt;width&gt;50&lt;/width&gt;
+        ///		&lt;height&gt;50 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Level1 {
             get {

@@ -32,6 +32,8 @@ namespace BrickBreaker
         int blocksNum;
         int x, y, width, height, id;
 
+        int right;
+
         // Paddle and Ball objects
         Paddle paddle;
         Ball ball;
@@ -59,8 +61,7 @@ namespace BrickBreaker
         new Rectangle(60, 10, 35, 35),
         new Rectangle(110, 10, 35, 35)
         };
-        Rectangle xpRect = new Rectangle(200, 370, 250, 5);
-        Rectangle xpFullRect = new Rectangle(-300, 370, 250, 10);
+        Rectangle xpRect, xpFullRect;
 
 
         #endregion
@@ -75,6 +76,10 @@ namespace BrickBreaker
 
         public void OnStart()
         {
+            right = this.Right;
+            xpRect = xpFullRect = new Rectangle(0, this.Bottom - 35, this.Right, 35);
+            
+
             //set life counter
             lives = 3;
 
@@ -202,6 +207,12 @@ namespace BrickBreaker
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
 
+            double xpBarPercent = (Double)blocks.Count / blocksNum;
+            if (xpBarPercent != 1) 
+            {
+                xpFullRect.Width = (int)(right * xpBarPercent);
+            };
+
             ball.Move();
             ball.PaddleCollision(paddle);
 
@@ -284,8 +295,8 @@ namespace BrickBreaker
                 e.Graphics.DrawImage(hearts, lifeRect);
             }
 
-            //e.Graphics.DrawImage(xpBar, xpRect);
-            //e.Graphics.DrawImage(fullXpBar, xpFullRect);
+            e.Graphics.DrawImage(fullXpBar, xpFullRect);
+           // e.Graphics.DrawImage(xpBar, xpRect);
 
             // Draws ball
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);

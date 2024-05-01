@@ -24,7 +24,7 @@ namespace BrickBreaker
         public static string[][] blockData = new string[][]
         {
         new string [] {"Hp", "Weak To", "Png"},
-        new string [] {"2", "Shovel", "grass_block"}, //Grass Block
+        new string [] {"1", "Shovel", "grass_block"}, //Grass Block
         new string [] {"3", "Axe", "oak_log"}, //Oak Wood Log
         new string [] {"1", "Hoe", "oak_leaves"}, //Oak Leaves
         new string [] {"3", "Axe", "oak_planks"}, //Oak Planks
@@ -60,7 +60,7 @@ namespace BrickBreaker
         public static int globalTimer;
         public static int tickDeltaTime = 10;
 
-        public static int currentLevel = 5;
+        public static int currentLevel = 1;
 
 
         #region helperFunctions
@@ -159,8 +159,6 @@ namespace BrickBreaker
         }
 
         #endregion
-
-
 
         #region XMLPacking
 
