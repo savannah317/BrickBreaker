@@ -21,11 +21,11 @@ namespace BrickBreaker
         public int id;
         public int lastCollisionTimeStamp;
 
+        public List<Powerup> powerupList = new List<Powerup>();
+
         int opacityChange = 30;
 
         public Color colour;
-
-        public static Random rand = new Random();
 
         public Block(int _x, int _y, int width_, int height_, int id_)
         {

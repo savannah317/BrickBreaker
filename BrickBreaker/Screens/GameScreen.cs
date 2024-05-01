@@ -68,6 +68,11 @@ namespace BrickBreaker
 
         #endregion
 
+        ResourceManager rm = Resources.ResourceManager;
+
+        List<Powerup> activePowerups = new List<Powerup>();
+        List<Powerup> fallingPowerups = new List<Powerup>();
+
         public GameScreen()
         {
             InitializeComponent();
@@ -115,6 +120,7 @@ namespace BrickBreaker
 
         public void LevelReader(int levelNumber)
         {
+            Random random = new Random();
             string path = "Resources/Level" + levelNumber + ".xml";
             XmlReader reader = XmlReader.Create(path);
 
@@ -137,11 +143,23 @@ namespace BrickBreaker
                     reader.ReadToNextSibling("id");
                     id = Convert.ToInt32(reader.ReadString());
 
+                    //Create a new block prototype
                     Block newBlock = new Block(x, y, width, height, id);
                     newBlock.hp = Convert.ToInt16(Form1.blockData[id][0]);
-                    ResourceManager rm = Resources.ResourceManager;
+
+                    //Get the correct image
                     newBlock.image = (Image)rm.GetObject(Form1.blockData[id][2]);
-                    //newBlock.image = (Image)rm.GetObject("oak_planks");
+
+                    //Find if the block should contain powerups
+                    if ((double)random.Next(0, 11) <= Convert.ToDouble(Form1.blockData[id][3]))
+                    {
+                        int powerupID = Convert.ToInt16(Form1.blockData[id][4]);
+                        Powerup newPowerup = new Powerup(powerupID, newBlock.x + (newBlock.width / 2), newBlock.y + (newBlock.height / 2));
+
+                        newPowerup.image = (Image)rm.GetObject(Form1.powerupData[powerupID][2]);
+
+                        newBlock.powerupList.Add(newPowerup);
+                    }
                     blocks.Add(newBlock);
                 }
 
@@ -235,10 +253,14 @@ namespace BrickBreaker
                 if (ball.BlockCollision(b))
                 {
                     b.runCollision(); //should be switched to entirely, no lines below
-                    if (b.hp < 1) 
+                    if (b.hp < 1)
                     {
+                        foreach (Powerup p in b.powerupList)
+                        {
+                            fallingPowerups.Add(p);
+                        }
                         blocks.Remove(b);
-                        
+
                         double xpBarPercent = (Double)blocks.Count / blocksNum;
                         if (xpBarPercent != 1)
                         {
@@ -246,12 +268,20 @@ namespace BrickBreaker
                             xpBarRegion.X = (right - xpBarRegion.Width);
                         };
 
-                        if (blocks.Count == 0) 
+                        if (blocks.Count == 0)
                         {
                             gameTimer.Enabled = false;
                             WinCondition();
                         }
                     }
+                }
+
+                for (int p = 0; p < fallingPowerups.Count; p++)
+                {
+                    if (fallingPowerups[p].Move(this.Bottom, new Rectangle(paddle.x,paddle.y,paddle.width,paddle.height))) 
+                    { 
+                        fallingPowerups.RemoveAt(p); 
+                    };
                 }
             }
 
@@ -264,10 +294,10 @@ namespace BrickBreaker
 
         }
 
-        public void WinCondition() 
+        public void WinCondition()
         {
             Form1.currentLevel = (Form1.currentLevel == 12) ? 1 : (Form1.currentLevel + 1);
-            
+
             Form form = this.FindForm();
             GameScreen gs = new GameScreen();
 
@@ -324,7 +354,7 @@ namespace BrickBreaker
             SolidBrush barBrush = new SolidBrush(barColor);
 
             Rectangle fadeRect = xpFullRect;
-            for (int i = 0; i < 10; i++) 
+            for (int i = 0; i < 10; i++)
             {
                 fadeRect.Y -= i;
                 fadeRect.Height += i;
@@ -337,6 +367,12 @@ namespace BrickBreaker
             // Draws ball
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
             e.Graphics.DrawImage(snowBall, ballRect);
+
+            //Draw Powerups
+            foreach (Powerup p in fallingPowerups)
+            {
+                e.Graphics.DrawImage(p.image, p.rectangle);
+            }
 
         }
     }

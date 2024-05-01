@@ -20,42 +20,48 @@ namespace BrickBreaker
             InitializeComponent();
         }
 
-        #region Block ID & Level Data
+        #region Block ID & Powerup ID Data
         public static string[][] blockData = new string[][]
         {
-        new string [] {"Hp", "Weak To", "Png", "Chance Of Powerup (0 - 1)", "ID of Powerup"},
+        new string [] {"Hp", "Weak To", "Png", "Chance Of Powerup (0 - 10)", "ID of Powerup"},
 
-        new string [] {"1", "Shovel", "grass_block", "0.1", "1"}, //Grass Block
+        new string [] {"1", "Shovel", "grass_block", "0.2", "1"}, //Grass Block
         new string [] {"3", "Axe", "oak_log", "0.1", "1"}, //Oak Wood Log
-        new string [] {"1", "Hoe", "oak_leaves"}, //Oak Leaves
-        new string [] {"3", "Axe", "oak_planks"}, //Oak Planks
-        new string [] {"2", "Pick", "stone"}, //Stone
+        new string [] {"1", "Hoe", "oak_leaves", "2", "1"}, //Oak Leaves
+        new string [] {"3", "Axe", "oak_planks", "0.1", "1"}, //Oak Planks
+        new string [] {"2", "Pick", "stone", "0.1", "1"}, //Stone
         
-        new string [] {"2", "Pick", "iron_ore"}, //Iron Ore
-        new string [] {"3", "Pick", "gold_ore"}, //Gold Ore
-        new string [] {"2", "Pick", "diamond_ore"}, //Diamond Ore
-        new string [] {"5", "Pick", "obsidian"}, //Obsidian
-        new string [] {"2", "Pick", "netherrack"}, //Netherack
+        new string [] {"2", "Pick", "iron_ore", "1", "1"}, //Iron Ore
+        new string [] {"3", "Pick", "gold_ore", "1", "1"}, //Gold Ore
+        new string [] {"2", "Pick", "diamond_ore", "1", "1"}, //Diamond Ore
+        new string [] {"5", "Pick", "obsidian", "0.1", "1"}, //Obsidian
+        new string [] {"2", "Pick", "netherrack", "0.1", "1"}, //Netherack
         
-        new string [] {"3", "Pick", "quartz_ore"}, //Quartz Ore
-        new string [] {"4", "Pick", "netherite"}, //Netherite
-        new string [] {"10", "Sword", "endframe_side"}, //End Portal Block
-        new string [] {"4", "Pick", "stonebrick"}, //Stone Bricks
-        new string [] {"4", "Pick", "end_stone"}, //Endstone
+        new string [] {"3", "Pick", "quartz_ore", "1", "1"}, //Quartz Ore
+        new string [] {"4", "Pick", "netherite", "1", "1"}, //Netherite
+        new string [] {"10", "Sword", "endframe_side", "0.4", "1"}, //End Portal Block
+        new string [] {"4", "Pick", "stonebrick", "0.2", "1"}, //Stone Bricks
+        new string [] {"4", "Pick", "end_stone", "0.1", "1"}, //Endstone
         
-        new string [] {"4", "Pick", "end_bricks"}, //Endstone Bricks
-        new string [] {"2", "Shovel", "sand"}, //Sand
-        new string [] {"2", "Shovel", "gravel"}, //Gravel
-        new string [] {"4", "Pick", "coal_ore"}, //Coal Ore
-        new string [] {"2", "Sword", "water"}, //Water
+        new string [] {"4", "Pick", "end_bricks", "0.1", "1"}, //Endstone Bricks
+        new string [] {"2", "Shovel", "sand", "0.1", "1"}, //Sand
+        new string [] {"2", "Shovel", "gravel", "0.1", "1"}, //Gravel
+        new string [] {"4", "Pick", "coal_ore", "1", "1"}, //Coal Ore
+        new string [] {"2", "Sword", "water", "0.1", "1"}, //Water
         
-        new string [] {"2", "Sword", "lava"}, //Lava
-        new string [] {"1", "Sword", "portal"}, //Nether Portal
-        new string [] {"2", "Sword", "bedrock"}, //Bedrock
-        new string [] {"4", "Sword", "dragon_egg"}, //Dragon Egg
-        new string [] {"3", "Pick", "cobblestone"}, //Cobblestone
+        new string [] {"2", "Sword", "lava", "0.1", "1"}, //Lava
+        new string [] {"1", "Sword", "portal", "0", "1"}, //Nether Portal
+        new string [] {"2", "Sword", "bedrock", "0.1", "1"}, //Bedrock
+        new string [] {"4", "Sword", "dragon_egg", "1", "1"}, //Dragon Egg
+        new string [] {"3", "Pick", "cobblestone", "0.1", "1"}, //Cobblestone
 
         };
+
+        public static string[][] powerupData = new string[][]
+     {
+        new string[]{"Fallspeed (working with %)", "Activetime", "Png", "Radius" },
+        new string[]{"9", "40", "apple", "10"},
+     };
         #endregion
 
         public static int globalTimer;
