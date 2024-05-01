@@ -268,6 +268,7 @@ namespace BrickBreaker
             {
                 //e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
                 e.Graphics.DrawImage(b.image, b.x, b.y, b.width + 2, b.height + 2);
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(b.alphaValue,0,0,0)), b.overlay);
             }
 
             //Draw Hearts
