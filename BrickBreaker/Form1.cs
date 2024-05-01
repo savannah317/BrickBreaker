@@ -28,7 +28,7 @@ namespace BrickBreaker
         new string [] {"3", "Axe", "oak_log"}, //Oak Wood Log
         new string [] {"1", "Hoe", "oak_leaves"}, //Oak Leaves
         new string [] {"3", "Axe", "oak_planks"}, //Oak Planks
-        new string [] {"1", "Pick", "stone"}, //Stone
+        new string [] {"2", "Pick", "stone"}, //Stone
         new string [] {"2", "Pick", "iron_ore"}, //Iron Ore
         new string [] {"3", "Pick", "gold_ore"}, //Gold Ore
         new string [] {"2", "Pick", "diamond_ore"}, //Diamond Ore
@@ -44,10 +44,10 @@ namespace BrickBreaker
         new string [] {"2", "Shovel", "gravel"}, //Gravel
         new string [] {"3", "Pick", "cobblestone"}, //Cobblestone
         new string [] {"4", "Pick", "coal_ore"}, //Coal Ore
-        new string [] {"1", "Sword", "lava"}, //Lava
-        new string [] {"1", "Sword", "water"}, //Water
+        new string [] {"2", "Sword", "lava"}, //Lava
+        new string [] {"2", "Sword", "water"}, //Water
         new string [] {"1", "Sword", "portal"}, //Nether Portal
-        new string [] {"12", "Sword", "bedrock"}, //Bedrock
+        new string [] {"2", "Sword", "bedrock"}, //Bedrock
         new string [] {"6", "Sword", "dragon_egg"}, //Dragon Egg
         };
 
