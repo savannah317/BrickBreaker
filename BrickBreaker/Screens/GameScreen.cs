@@ -245,6 +245,12 @@ namespace BrickBreaker
                             xpBarRegion.Width = (int)(right * xpBarPercent);
                             xpBarRegion.X = (right - xpBarRegion.Width);
                         };
+
+                        if (blocks.Count == 0) 
+                        {
+                            gameTimer.Enabled = false;
+                            WinCondition();
+                        }
                     }
                 }
             }
@@ -258,6 +264,18 @@ namespace BrickBreaker
 
         }
 
+        public void WinCondition() 
+        {
+            Form1.currentLevel = (Form1.currentLevel == 12) ? 1 : (Form1.currentLevel + 1);
+            
+            Form form = this.FindForm();
+            GameScreen gs = new GameScreen();
+
+            gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+
+            form.Controls.Add(gs);
+            form.Controls.Remove(this);
+        }
         public void OnEnd()
         {
             // Goes to the game over screen
@@ -302,8 +320,18 @@ namespace BrickBreaker
             }
 
             //Draw Xp Bar
+            Color barColor = Color.FromArgb(18, 0, 0, 0);
+            SolidBrush barBrush = new SolidBrush(barColor);
+
+            Rectangle fadeRect = xpFullRect;
+            for (int i = 0; i < 10; i++) 
+            {
+                fadeRect.Y -= i;
+                fadeRect.Height += i;
+                e.Graphics.FillRectangle(barBrush, fadeRect);
+            }
             e.Graphics.DrawImage(fullXpBar, xpFullRect);
-            e.Graphics.FillRectangle(new SolidBrush(Color.Black),xpBarRegion);
+            e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(180, 0, 0, 0)), xpBarRegion);
             // e.Graphics.DrawImage(xpBar, xpRect);
 
             // Draws ball

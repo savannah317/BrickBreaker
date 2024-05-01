@@ -23,10 +23,10 @@ namespace BrickBreaker
         #region Block ID & Level Data
         public static string[][] blockData = new string[][]
         {
-        new string [] {"Hp", "Weak To", "Png"},
-        
-        new string [] {"1", "Shovel", "grass_block"}, //Grass Block
-        new string [] {"3", "Axe", "oak_log"}, //Oak Wood Log
+        new string [] {"Hp", "Weak To", "Png", "Chance Of Powerup (0 - 1)", "ID of Powerup"},
+
+        new string [] {"1", "Shovel", "grass_block", "0.1", "1"}, //Grass Block
+        new string [] {"3", "Axe", "oak_log", "0.1", "1"}, //Oak Wood Log
         new string [] {"1", "Hoe", "oak_leaves"}, //Oak Leaves
         new string [] {"3", "Axe", "oak_planks"}, //Oak Planks
         new string [] {"2", "Pick", "stone"}, //Stone
@@ -34,13 +34,13 @@ namespace BrickBreaker
         new string [] {"2", "Pick", "iron_ore"}, //Iron Ore
         new string [] {"3", "Pick", "gold_ore"}, //Gold Ore
         new string [] {"2", "Pick", "diamond_ore"}, //Diamond Ore
-        new string [] {"8", "Pick", "obsidian"}, //Obsidian
+        new string [] {"5", "Pick", "obsidian"}, //Obsidian
         new string [] {"2", "Pick", "netherrack"}, //Netherack
         
         new string [] {"3", "Pick", "quartz_ore"}, //Quartz Ore
         new string [] {"4", "Pick", "netherite"}, //Netherite
         new string [] {"10", "Sword", "endframe_side"}, //End Portal Block
-        new string [] {"5", "Pick", "stonebrick"}, //Stone Bricks
+        new string [] {"4", "Pick", "stonebrick"}, //Stone Bricks
         new string [] {"4", "Pick", "end_stone"}, //Endstone
         
         new string [] {"4", "Pick", "end_bricks"}, //Endstone Bricks
@@ -52,14 +52,9 @@ namespace BrickBreaker
         new string [] {"2", "Sword", "lava"}, //Lava
         new string [] {"1", "Sword", "portal"}, //Nether Portal
         new string [] {"2", "Sword", "bedrock"}, //Bedrock
-        new string [] {"6", "Sword", "dragon_egg"}, //Dragon Egg
+        new string [] {"4", "Sword", "dragon_egg"}, //Dragon Egg
         new string [] {"3", "Pick", "cobblestone"}, //Cobblestone
 
-        };
-
-        public static string[][] levelData = new string[][]
-        {
-        new string[] {"Player Sprite", "Background Image" }
         };
         #endregion
 
@@ -107,7 +102,7 @@ namespace BrickBreaker
 
         public static bool IsWithinRange(float num, float lowerBound, float upperBound) { return num >= lowerBound && num <= upperBound; }
 
-        public static float GreaterOf (float num1, float num2) { return num1 > num2 ? num1 : num2; }
+        public static float GreaterOf(float num1, float num2) { return num1 > num2 ? num1 : num2; }
 
         #endregion
 
@@ -128,10 +123,12 @@ namespace BrickBreaker
 
             //prioritize collisions with the top / bottom of an object unless rectTop < ballY < rectBottom
 
-            if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height)) {
+            if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height))
+            {
                 return (ball.x > rectObject.x) ? 2 : 4;
             }
-            if (CollidesY) {
+            if (CollidesY)
+            {
                 return (ball.y > rectObject.y) ? 3 : 1;
             }
 
@@ -153,11 +150,13 @@ namespace BrickBreaker
 
             //prioritize collisions with the top / bottom of an object unless rectTop < ballY < rectBottom
 
-            if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height)) {
+            if (CollidesX && IsWithinRange(ballCenter.Y, rectObject.y, rectObject.y + rectObject.height))
+            {
                 return (ball.x > rectObject.x) ? 2 : 4;
             }
 
-            if (CollidesY) {
+            if (CollidesY)
+            {
                 return (ball.y > rectObject.y) ? 3 : 1;
             }
 
@@ -176,8 +175,10 @@ namespace BrickBreaker
         {
             XmlReader reader = XmlReader.Create("Resources/GenXML.xml");
 
-            while (reader.Read()) { //exPLODE (thanks hark)
-                if (reader.NodeType == XmlNodeType.Text) {
+            while (reader.Read())
+            { //exPLODE (thanks hark)
+                if (reader.NodeType == XmlNodeType.Text)
+                {
 
                     x = reader.ReadString();
 
