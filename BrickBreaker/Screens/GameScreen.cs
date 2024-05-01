@@ -53,9 +53,12 @@ namespace BrickBreaker
         Image fullXpBar = Properties.Resources.xpBarFull;
 
         //Lives
-        Rectangle life1 = new Rectangle(265, 330, 25, 25);
-        Rectangle life2 = new Rectangle(315, 330, 25, 25);
-        Rectangle life3 = new Rectangle(365, 330, 25, 25);
+        List<Rectangle> lifeRectangles = new List<Rectangle>
+        {
+        new Rectangle(10, 10, 35, 35),
+        new Rectangle(60, 10, 35, 35),
+        new Rectangle(110, 10, 35, 35)
+        };
         Rectangle xpRect = new Rectangle(200, 370, 250, 5);
         Rectangle xpFullRect = new Rectangle(-300, 370, 250, 10);
 
@@ -137,6 +140,8 @@ namespace BrickBreaker
                 }
 
             }
+
+            blocksNum = blocks.Count;
         }
 
         #endregion
@@ -214,6 +219,7 @@ namespace BrickBreaker
                     gameTimer.Enabled = false;
                     OnEnd();
                 }
+                lifeRectangles.RemoveAt(lifeRectangles.Count - 1);
             }
 
 
@@ -273,12 +279,13 @@ namespace BrickBreaker
 
             //Draw Hearts
 
-            e.Graphics.DrawImage(hearts, life1);
-            e.Graphics.DrawImage(hearts, life2);
-            e.Graphics.DrawImage(hearts, life3);
+            foreach (Rectangle lifeRect in lifeRectangles) 
+            {
+                e.Graphics.DrawImage(hearts, lifeRect);
+            }
 
-            e.Graphics.DrawImage(xpBar, xpRect);
-            e.Graphics.DrawImage(fullXpBar, xpFullRect);
+            //e.Graphics.DrawImage(xpBar, xpRect);
+            //e.Graphics.DrawImage(fullXpBar, xpFullRect);
 
             // Draws ball
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
