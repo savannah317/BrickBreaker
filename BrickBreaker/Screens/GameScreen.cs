@@ -16,6 +16,7 @@ using System.Xml;
 using BrickBreaker.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using System.Resources;
+using System.IO;
 
 namespace BrickBreaker
 {
@@ -51,8 +52,9 @@ namespace BrickBreaker
         Image stoneBlock = Properties.Resources.stone;
         Image hearts = Properties.Resources.heartIcon2;
         Image snowBall = Properties.Resources.snowball;
-        Image xpBar = Properties.Resources.xpBarEmpty;
+        Image emptyXpBar = Properties.Resources.xpBarEmpty;
         Image fullXpBar = Properties.Resources.xpBarFull;
+        Rectangle xpBarRegion;
 
         //Lives
         List<Rectangle> lifeRectangles = new List<Rectangle>
@@ -77,8 +79,7 @@ namespace BrickBreaker
         public void OnStart()
         {
             right = this.Right;
-            xpRect = xpFullRect = new Rectangle(0, this.Bottom - 35, this.Right, 35);
-            
+            xpRect = xpFullRect = xpBarRegion = new Rectangle(0, this.Bottom - 35, this.Right, 35);
 
             //set life counter
             lives = 3;
@@ -206,13 +207,6 @@ namespace BrickBreaker
             Form1.globalTimer++;
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
-
-            double xpBarPercent = (Double)blocks.Count / blocksNum;
-            if (xpBarPercent != 1) 
-            {
-                xpFullRect.Width = (int)(right * xpBarPercent);
-            };
-
             ball.Move();
             ball.PaddleCollision(paddle);
 
@@ -241,8 +235,17 @@ namespace BrickBreaker
                 if (ball.BlockCollision(b))
                 {
                     b.runCollision(); //should be switched to entirely, no lines below
-                    if (b.hp < 1) { blocks.Remove(b); }
-
+                    if (b.hp < 1) 
+                    {
+                        blocks.Remove(b);
+                        
+                        double xpBarPercent = (Double)blocks.Count / blocksNum;
+                        if (xpBarPercent != 1)
+                        {
+                            xpBarRegion.Width = (int)(right * xpBarPercent);
+                            xpBarRegion.X = (right - xpBarRegion.Width);
+                        };
+                    }
                 }
             }
 
@@ -285,18 +288,23 @@ namespace BrickBreaker
             {
                 //e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
                 e.Graphics.DrawImage(b.image, b.x, b.y, b.width + 2, b.height + 2);
-                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(b.alphaValue,0,0,0)), b.overlay);
+                if (b.alphaValue != 0)
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(b.alphaValue, 0, 0, 0)), b.overlay);
+                }
             }
 
             //Draw Hearts
 
-            foreach (Rectangle lifeRect in lifeRectangles) 
+            foreach (Rectangle lifeRect in lifeRectangles)
             {
                 e.Graphics.DrawImage(hearts, lifeRect);
             }
 
+            //Draw Xp Bar
             e.Graphics.DrawImage(fullXpBar, xpFullRect);
-           // e.Graphics.DrawImage(xpBar, xpRect);
+            e.Graphics.FillRectangle(new SolidBrush(Color.Black),xpBarRegion);
+            // e.Graphics.DrawImage(xpBar, xpRect);
 
             // Draws ball
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);

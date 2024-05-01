@@ -1,395 +1,437 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <level>
 	<brick>
-		<x>661</x>
-		<y>123</y>
+		<x>168</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>22</id>
 	</brick>
 	<brick>
-		<x>711</x>
-		<y>73</y>
+		<x>168</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>22</id>
 	</brick>
 	<brick>
-		<x>761</x>
-		<y>23</y>
+		<x>168</x>
+		<y>205</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>22</id>
 	</brick>
 	<brick>
-		<x>511</x>
-		<y>173</y>
+		<x>118</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>22</id>
 	</brick>
 	<brick>
-		<x>461</x>
-		<y>173</y>
+		<x>118</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>2</id>
+		<id>22</id>
 	</brick>
 	<brick>
-		<x>911</x>
-		<y>373</y>
+		<x>118</x>
+		<y>205</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>22</id>
 	</brick>
 	<brick>
-		<x>861</x>
-		<y>373</y>
+		<x>168</x>
+		<y>105</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>9</id>
 	</brick>
 	<brick>
-		<x>811</x>
-		<y>373</y>
+		<x>118</x>
+		<y>105</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>9</id>
 	</brick>
 	<brick>
-		<x>761</x>
-		<y>373</y>
+		<x>218</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>9</id>
 	</brick>
 	<brick>
-		<x>711</x>
-		<y>373</y>
+		<x>68</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>9</id>
 	</brick>
 	<brick>
-		<x>661</x>
-		<y>373</y>
+		<x>68</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>9</id>
 	</brick>
 	<brick>
-		<x>111</x>
-		<y>373</y>
+		<x>68</x>
+		<y>205</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>9</id>
 	</brick>
 	<brick>
-		<x>61</x>
-		<y>373</y>
+		<x>218</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>9</id>
 	</brick>
 	<brick>
-		<x>11</x>
-		<y>373</y>
+		<x>218</x>
+		<y>205</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>9</id>
 	</brick>
 	<brick>
-		<x>311</x>
-		<y>373</y>
+		<x>917</x>
+		<y>105</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>361</x>
-		<y>373</y>
+		<x>867</x>
+		<y>105</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>461</x>
-		<y>373</y>
+		<x>867</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>411</x>
-		<y>373</y>
+		<x>817</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>261</x>
-		<y>373</y>
+		<x>718</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>211</x>
-		<y>373</y>
+		<x>668</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>161</x>
-		<y>373</y>
+		<x>618</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>1</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>811</x>
-		<y>223</y>
+		<x>867</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>711</x>
-		<y>173</y>
+		<x>817</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>711</x>
-		<y>123</y>
+		<x>767</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>861</x>
-		<y>173</y>
+		<x>867</x>
+		<y>205</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>811</x>
-		<y>123</y>
+		<x>817</x>
+		<y>205</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>811</x>
-		<y>173</y>
+		<x>767</x>
+		<y>205</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>761</x>
-		<y>323</y>
+		<x>717</x>
+		<y>105</y>
 		<width>50</width>
 		<height>50</height>
-		<id>2</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>761</x>
-		<y>273</y>
+		<x>667</x>
+		<y>55</y>
 		<width>50</width>
 		<height>50</height>
-		<id>2</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>761</x>
-		<y>123</y>
+		<x>617</x>
+		<y>5</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>11</id>
 	</brick>
 	<brick>
-		<x>761</x>
-		<y>173</y>
+		<x>518</x>
+		<y>5</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>11</id>
 	</brick>
 	<brick>
-		<x>761</x>
-		<y>73</y>
+		<x>468</x>
+		<y>5</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>761</x>
-		<y>223</y>
+		<x>568</x>
+		<y>5</y>
 		<width>50</width>
 		<height>50</height>
-		<id>2</id>
+		<id>11</id>
 	</brick>
 	<brick>
-		<x>361</x>
-		<y>123</y>
+		<x>917</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>411</x>
-		<y>123</y>
+		<x>318</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>411</x>
-		<y>73</y>
+		<x>268</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>561</x>
-		<y>123</y>
+		<x>368</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>511</x>
-		<y>73</y>
+		<x>718</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>511</x>
-		<y>123</y>
+		<x>668</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>461</x>
-		<y>323</y>
+		<x>618</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>2</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>461</x>
-		<y>273</y>
+		<x>768</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>2</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>461</x>
-		<y>73</y>
+		<x>568</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>461</x>
-		<y>123</y>
+		<x>518</x>
+		<y>155</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>461</x>
-		<y>23</y>
+		<x>318</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>461</x>
-		<y>223</y>
+		<x>168</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>2</id>
+		<id>9</id>
 	</brick>
 	<brick>
-		<x>61</x>
-		<y>223</y>
+		<x>917</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>111</x>
-		<y>223</y>
+		<x>667</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>11</id>
 	</brick>
 	<brick>
-		<x>111</x>
-		<y>173</y>
+		<x>617</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>261</x>
-		<y>223</y>
+		<x>867</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>211</x>
-		<y>173</y>
+		<x>817</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>10</id>
 	</brick>
 	<brick>
-		<x>211</x>
-		<y>223</y>
+		<x>568</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>161</x>
-		<y>323</y>
+		<x>468</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>2</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>161</x>
-		<y>273</y>
+		<x>418</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>2</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>161</x>
-		<y>173</y>
+		<x>368</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>161</x>
-		<y>223</y>
+		<x>518</x>
+		<y>305</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>21</id>
 	</brick>
 	<brick>
-		<x>161</x>
-		<y>123</y>
+		<x>568</x>
+		<y>255</y>
 		<width>50</width>
 		<height>50</height>
-		<id>3</id>
+		<id>21</id>
+	</brick>
+	<brick>
+		<x>218</x>
+		<y>305</y>
+		<width>50</width>
+		<height>50</height>
+		<id>10</id>
+	</brick>
+	<brick>
+		<x>118</x>
+		<y>305</y>
+		<width>50</width>
+		<height>50</height>
+		<id>9</id>
+	</brick>
+	<brick>
+		<x>68</x>
+		<y>305</y>
+		<width>50</width>
+		<height>50</height>
+		<id>10</id>
+	</brick>
+	<brick>
+		<x>18</x>
+		<y>305</y>
+		<width>50</width>
+		<height>50</height>
+		<id>11</id>
+	</brick>
+	<brick>
+		<x>767</x>
+		<y>305</y>
+		<width>50</width>
+		<height>50</height>
+		<id>10</id>
+	</brick>
+	<brick>
+		<x>717</x>
+		<y>305</y>
+		<width>50</width>
+		<height>50</height>
+		<id>11</id>
 	</brick>
 </level>
