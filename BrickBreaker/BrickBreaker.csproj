@@ -303,6 +303,42 @@
   <ItemGroup>
     <None Include="Resources\minecraftBkgd1.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level1Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level2Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level3Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level4Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level5Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level6Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level7Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level8Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level9Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level10Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level11Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level1Img1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
