@@ -70,7 +70,7 @@ namespace BrickBreaker
 
         #endregion
 
-
+        int blocksNum;
         ResourceManager rm = Resources.ResourceManager;
 
         List<Powerup> activePowerups = new List<Powerup>();
@@ -264,7 +264,7 @@ namespace BrickBreaker
 
                 if (ball.BlockCollision(b))
                 {
-                    b.runCollision(blocks); //should be switched to entirely, no lines below
+                    b.runCollision(); //should be switched to entirely, no lines below
                     if (b.hp < 1)
                     {
                         foreach (Powerup p in b.powerupList)
