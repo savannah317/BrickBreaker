@@ -60,7 +60,7 @@ namespace BrickBreaker
         public static string[][] powerupData = new string[][]
      {
         new string[]{"Fallspeed (working with %)", "Activetime", "Png", "Radius" },
-        new string[]{"9", "40", "apple", "10"},
+        new string[]{"9", "400", "apple", "10"},
      };
         #endregion
 

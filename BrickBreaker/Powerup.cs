@@ -29,7 +29,7 @@ namespace BrickBreaker
         public double Age() 
         {
             time++;
-            activeTime -= 0.1;
+            activeTime -= 1;
             return activeTime / lifeSpan;
         }
         public bool[] Move(int bottom, Rectangle paddleRect)

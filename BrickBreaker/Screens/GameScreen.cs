@@ -311,7 +311,7 @@ namespace BrickBreaker
 
                 for (int p = 0; p < activePowerups.Count; p++)
                 {
-                    if (activePowerups[p].activeTime < 40) { activePowerups.RemoveAt(p); }
+                    if (activePowerups[p].activeTime < 0) { activePowerups.RemoveAt(p); }
                 }
             }
 
@@ -405,7 +405,7 @@ namespace BrickBreaker
             {
                 Double age = p.Age();
                 int newSize = (int)(powerUpImageSize * age) + 3;
-                e.Graphics.DrawImage(p.image, new Rectangle(powerUpOffset + (powerUpImageSize - newSize), powerupYCoord, newSize, newSize));
+                e.Graphics.DrawImage(p.image, new Rectangle(powerUpOffset + ((powerUpImageSize - newSize) / 2), powerupYCoord + ((powerUpImageSize - newSize) / 2), newSize, newSize));
               // e.Graphics.DrawString("x" + p.strength, powerupFont, new SolidBrush(Color.FromArgb(180, 255, 255, 255)), new Point(powerUpImageSize + (2 * powerUpOffset), powerupYCoord + (powerUpImageSize / 2)));
                 powerupYCoord += 45;
             }
