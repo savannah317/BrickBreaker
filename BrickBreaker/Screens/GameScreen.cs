@@ -201,6 +201,16 @@ namespace BrickBreaker
                 case Keys.D:
                     rightArrowDown = true;
                     break;
+                case Keys.Escape:
+                    // Goes to the level screen
+                    PauseScreen ps = new PauseScreen();
+                    Form form = this.FindForm();
+
+                    form.Controls.Add(ps);
+                    form.Controls.Remove(this);
+
+                    ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
+                    break;
                 default:
                     break;
             }
