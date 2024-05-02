@@ -119,7 +119,7 @@ namespace BrickBreaker
 
 
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
-
+            resetBall();
             LevelReader(Form1.currentLevel);
 
             // start the game engine loop
@@ -240,6 +240,11 @@ namespace BrickBreaker
 
         #endregion
 
+        void resetBall() {
+            ball.x = ((paddle.x - (ball.radius * 2)) + (paddle.width / 2));
+            ball.y = paddle.y - (ball.radius * 2) - paddle.height;
+            ball.yVel = -1 * Math.Abs(ball.yVel);
+        }
 
 
         private void gameTimer_Tick(object sender, EventArgs e) {
@@ -255,8 +260,7 @@ namespace BrickBreaker
                 lives--;
 
                 // Moves the ball back to origin
-                ball.x = ((paddle.x - (ball.radius * 2)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height + ball.radius) - 85;
+                resetBall();
 
                 if (lives == 0)
                 {
@@ -332,11 +336,6 @@ namespace BrickBreaker
                     if (activePowerups[p].activeTime < 0) { activePowerups.RemoveAt(p); }
                 }
             }
-
-            float xpBarMult = totalNumOfBlocks / blocks.Count;    //BLOCKS NUM IS NEVER USED, THIS LOGIC WORKS FOR XP / GAME ENDING IF IT REPRESENTS TOTAL NUM OF BLOCKS
-            xpFullRect = new Rectangle (50, 367, (int)(100 * xpBarMult), 50); //scale the xp bar mask based on the % of blocks remaining
-
-            //if (xpBarMult == 0) { /*endGame*/ }
 
             Refresh();
 
