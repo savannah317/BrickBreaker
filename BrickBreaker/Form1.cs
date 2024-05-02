@@ -94,8 +94,8 @@ namespace BrickBreaker
 
         public static string[][] powerupData = new string[][]
      {
-        new string[]{"Fallspeed (working with %)", "Activetime", "Png", "Radius" },
-        new string[]{"9", "400", "apple", "10"},
+        new string[]{"Fallspeed", "Activetime", "Png", "Radius" },
+        new string[]{"3", "400", "apple", "10"},
      };
         #endregion
         public static int globalTimer;

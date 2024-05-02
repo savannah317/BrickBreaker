@@ -317,8 +317,9 @@ namespace BrickBreaker
                         }
                     }
                 }
+            }
 
-                for (int p = 0; p < fallingPowerups.Count; p++)
+            for (int p = 0; p < fallingPowerups.Count; p++)
                 {
                     //Choose to despawn or activate a powerup
                     bool[] removeAndActivate = fallingPowerups[p].Move(this.Bottom, new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height));
@@ -351,7 +352,7 @@ namespace BrickBreaker
                 {
                     if (activePowerups[p].activeTime < 0) { activePowerups.RemoveAt(p); }
                 }
-            }
+            
 
             Refresh();
 
