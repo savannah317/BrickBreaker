@@ -17,6 +17,7 @@ using BrickBreaker.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using System.Resources;
 using System.IO;
+using BrickBreaker.Screens;
 
 namespace BrickBreaker
 {
@@ -340,7 +341,7 @@ namespace BrickBreaker
         {
             // Goes to the game over screen
             Form form = this.FindForm();
-            MenuScreen es = new MenuScreen();
+            EndScreen es = new EndScreen();
 
             es.Location = new Point((form.Width - es.Width) / 2, (form.Height - es.Height) / 2);
 
