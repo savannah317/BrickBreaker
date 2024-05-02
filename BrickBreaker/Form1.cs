@@ -63,7 +63,6 @@ namespace BrickBreaker
         new string[]{"9", "400", "apple", "10"},
      };
         #endregion
-
         public static int globalTimer;
         public static int tickDeltaTime = 10;
 
