@@ -19,7 +19,7 @@ namespace BrickBreaker.Screens
 
         private void replayButton_Click(object sender, EventArgs e)
         {
-            GameScreen gs = new GameScreen();
+            GameScreen gs = new GameScreen(true);
             Form form = this.FindForm();
 
             form.Controls.Add(gs);

@@ -84,7 +84,7 @@
             this.levelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.levelButton.ForeColor = System.Drawing.Color.White;
             this.levelButton.Location = new System.Drawing.Point(29, 257);
-            this.levelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.levelButton.Margin = new System.Windows.Forms.Padding(4);
             this.levelButton.Name = "levelButton";
             this.levelButton.Size = new System.Drawing.Size(732, 49);
             this.levelButton.TabIndex = 11;
@@ -100,7 +100,7 @@
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ForeColor = System.Drawing.Color.White;
             this.exitButton.Location = new System.Drawing.Point(29, 325);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(4);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(732, 49);
             this.exitButton.TabIndex = 10;
@@ -118,7 +118,7 @@
             this.continueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.continueButton.ForeColor = System.Drawing.Color.White;
             this.continueButton.Location = new System.Drawing.Point(29, 188);
-            this.continueButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.continueButton.Margin = new System.Windows.Forms.Padding(4);
             this.continueButton.Name = "continueButton";
             this.continueButton.Size = new System.Drawing.Size(732, 49);
             this.continueButton.TabIndex = 9;
@@ -138,9 +138,10 @@
             this.Controls.Add(this.levelButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.continueButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PauseScreen";
             this.Size = new System.Drawing.Size(793, 433);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PauseScreen_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

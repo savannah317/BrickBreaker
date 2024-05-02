@@ -30,7 +30,7 @@ namespace BrickBreaker.Screens
         }
         public void ToGameScreen()
         {
-            GameScreen gs = new GameScreen();
+            GameScreen gs = new GameScreen(false);
             Form form = this.FindForm();
 
             form.Controls.Add(gs);

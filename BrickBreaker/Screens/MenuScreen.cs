@@ -29,7 +29,7 @@ namespace BrickBreaker
         private void playButton_Click(object sender, EventArgs e)
         {
             // Goes to the game screen
-            GameScreen gs = new GameScreen();
+            GameScreen gs = new GameScreen(false);
             Form form = this.FindForm();
 
             form.Controls.Add(gs);

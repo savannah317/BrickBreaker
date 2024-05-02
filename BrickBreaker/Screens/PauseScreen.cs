@@ -17,6 +17,7 @@ namespace BrickBreaker.Screens
         {
             parentScreen = _parentScreen;
             InitializeComponent();
+            this.Focus();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -39,6 +40,19 @@ namespace BrickBreaker.Screens
         }
 
         private void continueButton_Click(object sender, EventArgs e)
+        {
+            unPause();
+        }
+
+        private void PauseScreen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Keys)e.KeyChar == Keys.Space || (Keys)e.KeyChar == Keys.Enter)
+            {
+                unPause();
+            }
+        }
+
+        void unPause()
         {
             parentScreen.gameTimer.Enabled = true;
             parentScreen.Controls.Remove(this);

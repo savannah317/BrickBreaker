@@ -78,17 +78,26 @@ namespace BrickBreaker
         Font powerupFont = new Font(DefaultFont.Name, 10);
         int powerUpImageSize = 40;
         int powerUpOffset = 10;
-        public GameScreen()
+        public GameScreen(bool immidiateStart)
         {
 
             InitializeComponent();
-            OnStart();
+            OnStart(immidiateStart);
         }
 
         #region levelBuilder
 
-        public void OnStart()
+        public void OnStart(bool immidiateStart)
         {
+            //Start immidiately, or give the player a StartLevelScreen first.
+            if (immidiateStart) { gameTimer.Enabled = true; }
+            else
+            {
+                StartLevelScreen sls = new StartLevelScreen(this);
+                sls.Location = new Point((this.Width - sls.Width) / 2, ((this.Height - sls.Height) / 2) - (sls.Height / 2));
+                this.Controls.Add(sls);
+            }
+
             right = this.Right;
             xpRect = xpFullRect = xpBarRegion = new Rectangle(0, this.Bottom - 35, this.Right, 35);
 
@@ -119,9 +128,6 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             resetBall();
             LevelReader(Form1.currentLevel);
-
-            // start the game engine loop
-            gameTimer.Enabled = true;
         }
 
 
@@ -357,7 +363,7 @@ namespace BrickBreaker
             Form1.currentLevel = (Form1.currentLevel == 12) ? 1 : (Form1.currentLevel + 1);
 
             Form form = this.FindForm();
-            GameScreen gs = new GameScreen();
+            GameScreen gs = new GameScreen(false);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
 
