@@ -105,6 +105,12 @@
     <Compile Include="Screens\GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\PauseScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screens\PauseScreen.Designer.cs">
+      <DependentUpon>PauseScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\PauseScreen.resx">
+      <DependentUpon>PauseScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinScreen.resx">
       <DependentUpon>WinScreen.cs</DependentUpon>
@@ -314,7 +323,6 @@
     <None Include="Resources\minecraftBkgd1.jpg" />
   </ItemGroup>
   <ItemGroup>
-
     <None Include="Resources\level1Img.png" />
   </ItemGroup>
   <ItemGroup>
@@ -350,7 +358,7 @@
   <ItemGroup>
     <None Include="Resources\level1Img1.png" />
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
     <None Include="Resources\xpBarFull1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -390,7 +398,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\apple.png" />
-
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
