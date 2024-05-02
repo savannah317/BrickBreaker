@@ -73,6 +73,10 @@ namespace BrickBreaker
         List<Powerup> activePowerups = new List<Powerup>();
         List<Powerup> fallingPowerups = new List<Powerup>();
 
+        //Displaying Powerups
+        Font powerupFont = new Font(DefaultFont.Name, 10);
+        int powerUpImageSize = 40;
+        int powerUpOffset = 10;
         public GameScreen()
         {
             InitializeComponent();
@@ -278,10 +282,36 @@ namespace BrickBreaker
 
                 for (int p = 0; p < fallingPowerups.Count; p++)
                 {
-                    if (fallingPowerups[p].Move(this.Bottom, new Rectangle(paddle.x,paddle.y,paddle.width,paddle.height))) 
-                    { 
-                        fallingPowerups.RemoveAt(p); 
+                    //Choose to despawn or activate a powerup
+                    bool[] removeAndActivate = fallingPowerups[p].Move(this.Bottom, new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height));
+                    if (removeAndActivate[1])
+                    {
+                        //If the powerup hits the player, check to see if the powerup already exists and boost its strength, if not add it to the active list
+                        bool addAsNewPowerup = true;
+                        int ghostID = fallingPowerups[p].id;
+                        foreach (Powerup q in activePowerups)
+                        {
+                            //If the powerups list already has this type of powerup, increase its active time and strength instaed of adding a new one.
+                            if (q.id == ghostID)
+                            {
+                                addAsNewPowerup = false;
+                                q.strength++;
+                                q.activeTime += fallingPowerups[p].activeTime;
+                                q.lifeSpan = q.activeTime;
+                            }
+                        }
+                        if (addAsNewPowerup) { activePowerups.Add(fallingPowerups[p]); }
+                    }
+                    if (removeAndActivate[0])
+                    {
+                        //If the powerup hits the player, or the screen end, remove it from the list
+                        fallingPowerups.RemoveAt(p);
                     };
+                }
+
+                for (int p = 0; p < activePowerups.Count; p++)
+                {
+                    if (activePowerups[p].activeTime < 40) { activePowerups.RemoveAt(p); }
                 }
             }
 
@@ -320,7 +350,6 @@ namespace BrickBreaker
 
         private void GameScreen_Load(object sender, EventArgs e)
         {
-            gameTimer.Interval = 10;
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -364,15 +393,27 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(180, 0, 0, 0)), xpBarRegion);
             // e.Graphics.DrawImage(xpBar, xpRect);
 
-            // Draws ball
-            Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
-            e.Graphics.DrawImage(snowBall, ballRect);
-
-            //Draw Powerups
+            //Draw Falling Powerups
             foreach (Powerup p in fallingPowerups)
             {
                 e.Graphics.DrawImage(p.image, p.rectangle);
             }
+
+            //Draw Active Powerups
+            int powerupYCoord = 80;
+            foreach (Powerup p in activePowerups)
+            {
+                Double age = p.Age();
+                int newSize = (int)(powerUpImageSize * age) + 3;
+                e.Graphics.DrawImage(p.image, new Rectangle(powerUpOffset + (powerUpImageSize - newSize), powerupYCoord, newSize, newSize));
+              // e.Graphics.DrawString("x" + p.strength, powerupFont, new SolidBrush(Color.FromArgb(180, 255, 255, 255)), new Point(powerUpImageSize + (2 * powerUpOffset), powerupYCoord + (powerUpImageSize / 2)));
+                powerupYCoord += 45;
+            }
+
+            // Draws ball
+            Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
+            e.Graphics.DrawImage(snowBall, ballRect);
+
 
         }
     }
