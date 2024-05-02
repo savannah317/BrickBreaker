@@ -170,6 +170,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Minecraft.ttf" />
+    <None Include="Resources\MinecraftBold-nMK1.otf" />
     <None Include="Resources\stone.png" />
   </ItemGroup>
   <ItemGroup>

@@ -10,12 +10,31 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Numerics;
 using System.Xml;
+using System.Drawing.Text;
+using System.Runtime.InteropServices;
+using System.Reflection.Emit;
 
-namespace BrickBreaker {
-    public partial class Form1 : Form {
-        public Form1() {
+namespace BrickBreaker
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
             InitializeComponent();
+            #region Creating Minecraft Font
+            
+            int fontLength = Properties.Resources.MinecraftFont.Length;
+            byte[] fontdata = Properties.Resources.MinecraftFont;
+            System.IntPtr data = Marshal.AllocCoTaskMem(fontLength);
+            Marshal.Copy(fontdata, 0, data, fontLength);
+
+            //Add this font to the private font collection
+            pfc.AddMemoryFont(data, fontLength);
+            #endregion
         }
+
+        //Create new private font collection
+        public static PrivateFontCollection pfc = new PrivateFontCollection();
 
 
         #region Block ID & Powerup ID Data
@@ -71,21 +90,27 @@ namespace BrickBreaker {
 
         public static bool isNegative(float num) { return (Math.Abs(num) != num); }
 
-        public static int timeSincePoint(int checkedTime) {
+        public static int timeSincePoint(int checkedTime)
+        {
             return checkedTime < globalTimer ? (globalTimer - checkedTime) : -1;  // returns -1 if checkedtime is in the future
         }
 
-        public static float clamp(float value, float min, float max) {
+        public static float clamp(float value, float min, float max)
+        {
             return Math.Max(min, Math.Min(max, value));
         }
 
-        public static void ChangeScreen(object sender, UserControl next) {
+        public static void ChangeScreen(object sender, UserControl next)
+        {
 
             Form f; // will either be the sender or parent of sender 
 
-            if (sender is Form) {
+            if (sender is Form)
+            {
                 f = (Form)sender;
-            } else {
+            }
+            else
+            {
                 UserControl current = (UserControl)sender;
                 f = current.FindForm();
                 f.Controls.Remove(current);
@@ -107,7 +132,8 @@ namespace BrickBreaker {
 
         #region gameLogic
 
-        public static int CheckCollision(Ball ball, Paddle rectObject, int collisionTimeStamp) { //returns 0 (no collision) or 1-4 (collides from the rectangle's top, right side, bottom and left side respectively)
+        public static int CheckCollision(Ball ball, Paddle rectObject, int collisionTimeStamp)
+        { //returns 0 (no collision) or 1-4 (collides from the rectangle's top, right side, bottom and left side respectively)
 
             if (timeSincePoint(collisionTimeStamp) <= 8) { return 0; }
 
@@ -133,7 +159,8 @@ namespace BrickBreaker {
             return 0; //return 0 if no collision was detected (shouln't really be used if things are working properly but it yells at me if I delete)
         }
 
-        public static int CheckCollision(Ball ball, Block rectObject, int collisionTimeStamp) { //returns 0 (no collision) or 1-4 (collides from the rectangle's top, right side, bottom and left side respectively)
+        public static int CheckCollision(Ball ball, Block rectObject, int collisionTimeStamp)
+        { //returns 0 (no collision) or 1-4 (collides from the rectangle's top, right side, bottom and left side respectively)
 
             if (timeSincePoint(collisionTimeStamp) <= 4) { return 0; }
 
@@ -168,7 +195,8 @@ namespace BrickBreaker {
         List<Block> blocks = new List<Block>();
 
 
-        public void LevelReader() {
+        public void LevelReader()
+        {
             XmlReader reader = XmlReader.Create("Resources/GenXML.xml");
 
             while (reader.Read())
@@ -198,7 +226,8 @@ namespace BrickBreaker {
 
 
 
-        private void Form1_Load(object sender, EventArgs e) {
+        private void Form1_Load(object sender, EventArgs e)
+        {
             // Start the program centred on the Menu Screen
             MenuScreen ms = new MenuScreen();
             this.Controls.Add(ms);

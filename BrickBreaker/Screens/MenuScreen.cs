@@ -15,10 +15,15 @@ namespace BrickBreaker
     {
 
         Image minecraftLogo = Properties.Resources.minecraftLogo;
-        Rectangle titleRec = new Rectangle(25, -150, 800, 500);
+        Rectangle titleRec;
         public MenuScreen()
         {
             InitializeComponent();
+
+            titleRec = new Rectangle(0,-50,this.Right, 500);
+
+            titleLabel.Font = new Font(Form1.pfc.Families[0], titleLabel.Font.Size);
+            playButton.Font = levelButton.Font = exitButton.Font = new Font(Form1.pfc.Families[0], playButton.Font.Size);
         }
 
         private void exitButton_Click(object sender, EventArgs e)
