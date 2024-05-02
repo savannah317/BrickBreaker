@@ -31,7 +31,7 @@ namespace BrickBreaker
         // Game values
         int lives;
         int score;
-        int blocksNum;
+        int totalNumOfBlocks;
         int x, y, width, height, id;
 
         int right;
@@ -57,6 +57,7 @@ namespace BrickBreaker
         Image fullXpBar = Properties.Resources.xpBarFull;
         Rectangle xpBarRegion;
 
+
         //Lives
         List<Rectangle> lifeRectangles = new List<Rectangle>
         {
@@ -69,6 +70,7 @@ namespace BrickBreaker
 
         #endregion
 
+
         ResourceManager rm = Resources.ResourceManager;
 
         List<Powerup> activePowerups = new List<Powerup>();
@@ -80,6 +82,7 @@ namespace BrickBreaker
         int powerUpOffset = 10;
         public GameScreen()
         {
+
             InitializeComponent();
             OnStart();
         }
@@ -123,17 +126,18 @@ namespace BrickBreaker
             gameTimer.Enabled = true;
         }
 
+
+
         public void LevelReader(int levelNumber)
         {
             Random random = new Random();
+
             string path = "Resources/Level" + levelNumber + ".xml";
             XmlReader reader = XmlReader.Create(path);
 
 
-            while (reader.Read())
-            {
-                if (reader.NodeType == XmlNodeType.Text)
-                {
+            while (reader.Read()) {
+                if (reader.NodeType == XmlNodeType.Text) {
                     x = Convert.ToInt32(reader.ReadString());
 
                     reader.ReadToNextSibling("y");
@@ -147,6 +151,7 @@ namespace BrickBreaker
 
                     reader.ReadToNextSibling("id");
                     id = Convert.ToInt32(reader.ReadString());
+
 
                     //Create a new block prototype
                     Block newBlock = new Block(x, y, width, height, id);
@@ -165,12 +170,14 @@ namespace BrickBreaker
 
                         newBlock.powerupList.Add(newPowerup);
                     }
+
                     blocks.Add(newBlock);
                 }
-
             }
 
+
             blocksNum = blocks.Count;
+
         }
 
         #endregion
@@ -225,8 +232,7 @@ namespace BrickBreaker
 
 
 
-        private void gameTimer_Tick(object sender, EventArgs e)
-        {
+        private void gameTimer_Tick(object sender, EventArgs e) {
             Form1.globalTimer++;
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
@@ -239,8 +245,8 @@ namespace BrickBreaker
                 lives--;
 
                 // Moves the ball back to origin
-                ball.x = ((paddle.x - (ball.radius)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height) - 85;
+                ball.x = ((paddle.x - (ball.radius * 2)) + (paddle.width / 2));
+                ball.y = (this.Height - paddle.height + ball.radius) - 85;
 
                 if (lives == 0)
                 {
@@ -255,9 +261,10 @@ namespace BrickBreaker
             for (int i = 0; i < blocks.Count; i++)
             {
                 Block b = blocks[i];
+
                 if (ball.BlockCollision(b))
                 {
-                    b.runCollision(); //should be switched to entirely, no lines below
+                    b.runCollision(blocks); //should be switched to entirely, no lines below
                     if (b.hp < 1)
                     {
                         foreach (Powerup p in b.powerupList)
@@ -316,14 +323,15 @@ namespace BrickBreaker
                 }
             }
 
-            //float xpBarMult = blocks.Count / blocksNum;    **BLOCKS NUM IS NEVER USED, THIS LOGIC WORKS FOR XP / GAME ENDING IF IT REPRESENTS TOTAL NUM OF BLOCKS
-            //xpFullRect = new Rectangle (50, 367, (int)(1000 * xpBarMult), 50); //scale the xp bar mask based on the % of blocks remaining
+            float xpBarMult = totalNumOfBlocks / blocks.Count;    //BLOCKS NUM IS NEVER USED, THIS LOGIC WORKS FOR XP / GAME ENDING IF IT REPRESENTS TOTAL NUM OF BLOCKS
+            xpFullRect = new Rectangle (50, 367, (int)(100 * xpBarMult), 50); //scale the xp bar mask based on the % of blocks remaining
 
             //if (xpBarMult == 0) { /*endGame*/ }
 
             Refresh();
 
         }
+
 
         public void WinCondition()
         {
@@ -347,6 +355,7 @@ namespace BrickBreaker
 
             form.Controls.Add(es);
             form.Controls.Remove(this);
+
         }
 
         private void GameScreen_Load(object sender, EventArgs e)
@@ -356,12 +365,11 @@ namespace BrickBreaker
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws paddle
-            paddleBrush.Color = paddle.colour;
-            //e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
             Rectangle paddleRect = new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height);
             e.Graphics.DrawImage(stoneBlock, paddleRect);
 
             // Draws blocks
+
             foreach (Block b in blocks)
             {
                 //e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
@@ -370,6 +378,7 @@ namespace BrickBreaker
                 {
                     e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(b.alphaValue, 0, 0, 0)), b.overlay);
                 }
+
             }
 
             //Draw Hearts
@@ -412,6 +421,7 @@ namespace BrickBreaker
             }
 
             // Draws ball
+
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
             e.Graphics.DrawImage(snowBall, ballRect);
 
