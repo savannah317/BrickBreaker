@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BrickBreaker.Screens;
 
 namespace BrickBreaker
 {
@@ -40,6 +41,18 @@ namespace BrickBreaker
         private void MenuScreen_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawImage(minecraftLogo, titleRec);
+        }
+
+        private void levelButton_Click(object sender, EventArgs e)
+        {
+            // Goes to the level screen
+            LevelScreen ls = new LevelScreen();
+            Form form = this.FindForm();
+
+            form.Controls.Add(ls);
+            form.Controls.Remove(this);
+
+            ls.Location = new Point((form.Width - ls.Width) / 2, (form.Height - ls.Height) / 2);
         }
     }
 }
