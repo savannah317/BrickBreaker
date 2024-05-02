@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.Automation;
 
 namespace BrickBreaker
 {
@@ -53,6 +54,19 @@ namespace BrickBreaker
             }
 
             return removeMyself;
+        }
+
+        public void GivePowerup()
+        {
+            switch(id)
+            {
+                case 0:
+                    if (GameScreen.lives < 3 && activeTime > 0)
+                    {
+                        GameScreen.lives++;
+                    }
+                    break;
+            }
         }
     }
 }

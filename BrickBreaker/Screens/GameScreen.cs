@@ -28,7 +28,7 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown;
 
         // Game values
-        int lives;
+        public static int lives;
         int score;
         int blocksNum;
         int x, y, width, height, id;
@@ -246,6 +246,7 @@ namespace BrickBreaker
                     gameTimer.Enabled = false;
                     OnEnd();
                 }
+
                 lifeRectangles.RemoveAt(lifeRectangles.Count - 1);
             }
 
