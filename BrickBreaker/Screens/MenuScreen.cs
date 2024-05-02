@@ -19,11 +19,9 @@ namespace BrickBreaker
         public MenuScreen()
         {
             InitializeComponent();
+            Form1.SetLevelFonts(this);
 
             titleRec = new Rectangle(0,-50,this.Right, 500);
-
-            titleLabel.Font = new Font(Form1.pfc.Families[0], titleLabel.Font.Size);
-            playButton.Font = levelButton.Font = exitButton.Font = new Font(Form1.pfc.Families[0], playButton.Font.Size);
         }
 
         private void exitButton_Click(object sender, EventArgs e)

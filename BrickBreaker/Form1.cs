@@ -13,6 +13,7 @@ using System.Xml;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Reflection.Emit;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BrickBreaker
 {
@@ -32,6 +33,23 @@ namespace BrickBreaker
             pfc.AddMemoryFont(data, fontLength);
             #endregion
         }
+
+        public static void SetLevelFonts(UserControl uc) 
+        {
+            foreach (System.Windows.Forms.Button b in uc.Controls.OfType<System.Windows.Forms.Button>())
+            {
+                b.UseCompatibleTextRendering = true;
+                b.Font = new Font(pfc.Families[0], b.Font.Size);
+            }
+            foreach (System.Windows.Forms.Label l in uc.Controls.OfType<System.Windows.Forms.Label>())
+            {
+                l.UseCompatibleTextRendering = true;
+                l.Font = new Font(pfc.Families[0], l.Font.Size);
+            }
+
+        }
+
+
 
         //Create new private font collection
         public static PrivateFontCollection pfc = new PrivateFontCollection();

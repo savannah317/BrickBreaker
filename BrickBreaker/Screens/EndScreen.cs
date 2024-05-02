@@ -15,6 +15,7 @@ namespace BrickBreaker.Screens
         public EndScreen()
         {
             InitializeComponent();
+            Form1.SetLevelFonts(this);
         }
 
         private void replayButton_Click(object sender, EventArgs e)

@@ -15,6 +15,7 @@ namespace BrickBreaker.Screens
         public LevelScreen()
         {
             InitializeComponent();
+            Form1.SetLevelFonts(this);
         }
 
         private void backButton_Click(object sender, EventArgs e)

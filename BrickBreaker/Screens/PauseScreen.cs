@@ -17,6 +17,7 @@ namespace BrickBreaker.Screens
         {
             parentScreen = _parentScreen;
             InitializeComponent();
+            Form1.SetLevelFonts(this);
             this.Focus();
         }
 

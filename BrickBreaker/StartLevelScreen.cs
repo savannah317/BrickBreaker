@@ -17,6 +17,7 @@ namespace BrickBreaker
         {
             parentScreen = _parentScreen;
             InitializeComponent();
+            Form1.SetLevelFonts(this);
         }
 
         private void StartLevelScreen_KeyPress(object sender, KeyPressEventArgs e)
