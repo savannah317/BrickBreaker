@@ -205,11 +205,10 @@ namespace BrickBreaker
                     // Goes to the level screen
                     PauseScreen ps = new PauseScreen();
                     Form form = this.FindForm();
-
-                    form.Controls.Add(ps);
-                    form.Controls.Remove(this);
-
                     ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
+                    form.Controls.Add(ps);
+                    gameTimer.Enabled = false;
+                    // form.Controls.Remove(this);
                     break;
                 default:
                     break;
@@ -231,6 +230,7 @@ namespace BrickBreaker
                     leftArrowDown = false;
                     break;
                 case Keys.D:
+                    Application.Exit();
                     rightArrowDown = false;
                     break;
                 default:
@@ -270,7 +270,7 @@ namespace BrickBreaker
                 lifeRectangles.RemoveAt(lifeRectangles.Count - 1);
             }
 
-
+            
             //Check if ball has collided with any blocks
             for (int i = 0; i < blocks.Count; i++)
             {
@@ -278,6 +278,7 @@ namespace BrickBreaker
 
                 if (ball.BlockCollision(b))
                 {
+                    //Application.Exit(); //blow up
                     b.runCollision(); //should be switched to entirely, no lines below
                     if (b.hp < 1)
                     {
