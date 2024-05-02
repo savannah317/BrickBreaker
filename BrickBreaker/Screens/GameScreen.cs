@@ -26,7 +26,7 @@ namespace BrickBreaker
         // Game values
         int lives;
         int score;
-        int blocksNum;
+        int totalNumOfBlocks;
         int x, y, width, height, id;
 
         // Paddle and Ball objects
@@ -49,7 +49,7 @@ namespace BrickBreaker
         Image xpBar = Properties.Resources.xpBarEmpty;
         Image fullXpBar = Properties.Resources.xpBarFull;
 
-        //Lives
+        //Lives - this should probably be changed for some dynamic list of lives rather than 3 individual objects
         Rectangle life1 = new Rectangle(265, 330, 25, 25);
         Rectangle life2 = new Rectangle(315, 330, 25, 25);
         Rectangle life3 = new Rectangle(365, 330, 25, 25);
@@ -59,8 +59,7 @@ namespace BrickBreaker
 
         #endregion
 
-        public GameScreen()
-        {
+        public GameScreen() {
             InitializeComponent();
             OnStart();
         }
@@ -101,16 +100,13 @@ namespace BrickBreaker
             gameTimer.Enabled = true;
         }
 
-        public void LevelReader(int levelNumber)
-        {
+        public void LevelReader(int levelNumber) {
             string path = "Resources/Level" + levelNumber + ".xml";
             XmlReader reader = XmlReader.Create(path);
 
 
-            while (reader.Read())
-            {
-                if (reader.NodeType == XmlNodeType.Text)
-                {
+            while (reader.Read()) {
+                if (reader.NodeType == XmlNodeType.Text) {
                     x = Convert.ToInt32(reader.ReadString());
 
                     reader.ReadToNextSibling("y");
@@ -125,11 +121,17 @@ namespace BrickBreaker
                     reader.ReadToNextSibling("id");
                     id = Convert.ToInt32(reader.ReadString());
 
-                    Block newBlock = new Block(x, y, width, height, id);
+                    
+                    Block newBlock = new Block(x, y, width + 2, height + 2, id);
+
+                    if (newBlock.heldPowerID == 0) {
+                        //randomly generate a power some of the time
+                    }
+
                     blocks.Add(newBlock);
                 }
-
             }
+            totalNumOfBlocks = blocks.Count;
         }
 
         #endregion
@@ -184,8 +186,7 @@ namespace BrickBreaker
 
 
 
-        private void gameTimer_Tick(object sender, EventArgs e)
-        {
+        private void gameTimer_Tick(object sender, EventArgs e) {
             Form1.globalTimer++;
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
@@ -196,8 +197,8 @@ namespace BrickBreaker
                 lives--;
 
                 // Moves the ball back to origin
-                ball.x = ((paddle.x - (ball.radius)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height) - 85;
+                ball.x = ((paddle.x - (ball.radius * 2)) + (paddle.width / 2));
+                ball.y = (this.Height - paddle.height + ball.radius) - 85;
 
                 if (lives == 0) {
                     gameTimer.Enabled = false;
@@ -209,13 +210,13 @@ namespace BrickBreaker
             for (int i = 0; i < blocks.Count; i++) {
                 Block b = blocks[i];
                 if (ball.BlockCollision(b)) {
-                    blocks.Remove(b);
-                    b.runCollision(); //unused but should be switched to, rather than relying on the above line
+                    //blocks.Remove(b);
+                    b.runCollision(blocks); //unused but should be switched to, rather than relying on the above line
                 }
             }
 
-            //float xpBarMult = blocks.Count / blocksNum;    **BLOCKS NUM IS NEVER USED, THIS LOGIC WORKS FOR XP / GAME ENDING IF IT REPRESENTS TOTAL NUM OF BLOCKS
-            //xpFullRect = new Rectangle (50, 367, (int)(1000 * xpBarMult), 50); //scale the xp bar mask based on the % of blocks remaining
+            float xpBarMult = totalNumOfBlocks / blocks.Count;    //BLOCKS NUM IS NEVER USED, THIS LOGIC WORKS FOR XP / GAME ENDING IF IT REPRESENTS TOTAL NUM OF BLOCKS
+            xpFullRect = new Rectangle (50, 367, (int)(100 * xpBarMult), 50); //scale the xp bar mask based on the % of blocks remaining
 
             //if (xpBarMult == 0) { /*endGame*/ }
 
@@ -223,14 +224,7 @@ namespace BrickBreaker
         }
 
         public void OnEnd() {
-            // Goes to the game over screen
-            Form form = this.FindForm();
-            MenuScreen ps = new MenuScreen();
-
-            ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
-
-            form.Controls.Add(ps);
-            form.Controls.Remove(this);
+            Form1.ChangeScreen(this, new MenuScreen()); //should make an actual 'game over' display
         }
 
         private void GameScreen_Load(object sender, EventArgs e) {
@@ -239,16 +233,12 @@ namespace BrickBreaker
 
         public void GameScreen_Paint(object sender, PaintEventArgs e) {
             // Draws paddle
-            paddleBrush.Color = paddle.colour;
-            //e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
             Rectangle paddleRect = new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height);
             e.Graphics.DrawImage(stoneBlock, paddleRect);
 
             // Draws blocks
-            foreach (Block b in blocks)
-            {
-                //e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
-                e.Graphics.DrawImage(dirtBlock, b.x, b.y, b.width + 2, b.height + 2);
+            foreach (Block b in blocks) {
+                e.Graphics.DrawImage(dirtBlock, b.x, b.y, b.width, b.height);
             }
 
             //Draw Hearts
@@ -262,7 +252,7 @@ namespace BrickBreaker
 
             // Draws ball
             //e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
-            Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
+            Rectangle ballRect = new Rectangle(ball.x + ball.radius, ball.y + ball.radius, 30, 30);
             e.Graphics.DrawImage(snowBall, ballRect);
 
         }
