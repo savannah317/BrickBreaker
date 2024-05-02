@@ -283,53 +283,11 @@ namespace BrickBreaker.Properties {
         ///	&lt;/brick&gt;
         ///	&lt;brick&gt;
         ///		&lt;x&gt;461&lt;/x&gt;
-        ///		&lt;y&gt;173&lt;/y&gt;
-        ///		&lt;width&gt;50&lt;/width&gt;
-        ///		&lt;height&gt;50 [rest of string was truncated]&quot;;.
+        ///		&lt;y&gt;173&lt;/y&gt;        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Level1 {
             get {
                 return ResourceManager.GetString("Level1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap level10Img {
-            get {
-                object obj = ResourceManager.GetObject("level10Img", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap level11Img {
-            get {
-                object obj = ResourceManager.GetObject("level11Img", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap level1Img {
-            get {
-                object obj = ResourceManager.GetObject("level1Img", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap level1Img1 {
-            get {
-                object obj = ResourceManager.GetObject("level1Img1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -375,6 +333,16 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap level10Img {
+            get {
+                object obj = ResourceManager.GetObject("level10Img", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;level&gt;
         ///	&lt;brick&gt;
@@ -412,6 +380,16 @@ namespace BrickBreaker.Properties {
         internal static string Level11 {
             get {
                 return ResourceManager.GetString("Level11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap level11Img {
+            get {
+                object obj = ResourceManager.GetObject("level11Img", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -454,6 +432,26 @@ namespace BrickBreaker.Properties {
         internal static string Level12 {
             get {
                 return ResourceManager.GetString("Level12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap level1Img {
+            get {
+                object obj = ResourceManager.GetObject("level1Img", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap level1Img1 {
+            get {
+                object obj = ResourceManager.GetObject("level1Img1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -601,6 +599,16 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap level4Img {
+            get {
+                object obj = ResourceManager.GetObject("level4Img", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;level&gt;
         ///	&lt;brick&gt;
@@ -645,9 +653,9 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap level4Img {
+        internal static System.Drawing.Bitmap level5Img {
             get {
-                object obj = ResourceManager.GetObject("level4Img", resourceCulture);
+                object obj = ResourceManager.GetObject("level5Img", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -694,6 +702,16 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap level6Img {
+            get {
+                object obj = ResourceManager.GetObject("level6Img", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;level&gt;
         ///	&lt;brick&gt;
@@ -731,6 +749,16 @@ namespace BrickBreaker.Properties {
         internal static string Level7 {
             get {
                 return ResourceManager.GetString("Level7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap level7Img {
+            get {
+                object obj = ResourceManager.GetObject("level7Img", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -776,6 +804,16 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap level8Img {
+            get {
+                object obj = ResourceManager.GetObject("level8Img", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;level&gt;
         ///	&lt;brick&gt;
@@ -813,46 +851,6 @@ namespace BrickBreaker.Properties {
         internal static string Level9 {
             get {
                 return ResourceManager.GetString("Level9", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap level5Img {
-            get {
-                object obj = ResourceManager.GetObject("level5Img", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap level6Img {
-            get {
-                object obj = ResourceManager.GetObject("level6Img", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap level7Img {
-            get {
-                object obj = ResourceManager.GetObject("level7Img", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap level8Img {
-            get {
-                object obj = ResourceManager.GetObject("level8Img", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -1012,16 +1010,6 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap stonebrick {
             get {
                 object obj = ResourceManager.GetObject("stonebrick", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap titleBackground {
-            get {
-                object obj = ResourceManager.GetObject("titleBackground", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

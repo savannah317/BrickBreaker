@@ -204,13 +204,15 @@ namespace BrickBreaker
                     rightArrowDown = true;
                     break;
                 case Keys.Escape:
-                    // Goes to the level screen
-                    PauseScreen ps = new PauseScreen();
-                    Form form = this.FindForm();
-                    ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
-                    form.Controls.Add(ps);
+                    // Goes to pause screen
                     gameTimer.Enabled = false;
-                    // form.Controls.Remove(this);
+                    //Draw overlay
+                    PauseScreen ps = new PauseScreen(this);
+                    Form form = this.FindForm();
+                    ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) / 2);
+                    ps.Focus();
+                    this.Controls.Add(ps);
+
                     break;
                 default:
                     break;
@@ -232,7 +234,7 @@ namespace BrickBreaker
                     leftArrowDown = false;
                     break;
                 case Keys.D:
-                    //                    Application.Exit();//blow up
+                    //Application.Exit();//blow up
                     rightArrowDown = false;
                     break;
                 default:
@@ -439,7 +441,11 @@ namespace BrickBreaker
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
             e.Graphics.DrawImage(snowBall, ballRect);
 
+            if (!gameTimer.Enabled) 
+            {
 
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(180, 0, 0, 0)), new Rectangle(new Point(0,0),this.Size));
+            }
         }
     }
 }
