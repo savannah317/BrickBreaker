@@ -216,7 +216,7 @@ namespace BrickBreaker
                         gameTimer.Enabled = false;
                         //Draw overlay
                         Refresh();
-                        PauseScreen ps = new PauseScreen(this);
+                        PauseScreen ps = new PauseScreen(this, calculateScore());
                         Form form = this.FindForm();
                         ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) / 2);
                         ps.Focus();
@@ -370,11 +370,18 @@ namespace BrickBreaker
             form.Controls.Add(gs);
             form.Controls.Remove(this);
         }
+
+        double calculateScore() 
+        {
+            int innitialScore = (int)(((double)(blocksNum - blocks.Count)) / (double)blocksNum * 10000);
+            double scoreAsDouble = (double)innitialScore / 100;
+            return scoreAsDouble;
+        }
         public void OnEnd()
         {
             // Goes to the game over screen
             Form form = this.FindForm();
-            EndScreen es = new EndScreen();
+            EndScreen es = new EndScreen(calculateScore());
 
             es.Location = new Point((form.Width - es.Width) / 2, (form.Height - es.Height) / 2);
 

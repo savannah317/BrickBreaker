@@ -13,12 +13,13 @@ namespace BrickBreaker.Screens
     public partial class PauseScreen : UserControl
     {
         GameScreen parentScreen;
-        public PauseScreen(GameScreen _parentScreen)
+        public PauseScreen(GameScreen _parentScreen, double score)
         {
             parentScreen = _parentScreen;
             InitializeComponent();
             Form1.SetLevelFonts(this);
             this.Focus();
+            scoreLabel.Text = score + "%";
         }
 
         private void exitButton_Click(object sender, EventArgs e)

@@ -12,10 +12,11 @@ namespace BrickBreaker.Screens
 {
     public partial class EndScreen : UserControl
     {
-        public EndScreen()
+        public EndScreen(double score)
         {
             InitializeComponent();
             Form1.SetLevelFonts(this);
+            scoreLabel.Text = score + "%";
         }
 
         private void replayButton_Click(object sender, EventArgs e)
