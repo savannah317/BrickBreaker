@@ -441,10 +441,9 @@ namespace BrickBreaker
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
             e.Graphics.DrawImage(snowBall, ballRect);
 
-            if (!gameTimer.Enabled) 
+            if (!gameTimer.Enabled)
             {
-
-                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(180, 0, 0, 0)), new Rectangle(new Point(0,0),this.Size));
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(180, 0, 0, 0)), new Rectangle(new Point(0, 0), this.Size));
             }
         }
     }
