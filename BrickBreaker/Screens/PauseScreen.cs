@@ -42,6 +42,7 @@ namespace BrickBreaker.Screens
         {
             parentScreen.gameTimer.Enabled = true;
             parentScreen.Controls.Remove(this);
+            parentScreen.isPaused = false;
             parentScreen.Focus();
         }
     }

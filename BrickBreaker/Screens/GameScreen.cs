@@ -30,10 +30,8 @@ namespace BrickBreaker
 
         // Game values
         int lives;
-        int score;
-        int totalNumOfBlocks;
         int x, y, width, height, id;
-
+        public bool isPaused = false;
         int right;
 
         // Paddle and Ball objects
@@ -204,15 +202,20 @@ namespace BrickBreaker
                     rightArrowDown = true;
                     break;
                 case Keys.Escape:
-                    // Goes to pause screen
-                    gameTimer.Enabled = false;
-                    //Draw overlay
-                    PauseScreen ps = new PauseScreen(this);
-                    Form form = this.FindForm();
-                    ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) / 2);
-                    ps.Focus();
-                    this.Controls.Add(ps);
-
+                    //If the game is not paused, pause the game
+                    if (!isPaused)
+                    {
+                        isPaused = true;
+                        // Goes to pause screen
+                        gameTimer.Enabled = false;
+                        //Draw overlay
+                        Refresh();
+                        PauseScreen ps = new PauseScreen(this);
+                        Form form = this.FindForm();
+                        ps.Location = new Point((this.Width - ps.Width) / 2, (this.Height - ps.Height) / 2);
+                        ps.Focus();
+                        this.Controls.Add(ps);
+                    }
                     break;
                 default:
                     break;
