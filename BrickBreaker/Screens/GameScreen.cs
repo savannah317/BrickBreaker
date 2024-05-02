@@ -136,8 +136,10 @@ namespace BrickBreaker
             XmlReader reader = XmlReader.Create(path);
 
 
-            while (reader.Read()) {
-                if (reader.NodeType == XmlNodeType.Text) {
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Text)
+                {
                     x = Convert.ToInt32(reader.ReadString());
 
                     reader.ReadToNextSibling("y");
@@ -230,7 +232,7 @@ namespace BrickBreaker
                     leftArrowDown = false;
                     break;
                 case Keys.D:
-                    Application.Exit();
+                    //                    Application.Exit();//blow up
                     rightArrowDown = false;
                     break;
                 default:
@@ -240,14 +242,16 @@ namespace BrickBreaker
 
         #endregion
 
-        void resetBall() {
+        void resetBall()
+        {
             ball.x = ((paddle.x - (ball.radius * 2)) + (paddle.width / 2));
             ball.y = paddle.y - (ball.radius * 2) - paddle.height;
             ball.yVel = -1 * Math.Abs(ball.yVel);
         }
 
 
-        private void gameTimer_Tick(object sender, EventArgs e) {
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
             Form1.globalTimer++;
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
@@ -270,7 +274,7 @@ namespace BrickBreaker
                 lifeRectangles.RemoveAt(lifeRectangles.Count - 1);
             }
 
-            
+
             //Check if ball has collided with any blocks
             for (int i = 0; i < blocks.Count; i++)
             {
@@ -426,7 +430,7 @@ namespace BrickBreaker
                 Double age = p.Age();
                 int newSize = (int)(powerUpImageSize * age) + 3;
                 e.Graphics.DrawImage(p.image, new Rectangle(powerUpOffset + ((powerUpImageSize - newSize) / 2), powerupYCoord + ((powerUpImageSize - newSize) / 2), newSize, newSize));
-              // e.Graphics.DrawString("x" + p.strength, powerupFont, new SolidBrush(Color.FromArgb(180, 255, 255, 255)), new Point(powerUpImageSize + (2 * powerUpOffset), powerupYCoord + (powerUpImageSize / 2)));
+                // e.Graphics.DrawString("x" + p.strength, powerupFont, new SolidBrush(Color.FromArgb(180, 255, 255, 255)), new Point(powerUpImageSize + (2 * powerUpOffset), powerupYCoord + (powerUpImageSize / 2)));
                 powerupYCoord += 45;
             }
 
