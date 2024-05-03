@@ -76,6 +76,11 @@
     <Compile Include="Powerup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Screens\EndScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -87,11 +92,6 @@
     </Compile>
     <Compile Include="Screens\LevelScreen.Designer.cs">
       <DependentUpon>LevelScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
@@ -105,11 +105,17 @@
     <Compile Include="Screens\GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="WinScreen.cs">
+    <Compile Include="Screens\PauseScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WinScreen.Designer.cs">
-      <DependentUpon>WinScreen.cs</DependentUpon>
+    <Compile Include="Screens\PauseScreen.Designer.cs">
+      <DependentUpon>PauseScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StartLevelScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StartLevelScreen.Designer.cs">
+      <DependentUpon>StartLevelScreen.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -117,13 +123,8 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Screens\EndScreen.resx">
       <DependentUpon>EndScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,8 +137,11 @@
     <EmbeddedResource Include="Screens\GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WinScreen.resx">
-      <DependentUpon>WinScreen.cs</DependentUpon>
+    <EmbeddedResource Include="Screens\PauseScreen.resx">
+      <DependentUpon>PauseScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartLevelScreen.resx">
+      <DependentUpon>StartLevelScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -166,6 +170,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Minecraft.ttf" />
+    <None Include="Resources\MinecraftBold-nMK1.otf" />
     <None Include="Resources\stone.png" />
   </ItemGroup>
   <ItemGroup>
@@ -308,10 +314,48 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\minecraftBkgd.jpg" />
+    <None Include="Resources\titleBackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\minecraftBkgd1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level1Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level2Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level3Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level4Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level5Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level6Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level7Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level8Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level9Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level10Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level11Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\level1Img1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\xpBarFull1.png" />
@@ -353,6 +397,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\seeds_wheat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stone_pickaxe.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -15,6 +15,7 @@ namespace BrickBreaker.Screens
         public LevelScreen()
         {
             InitializeComponent();
+            Form1.SetLevelFonts(this);
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -30,7 +31,7 @@ namespace BrickBreaker.Screens
         }
         public void ToGameScreen()
         {
-            GameScreen gs = new GameScreen();
+            GameScreen gs = new GameScreen(false);
             Form form = this.FindForm();
 
             form.Controls.Add(gs);
@@ -95,6 +96,78 @@ namespace BrickBreaker.Screens
             ToGameScreen();
         }
         private void level12_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 12;
+            ToGameScreen();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 1;
+            ToGameScreen();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 2;
+            ToGameScreen();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 3;
+            ToGameScreen();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 4;
+            ToGameScreen();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 5;
+            ToGameScreen();
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 6;
+            ToGameScreen();
+        }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 7;
+            ToGameScreen();
+        }
+
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 8;
+            ToGameScreen();
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 9;
+            ToGameScreen();
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 10;
+            ToGameScreen();
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+            Form1.currentLevel = 11;
+            ToGameScreen();
+        }
+
+        private void pictureBox12_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 12;
             ToGameScreen();
