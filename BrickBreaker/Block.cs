@@ -124,6 +124,7 @@ namespace BrickBreaker
                     shadowPoints[0],
                     rectanglePoints[0],
                     },
+
             };
             return shadows;
         }

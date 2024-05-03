@@ -74,7 +74,7 @@ namespace BrickBreaker
         
         new string [] {"3", "Pick", "quartz_ore", "1", "1"},         //Quartz Ore       |
         new string [] {"4", "Pick", "netherite", "1", "1"},          //Netherite        |
-        new string [] {"10", "Sword", "endframe_side", "0.4", "1"},  //End Portal Block |
+        new string [] {"10", "Sword", "endframe_top", "0.4", "1"},  //End Portal Block |
         new string [] {"4", "Pick", "stonebrick", "0.2", "1"},       //Stone Bricks     |
         new string [] {"4", "Pick", "end_stone", "0.1", "1"},        //Endstone         |
         

@@ -47,7 +47,6 @@ namespace BrickBreaker
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.Transparent);
-        SolidBrush blockBrush = new SolidBrush(Color.Red);
         Pen ballPen = new Pen(Color.Black);
 
         Image dirtBlock = Properties.Resources.dirt;
@@ -441,17 +440,19 @@ namespace BrickBreaker
                 gp.Reset();
                 gp.AddPolygon(p);
                 shadowRegion.Union(gp);
+                e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.Beige),2),p);
             }
             foreach (PointF[] p in exclusionShadowPolygons) 
             {
                 gp.Reset();
                 gp.AddPolygon(p);
                 exclusionShadows.Union(gp);
+                e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.FromArgb(50,0,0,255))), p);
             }
-
             sunlightRegion.Exclude(exclusionShadows);
-         //   e.Graphics.FillRegion(new SolidBrush(Color.FromArgb(70, 6, 5, 25)), shadowRegion);
-          //  e.Graphics.FillRegion(new SolidBrush(Color.FromArgb(43, 255, 255, 120)), sunlightRegion);
+
+            e.Graphics.FillRegion(new SolidBrush(Color.FromArgb(70, 6, 5, 25)), shadowRegion);
+            e.Graphics.FillRegion(new SolidBrush(Color.FromArgb(43, 255, 255, 120)), sunlightRegion);
 
             // Draws paddle
             Rectangle paddleRect = new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height);
@@ -461,7 +462,6 @@ namespace BrickBreaker
 
             foreach (Block b in blocks)
             {
-                //e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
                 e.Graphics.DrawImage(b.image, b.x, b.y, b.width + 2, b.height + 2);
                 if (b.alphaValue != 0)
                 {
