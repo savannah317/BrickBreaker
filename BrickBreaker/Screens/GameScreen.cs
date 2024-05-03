@@ -19,6 +19,8 @@ using System.Resources;
 using System.IO;
 using BrickBreaker.Screens;
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Drawing.Drawing2D;
 
 namespace BrickBreaker
 {
@@ -74,6 +76,12 @@ namespace BrickBreaker
 
         List<Powerup> activePowerups = new List<Powerup>();
         List<Powerup> fallingPowerups = new List<Powerup>();
+
+        List<PointF[]> shadowPolygons = new List<PointF[]>();
+        List<PointF[]> exclusionShadowPolygons = new List<PointF[]>();
+        const double LIGHT_STRENGTH = 100;
+        double currentLightStrength;
+
 
         //Displaying Powerups
         Font powerupFont = new Font(DefaultFont.Name, 10);
@@ -282,6 +290,10 @@ namespace BrickBreaker
             currentTime--;
             if (currentTime < 0) { lives = 0; }
 
+            currentLightStrength = LIGHT_STRENGTH + Math.Sin((double)currentTime / (double)100) * (double)30;
+            shadowPolygons.Clear();
+            exclusionShadowPolygons.Clear();
+
             Form1.globalTimer++;
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
@@ -308,6 +320,9 @@ namespace BrickBreaker
             for (int i = 0; i < blocks.Count; i++)
             {
                 Block b = blocks[i];
+
+                shadowPolygons.AddRange(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime),0),currentLightStrength));
+                exclusionShadowPolygons.AddRange(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), 1000));
 
                 if (ball.BlockCollision(b))
                 {
@@ -415,6 +430,29 @@ namespace BrickBreaker
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+            //Draws shadows so everything else is on top
+            GraphicsPath gp = new GraphicsPath();
+            Region shadowRegion = new Region(gp);
+            Region exclusionShadows = new Region(gp);
+            gp.AddRectangle(new RectangleF(0, 0, right, this.Bottom));
+            Region sunlightRegion = new Region(gp);
+            foreach (PointF[] p in shadowPolygons)
+            {
+                gp.Reset();
+                gp.AddPolygon(p);
+                shadowRegion.Union(gp);
+            }
+            foreach (PointF[] p in exclusionShadowPolygons) 
+            {
+                gp.Reset();
+                gp.AddPolygon(p);
+                exclusionShadows.Union(gp);
+            }
+
+            sunlightRegion.Exclude(exclusionShadows);
+         //   e.Graphics.FillRegion(new SolidBrush(Color.FromArgb(70, 6, 5, 25)), shadowRegion);
+          //  e.Graphics.FillRegion(new SolidBrush(Color.FromArgb(43, 255, 255, 120)), sunlightRegion);
+
             // Draws paddle
             Rectangle paddleRect = new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height);
             e.Graphics.DrawImage(stoneBlock, paddleRect);
