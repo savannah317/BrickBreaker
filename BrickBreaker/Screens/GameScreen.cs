@@ -18,6 +18,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using System.Resources;
 using System.IO;
 using BrickBreaker.Screens;
+using System.Diagnostics;
 
 namespace BrickBreaker
 {
@@ -80,11 +81,12 @@ namespace BrickBreaker
         int powerUpOffset = 10;
 
         PointF timeDisplayPoint;
-        int TimeLimit;
+        int timeLimit;
         int currentTime;
         const int MAX_FONT_SIZE = 40;
         const int MIN_FONT_SIZE = 15;
         double fontIncrease;
+        double timerToSecondsConversion;
         public GameScreen(bool immidiateStart)
         {
             InitializeComponent();
@@ -95,6 +97,8 @@ namespace BrickBreaker
 
         public void OnStart(bool immidiateStart)
         {
+            timerToSecondsConversion = (double)1000 / (double)(gameTimer.Interval * 1.8); //the 1.8 should be replaced with the exact elapsed time between tick events.
+
             //Start immidiately, or give the player a StartLevelScreen first.
             if (immidiateStart) { gameTimer.Enabled = true; }
             else
@@ -193,8 +197,8 @@ namespace BrickBreaker
 
 
             blocksNum = blocks.Count;
-            TimeLimit = currentTime = totalLevelHp * 60;
-            fontIncrease = (double)(MAX_FONT_SIZE - MIN_FONT_SIZE) / TimeLimit;
+            timeLimit = currentTime = totalLevelHp * 60;
+            fontIncrease = (double)(MAX_FONT_SIZE - MIN_FONT_SIZE) / timeLimit;
 
         }
 
@@ -472,11 +476,12 @@ namespace BrickBreaker
             e.Graphics.DrawImage(snowBall, ballRect);
 
             //Draw Time Limit
-            int percentage = (TimeLimit - currentTime);
+            int percentage = (timeLimit - currentTime);
             int fontSize = (int)(percentage * fontIncrease) + MIN_FONT_SIZE;
-            int colorSize = (int)(percentage * ((double)255 / (double)TimeLimit));
+            int colorSize = (int)(percentage * ((double)255 / (double)timeLimit));
             Color fontColor = Color.FromArgb(255, colorSize, 255, colorSize);
-            e.Graphics.DrawString("" + currentTime, new Font(Form1.pfc.Families[0], fontSize), new SolidBrush(fontColor), new PointF(timeDisplayPoint.X - fontSize, timeDisplayPoint.Y - fontSize));
+            string timeLimitString = "" + (double)currentTime / timerToSecondsConversion;
+            e.Graphics.DrawString(timeLimitString, new Font(Form1.pfc.Families[0], fontSize), new SolidBrush(fontColor), new PointF(timeDisplayPoint.X - fontSize, timeDisplayPoint.Y - fontSize));
 
             if (!gameTimer.Enabled)
             {
