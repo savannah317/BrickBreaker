@@ -72,8 +72,6 @@ namespace BrickBreaker
 
 
         #endregion
-
-        int blocksNum;
         ResourceManager rm = Resources.ResourceManager;
 
         List<Powerup> activePowerups = new List<Powerup>();
