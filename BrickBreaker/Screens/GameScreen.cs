@@ -32,7 +32,10 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown;
 
         // Game values
-        int lives;
+        public static int lives;
+        int score;
+        int blocksNum;
+
         int x, y, width, height, id;
         public bool isPaused = false;
         int right;
@@ -306,6 +309,7 @@ namespace BrickBreaker
 
                 // Moves the ball back to origin
                 resetBall();
+
                 lifeRectangles.RemoveAt(lifeRectangles.Count - 1);
             }
 
