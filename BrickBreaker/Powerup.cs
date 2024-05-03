@@ -66,6 +66,13 @@ namespace BrickBreaker
                         GameScreen.lives++;
                     }
                     break;
+                case 1:
+                    {
+
+                    }
+                    break;
+
+                
             }
         }
     }
