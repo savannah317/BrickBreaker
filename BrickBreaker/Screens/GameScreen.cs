@@ -78,9 +78,15 @@ namespace BrickBreaker
         Font powerupFont = new Font(DefaultFont.Name, 10);
         int powerUpImageSize = 40;
         int powerUpOffset = 10;
+
+        PointF timeDisplayPoint;
+        int TimeLimit;
+        int currentTime;
+        const int MAX_FONT_SIZE = 40;
+        const int MIN_FONT_SIZE = 15;
+        double fontIncrease;
         public GameScreen(bool immidiateStart)
         {
-
             InitializeComponent();
             OnStart(immidiateStart);
         }
@@ -94,11 +100,12 @@ namespace BrickBreaker
             else
             {
                 StartLevelScreen sls = new StartLevelScreen(this);
-                sls.Location = new Point((this.Width - sls.Width) / 2, ((this.Height - sls.Height) / 2) - (sls.Height / 2));
+                sls.Location = new Point((this.Width - sls.Width) / 2,10);
                 this.Controls.Add(sls);
             }
 
             right = this.Right;
+            timeDisplayPoint = new PointF(right / 2, this.Bottom - 30);
             xpRect = xpFullRect = xpBarRegion = new Rectangle(0, this.Bottom - 35, this.Right, 35);
 
             //set life counter
@@ -134,6 +141,7 @@ namespace BrickBreaker
 
         public void LevelReader(int levelNumber)
         {
+            int totalLevelHp = 0;
             Random random = new Random();
 
             string path = "Resources/Level" + levelNumber + ".xml";
@@ -163,6 +171,8 @@ namespace BrickBreaker
                     Block newBlock = new Block(x, y, width, height, id);
                     newBlock.hp = Convert.ToInt16(Form1.blockData[id][0]);
 
+                    totalLevelHp += newBlock.hp;
+
                     //Get the correct image
                     newBlock.image = (Image)rm.GetObject(Form1.blockData[id][2]);
 
@@ -183,6 +193,8 @@ namespace BrickBreaker
 
 
             blocksNum = blocks.Count;
+            TimeLimit = currentTime = totalLevelHp * 60;
+            fontIncrease = (double)(MAX_FONT_SIZE - MIN_FONT_SIZE) / TimeLimit;
 
         }
 
@@ -263,6 +275,9 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            currentTime--;
+            if (currentTime < 0) { lives = 0; }
+
             Form1.globalTimer++;
             paddle.Move(Convert.ToUInt16(rightArrowDown) - Convert.ToUInt16(leftArrowDown), this);
 
@@ -276,15 +291,14 @@ namespace BrickBreaker
 
                 // Moves the ball back to origin
                 resetBall();
-
-                if (lives == 0)
-                {
-                    gameTimer.Enabled = false;
-                    OnEnd();
-                }
                 lifeRectangles.RemoveAt(lifeRectangles.Count - 1);
             }
 
+            if (lives == 0)
+            {
+                gameTimer.Enabled = false;
+                OnEnd();
+            }
 
             //Check if ball has collided with any blocks
             for (int i = 0; i < blocks.Count; i++)
@@ -320,39 +334,39 @@ namespace BrickBreaker
             }
 
             for (int p = 0; p < fallingPowerups.Count; p++)
+            {
+                //Choose to despawn or activate a powerup
+                bool[] removeAndActivate = fallingPowerups[p].Move(this.Bottom, new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height));
+                if (removeAndActivate[1])
                 {
-                    //Choose to despawn or activate a powerup
-                    bool[] removeAndActivate = fallingPowerups[p].Move(this.Bottom, new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height));
-                    if (removeAndActivate[1])
+                    //If the powerup hits the player, check to see if the powerup already exists and boost its strength, if not add it to the active list
+                    bool addAsNewPowerup = true;
+                    int ghostID = fallingPowerups[p].id;
+                    foreach (Powerup q in activePowerups)
                     {
-                        //If the powerup hits the player, check to see if the powerup already exists and boost its strength, if not add it to the active list
-                        bool addAsNewPowerup = true;
-                        int ghostID = fallingPowerups[p].id;
-                        foreach (Powerup q in activePowerups)
+                        //If the powerups list already has this type of powerup, increase its active time and strength instaed of adding a new one.
+                        if (q.id == ghostID)
                         {
-                            //If the powerups list already has this type of powerup, increase its active time and strength instaed of adding a new one.
-                            if (q.id == ghostID)
-                            {
-                                addAsNewPowerup = false;
-                                q.strength++;
-                                q.activeTime += fallingPowerups[p].activeTime;
-                                q.lifeSpan = q.activeTime;
-                            }
+                            addAsNewPowerup = false;
+                            q.strength++;
+                            q.activeTime += fallingPowerups[p].activeTime;
+                            q.lifeSpan = q.activeTime;
                         }
-                        if (addAsNewPowerup) { activePowerups.Add(fallingPowerups[p]); }
                     }
-                    if (removeAndActivate[0])
-                    {
-                        //If the powerup hits the player, or the screen end, remove it from the list
-                        fallingPowerups.RemoveAt(p);
-                    };
+                    if (addAsNewPowerup) { activePowerups.Add(fallingPowerups[p]); }
                 }
-
-                for (int p = 0; p < activePowerups.Count; p++)
+                if (removeAndActivate[0])
                 {
-                    if (activePowerups[p].activeTime < 0) { activePowerups.RemoveAt(p); }
-                }
-            
+                    //If the powerup hits the player, or the screen end, remove it from the list
+                    fallingPowerups.RemoveAt(p);
+                };
+            }
+
+            for (int p = 0; p < activePowerups.Count; p++)
+            {
+                if (activePowerups[p].activeTime < 0) { activePowerups.RemoveAt(p); }
+            }
+
 
             Refresh();
 
@@ -372,7 +386,7 @@ namespace BrickBreaker
             form.Controls.Remove(this);
         }
 
-        double calculateScore() 
+        double calculateScore()
         {
             int innitialScore = (int)(((double)(blocksNum - blocks.Count)) / (double)blocksNum * 10000);
             double scoreAsDouble = (double)innitialScore / 100;
@@ -454,9 +468,15 @@ namespace BrickBreaker
             }
 
             // Draws ball
-
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
             e.Graphics.DrawImage(snowBall, ballRect);
+
+            //Draw Time Limit
+            int percentage = (TimeLimit - currentTime);
+            int fontSize = (int)(percentage * fontIncrease) + MIN_FONT_SIZE;
+            int colorSize = (int)(percentage * ((double)255 / (double)TimeLimit));
+            Color fontColor = Color.FromArgb(255, colorSize, 255, colorSize);
+            e.Graphics.DrawString("" + currentTime, new Font(Form1.pfc.Families[0], fontSize), new SolidBrush(fontColor), new PointF(timeDisplayPoint.X - fontSize, timeDisplayPoint.Y - fontSize));
 
             if (!gameTimer.Enabled)
             {
