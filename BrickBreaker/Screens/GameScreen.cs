@@ -323,8 +323,8 @@ namespace BrickBreaker
             {
                 Block b = blocks[i];
 
-                shadowPolygons.AddRange(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), currentLightStrength));
-                exclusionShadowPolygons.AddRange(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), 1000));
+                shadowPolygons.Add(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), currentLightStrength));
+                exclusionShadowPolygons.Add(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), 1000));
 
                 if (ball.BlockCollision(b))
                 {
@@ -443,14 +443,14 @@ namespace BrickBreaker
                 gp.Reset();
                 gp.AddPolygon(p);
                 shadowRegion.Union(gp);
-                e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.Beige),2),p);
+                //e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.Beige),2),p);
             }
             foreach (PointF[] p in exclusionShadowPolygons)
             {
                 gp.Reset();
                 gp.AddPolygon(p);
                 exclusionShadows.Union(gp);
-                e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.FromArgb(50,0,0,255))), p);
+                //e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.FromArgb(50,0,0,255))), p);
             }
             sunlightRegion.Exclude(exclusionShadows);
 

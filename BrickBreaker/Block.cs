@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Reflection.Emit;
 
 namespace BrickBreaker
 {
@@ -83,7 +84,13 @@ namespace BrickBreaker
 
             return shadowedPoint;
         }
-        public PointF[][] shadowPoints(PointF lightSource, double lightStrength)
+
+        double GetRadius(PointF p1, PointF p2)
+        {
+            return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
+        }
+
+        public PointF[] shadowPoints(PointF lightSource, double lightStrength)
         {
 
             PointF[] shadowPoints = new PointF[]
@@ -94,39 +101,71 @@ namespace BrickBreaker
                     getShadowPoint(rectanglePoints[3], lightSource, lightStrength),
             };
 
-            PointF[][] shadows = new PointF[][]
-            {
-                    new PointF[]
-                    {
-                    rectanglePoints[0],
-                    shadowPoints[0],
-                    shadowPoints[1],
-                    rectanglePoints[1],
-                    },
-                    new PointF[]
-                    {
-                    rectanglePoints[1],
-                    shadowPoints[1],
-                    shadowPoints[2],
-                    rectanglePoints[2],
-                    },
-                    new PointF[]
-                    {
-                    rectanglePoints[2],
-                    shadowPoints[2],
-                    shadowPoints[3],
-                    rectanglePoints[3],
-                    },
-                    new PointF[]
-                    {
-                    rectanglePoints[3],
-                    shadowPoints[3],
-                    shadowPoints[0],
-                    rectanglePoints[0],
-                    },
+            PointF[] checkPoints = new PointF[]
+        {
+                getShadowPoint(rectanglePoints[0], lightSource, 1),
+                    getShadowPoint(rectanglePoints[1], lightSource, 1),
+                    getShadowPoint(rectanglePoints[2], lightSource, 1),
+                    getShadowPoint(rectanglePoints[3], lightSource, 1),
+        };
 
-            };
-            return shadows;
+            //Find if i can simplify the shape into 1 polygon using checkPoints
+            int check = 5;
+            for (int i = 0; i < 4; i++)
+            {
+                Rectangle box = new Rectangle(x, y, width, height);
+                if (box.Contains((int)checkPoints[i].X, (int)checkPoints[i].Y))
+                {
+                    check = i;
+                }
+            }
+            if (check != 5)
+            {
+                int i = check;
+                PointF[] pointFs = new PointF[6]
+                {
+                    rectanglePoints[i],
+                    rectanglePoints[i + ((i > 2) ? (-3) : (1))],
+                    shadowPoints[i + ((i > 2) ? (-3) : (1))],
+                    shadowPoints[i + ((i < 2) ? (2) : (-2))],
+                    shadowPoints[i + ((i < 1) ? (3) : (-1))],
+                    rectanglePoints[i + ((i < 1) ? (3) : (-1))]
+                };
+
+                return pointFs;
+            }
+            else
+            {
+                double[] sideLengthChecks = new double[]
+                 {
+                    GetRadius(shadowPoints[1],shadowPoints[2]),
+                    GetRadius(shadowPoints[2],shadowPoints[3]),
+                    GetRadius(shadowPoints[3],shadowPoints[0]),                        
+                    GetRadius(shadowPoints[0],shadowPoints[1]),
+                 };
+
+                double longestSide = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    if (sideLengthChecks[i] > longestSide)
+                    {
+                        longestSide = sideLengthChecks[i];
+                        check = i;
+                    }
+                }
+
+                PointF[] pointFs = new PointF[6]
+                {
+                    rectanglePoints[check + ((check + 1 > 3) ? -3 : 1)],
+                    rectanglePoints[check + ((check + 2 > 3) ? -2 : 2)],
+                    shadowPoints[check + ((check + 2 > 3) ? -2 : 2)],
+                    shadowPoints[check + ((check + 3 > 3) ? -1 : 3)],
+                    shadowPoints[check],
+                    shadowPoints[check + ((check + 1 > 3) ? -3 : 1)]
+                };
+
+                return pointFs;
+            }
         }
         #endregion
         public void runCollision()
