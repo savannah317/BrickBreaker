@@ -71,7 +71,6 @@ namespace BrickBreaker
         Rectangle xpRect, xpFullRect;
 
 
-        #endregion
         ResourceManager rm = Resources.ResourceManager;
 
         List<Powerup> activePowerups = new List<Powerup>();
@@ -95,6 +94,8 @@ namespace BrickBreaker
         const int MIN_FONT_SIZE = 15;
         double fontIncrease;
         double timerToSecondsConversion;
+
+        #endregion
         public GameScreen(bool immidiateStart)
         {
             InitializeComponent();
@@ -112,7 +113,7 @@ namespace BrickBreaker
             else
             {
                 StartLevelScreen sls = new StartLevelScreen(this);
-                sls.Location = new Point((this.Width - sls.Width) / 2,10);
+                sls.Location = new Point((this.Width - sls.Width) / 2, 10);
                 this.Controls.Add(sls);
             }
 
@@ -322,7 +323,7 @@ namespace BrickBreaker
             {
                 Block b = blocks[i];
 
-                shadowPolygons.AddRange(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime),0),currentLightStrength));
+                shadowPolygons.AddRange(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), currentLightStrength));
                 exclusionShadowPolygons.AddRange(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), 1000));
 
                 if (ball.BlockCollision(b))
@@ -444,7 +445,7 @@ namespace BrickBreaker
                 shadowRegion.Union(gp);
                 e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.Beige),2),p);
             }
-            foreach (PointF[] p in exclusionShadowPolygons) 
+            foreach (PointF[] p in exclusionShadowPolygons)
             {
                 gp.Reset();
                 gp.AddPolygon(p);
@@ -455,6 +456,9 @@ namespace BrickBreaker
 
             e.Graphics.FillRegion(new SolidBrush(Color.FromArgb(70, 6, 5, 25)), shadowRegion);
             e.Graphics.FillRegion(new SolidBrush(Color.FromArgb(43, 255, 255, 120)), sunlightRegion);
+            shadowRegion.Dispose();
+            sunlightRegion.Dispose();
+  
 
             // Draws paddle
             Rectangle paddleRect = new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height);
