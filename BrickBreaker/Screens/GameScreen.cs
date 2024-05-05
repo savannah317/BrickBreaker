@@ -373,7 +373,31 @@ namespace BrickBreaker
             ball.yVel = -1 * Math.Abs(ball.yVel);
         }
 
+        void BlockCollision(Block b, List<String> tools, int strength, int initialHitStrength) 
+        {
+            b.runCollision(tools, strength, initialHitStrength); //should be switched to entirely, no lines below
+            if (b.hp < 1)
+            {
+                foreach (Powerup p in b.powerupList)
+                {
+                    fallingPowerups.Add(p);
+                }
+                blocks.Remove(b);
 
+                double xpBarPercent = (Double)blocks.Count / blocksNum;
+                if (xpBarPercent != 1)
+                {
+                    xpBarRegion.Width = (int)(right * xpBarPercent);
+                    xpBarRegion.X = (right - xpBarRegion.Width);
+                };
+
+                if (blocks.Count == 0)
+                {
+                    gameTimer.Enabled = false;
+                    WinCondition();
+                }
+            }
+        }
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             currentTime--;
@@ -410,35 +434,23 @@ namespace BrickBreaker
             for (int i = 0; i < blocks.Count; i++)
             {
                 Block b = blocks[i];
-
+                
+                //Get the blocks shadows at the current point in the day
                 shadowPolygons.Add(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), currentLightStrength));
                 exclusionShadowPolygons.Add(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), 1000));
 
+                for (int p = 0; p < projectiles.Count; p++) 
+                {
+                    if (projectiles[p].rectangle.IntersectsWith(new Rectangle(b.x, b.y, b.width, b.height))) 
+                    {
+                        BlockCollision(b, projectiles[p].tools, projectiles[p].strength, 0);
+                        projectiles[p].OnCollision();
+                    }
+                }
+
                 if (ball.BlockCollision(b))
                 {
-                    //Application.Exit(); //blow up
-                    b.runCollision(ball.tools,ball.strength); //should be switched to entirely, no lines below
-                    if (b.hp < 1)
-                    {
-                        foreach (Powerup p in b.powerupList)
-                        {
-                            fallingPowerups.Add(p);
-                        }
-                        blocks.Remove(b);
-
-                        double xpBarPercent = (Double)blocks.Count / blocksNum;
-                        if (xpBarPercent != 1)
-                        {
-                            xpBarRegion.Width = (int)(right * xpBarPercent);
-                            xpBarRegion.X = (right - xpBarRegion.Width);
-                        };
-
-                        if (blocks.Count == 0)
-                        {
-                            gameTimer.Enabled = false;
-                            WinCondition();
-                        }
-                    }
+                    BlockCollision(b, ball.tools, ball.strength, 1);
                 }
             }
             #endregion

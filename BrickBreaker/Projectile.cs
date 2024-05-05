@@ -15,9 +15,11 @@ namespace BrickBreaker
         int radius;
         int xSpeed;
         int ySpeed;
-        List<string> tools = new List<string>();
-        public Projectile(int _xSpeed, int _ySpeed, Image _image, int _radius, string[] _tools)
+        public int strength = 0;
+        public List<string> tools = new List<string>();
+        public Projectile(int _xSpeed, int _ySpeed, Image _image, int _radius, string[] _tools, int _strength)
         {
+            strength = _strength;
             location = new Point(GameScreen.paddle.x + (GameScreen.paddle.width / 2), GameScreen.paddle.y + (GameScreen.paddle.height / 2));
             xSpeed = _xSpeed;
             ySpeed = _ySpeed;
@@ -39,6 +41,11 @@ namespace BrickBreaker
                 removeMe = true;
             }
             return removeMe;
+        }
+
+        public void OnCollision()
+        {
+            GameScreen.projectiles.Remove(this);
         }
     }
 }

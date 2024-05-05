@@ -227,16 +227,16 @@ namespace BrickBreaker
             }
         }
         #endregion
-        public void runCollision(List<string> tool, int strength)
+        public void runCollision(List<string> tool, int strength, int initialSubtraction)
         {
-            int hpSubtraction = 1;
+            int hpSubtraction = initialSubtraction;
             if (tool.Contains(toolWeakness)) 
             {
                 hpSubtraction += strength;
             }
             //handle the removal of health
             hp -= hpSubtraction;
-            alphaValue += (alphaValue + opacityChange > 250) ? 0 : opacityChange;
+            alphaValue += (alphaValue + (hpSubtraction * opacityChange) > 250) ? 0 : (hpSubtraction * opacityChange);
             //sprite changes
             //any other stuff
             //removal of block

@@ -98,20 +98,20 @@ namespace BrickBreaker
                     {
                         string[] tools = new string[]
                      {
-                            "Shears"
+                            "Shears", "Axe", "Shovel"
                     };
-                        Projectile p = new Projectile(0, -4 - (3 * strength), Resources.heart, 10 + (3 * strength), tools);
+                        Projectile p = new Projectile(0, -4 - (3 * strength), Resources.heart, 10 + (3 * strength), tools, strength);
                         GameScreen.projectiles.Add(p);
                     }
                     break;
                 case 2: //Seeds
-                    if (activeTime % (39 - (3 * strength)) == 0)
+                    if (activeTime % (14 - (3 * strength)) == 0)
                     {
                         string[] tools = new string[]
                         {
-                            "Shears", "Axe", "Sword"
+                            "Shears", "Shovel"
                         };
-                        Projectile p = new Projectile(0, -12 - (3 * strength), Resources.wheat, 7 + (3 * strength), tools);
+                        Projectile p = new Projectile((int)(10.1 * Math.Sin(activeTime)), -12 - (3 * strength), Resources.wheat, 7 + (3 * strength), tools, strength);
                         GameScreen.projectiles.Add(p);
                     }
                     break;
