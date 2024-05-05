@@ -54,52 +54,6 @@ namespace BrickBreaker
         //Create new private font collection
         public static PrivateFontCollection pfc = new PrivateFontCollection();
 
-
-        #region Block ID & Powerup ID Data
-        public static string[][] blockData = new string[][]
-        {
-        new string [] {"Hp", "Weak To", "Png", "Chance Of Powerup (0 - 10)", "ID of Powerup"},
-
-        new string [] {"1", "Shovel", "grass_block", "1", "2"},      //Grass Block      |   //Seeds
-        new string [] {"3", "Axe", "oak_log", "0.1", "1"},           //Oak Wood Log     |
-        new string [] {"1", "Hoe", "oak_leaves", "2", "1"},          //Oak Leaves       |   //Apple
-        new string [] {"3", "Axe", "oak_planks", "0.1", "1"},        //Oak Planks       |
-        new string [] {"2", "Pick", "stone", "1", "3"},              //Stone            |   //Stone Pick
-        
-        new string [] {"2", "Pick", "iron_ore", "1", "1"},           //Iron Ore         |
-        new string [] {"3", "Pick", "gold_ore", "1", "1"},           //Gold Ore         |
-        new string [] {"2", "Pick", "diamond_ore", "1", "1"},        //Diamond Ore      |
-        new string [] {"5", "Pick", "obsidian", "0.1", "1"},         //Obsidian         |
-        new string [] {"2", "Pick", "netherrack", "0.1", "1"},       //Netherack        |
-        
-        new string [] {"3", "Pick", "quartz_ore", "1", "1"},         //Quartz Ore       |
-        new string [] {"4", "Pick", "netherite", "1", "1"},          //Netherite        |
-        new string [] {"10", "Sword", "endframe_top", "0.4", "1"},  //End Portal Block |
-        new string [] {"4", "Pick", "stonebrick", "0.2", "1"},       //Stone Bricks     |
-        new string [] {"4", "Pick", "end_stone", "0.1", "1"},        //Endstone         |
-        
-        new string [] {"4", "Pick", "end_bricks", "0.1", "1"},       //Endstone Bricks  |
-        new string [] {"2", "Shovel", "sand", "0.1", "1"},           //Sand             |
-        new string [] {"2", "Shovel", "gravel", "0.1", "1"},         //Gravel           |
-        new string [] {"4", "Pick", "coal_ore", "1", "1"},           //Coal Ore         |
-        new string [] {"2", "Sword", "water", "0.1", "1"},           //Water            |
-        
-        new string [] {"2", "Sword", "lava", "0.1", "1"},            //Lava             |
-        new string [] {"1", "Sword", "portal", "0", "1"},            //Nether Portal    |
-        new string [] {"2", "Sword", "bedrock", "0.1", "1"},         //Bedrock          |
-        new string [] {"4", "Sword", "dragon_egg", "1", "1"},        //Dragon Egg       |
-        new string [] {"3", "Pick", "cobblestone", "0.1", "1"},      //Cobblestone      |
-
-        };
-
-        public static string[][] powerupData = new string[][]
-     {
-        new string[]{"Fallspeed", "Activetime", "Png", "Radius" },
-        new string[]{"3", "400", "apple", "10"},
-        new string[]{"3", "400", "seeds", "10"},
-        new string[]{"3", "400", "stone_pickaxe", "10"},
-     };
-        #endregion
         public static int globalTimer;
         public static int tickDeltaTime = 10;
 

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BrickBreaker.Properties;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.Automation;
@@ -19,13 +21,26 @@ namespace BrickBreaker
         public int strength = 1;
         public Powerup(int _id, int _x, int _y)
         {
+            #region Powerup Data
+            string[][] powerupData = new string[][]
+            {
+                new string[]{"Fallspeed", "Activetime", "Png", "Radius" },
+                new string[]{"3", "400", "apple", "10"},
+                new string[]{"3", "400", "seeds", "10"},
+                new string[]{"3", "400", "stone_pickaxe", "10"},
+            };
+            #endregion
+
             id = _id;
             x = _x;
             y = _y;
-            fallSpeed = Convert.ToInt16(Form1.powerupData[id][0]);
-            activeTime = lifeSpan = Convert.ToDouble(Form1.powerupData[id][1]);
-            radius = Convert.ToInt16(Form1.powerupData[id][3]);
+            fallSpeed = Convert.ToInt16(powerupData[id][0]);
+            activeTime = lifeSpan = Convert.ToDouble(powerupData[id][1]);
+            radius = Convert.ToInt16(powerupData[id][3]);
+            ResourceManager rm = Resources.ResourceManager;
+            image = (Image)rm.GetObject(powerupData[id][2]);
         }
+
 
         public double Age()
         {
@@ -53,23 +68,68 @@ namespace BrickBreaker
             return removeMyself;
         }
 
-        public void GivePowerup()
+        public void OnPickup()
         {
-            switch(id)
+            switch (id)
             {
-                case 0:
-                    if (GameScreen.lives < 3 && activeTime > 0)
+                case 1: //Apple
+                    if (GameScreen.lives < GameScreen.MAX_LIVES)
                     {
                         GameScreen.lives++;
                     }
                     break;
-                case 1:
+                case 2:
                     {
 
                     }
                     break;
 
-                
+
+            }
+        }
+        public void WhileActive()
+        {
+            switch (id)
+            {
+                case 1: //Apple
+                    if (activeTime % (57 - (3 * strength)) == 0)
+                    {
+                        string[] tools = new string[]
+                     {
+                            "Shears"
+                    };
+                        Projectile p = new Projectile(0, -4 - (3 * strength), Resources.heart, 10 + (3 * strength), tools);
+                        GameScreen.projectiles.Add(p);
+                    }
+                    break;
+                case 2: //Seeds
+                    if (activeTime % (39 - (3 * strength)) == 0)
+                    {
+                        string[] tools = new string[]
+                        {
+                            "Shears", "Axe", "Sword"
+                        };
+                        Projectile p = new Projectile(0, -12 - (3 * strength), Resources.wheat, 7 + (3 * strength), tools);
+                        GameScreen.projectiles.Add(p);
+                    }
+                    break;
+
+
+            }
+        }
+        public void OnDeath()
+        {
+            switch (id)
+            {
+                case 1: //Apple
+                    break;
+                case 2:
+                    {
+
+                    }
+                    break;
+
+
             }
         }
     }

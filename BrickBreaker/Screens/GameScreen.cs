@@ -32,16 +32,17 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown;
 
         // Game values
+        public const int MAX_LIVES = 3;
         public static int lives;
         int blocksNum;
 
         int x, y, width, height, id;
         public bool isPaused = false;
-        int right;
+        public static int right, down;
 
         // Paddle and Ball objects
-        Paddle paddle;
-        Ball ball;
+        public static Paddle paddle;
+        public static Ball ball;
 
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
@@ -59,6 +60,7 @@ namespace BrickBreaker
 
         List<Powerup> activePowerups = new List<Powerup>();
         List<Powerup> fallingPowerups = new List<Powerup>();
+        public static List<Projectile> projectiles = new List<Projectile>();
 
         SolidBrush sunlightBrush = new SolidBrush(Color.FromArgb(43, 255, 255, 120));
         SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(75, 6, 5, 25));
@@ -207,7 +209,7 @@ namespace BrickBreaker
 
         public void OnStart(bool immidiateStart)
         {
-            lives = 3;
+            lives = MAX_LIVES;
             timerToSecondsConversion = (double)1000 / (double)(gameTimer.Interval);
 
             //Start immidiately, or give the player a StartLevelScreen first.
@@ -220,6 +222,7 @@ namespace BrickBreaker
             }
 
             right = this.Right;
+            down = this.Bottom;
             timeDisplayPoint = new PointF(right / 2, this.Bottom - 30);
             xpFullRect = xpBarRegion = new Rectangle(0, this.Bottom - 35, this.Right, 35);
 
@@ -279,26 +282,13 @@ namespace BrickBreaker
                     id = Convert.ToInt32(reader.ReadString());
 
 
-                    //Create a new block prototype
-                    Block newBlock = new Block(x, y, width, height, id);
-                    newBlock.hp = Convert.ToInt16(Form1.blockData[id][0]);
+                    //Create a new block
+                    Block newBlock = new Block(x, y, width, height, id, random.Next(0, 101));
 
+                    //Add the blocks health to the health total of the level
                     totalLevelHp += newBlock.hp;
 
-                    //Get the correct image
-                    newBlock.image = (Image)rm.GetObject(Form1.blockData[id][2]);
-
-                    //Find if the block should contain powerups
-                    if ((double)random.Next(0, 11) <= Convert.ToDouble(Form1.blockData[id][3]))
-                    {
-                        int powerupID = Convert.ToInt16(Form1.blockData[id][4]);
-                        Powerup newPowerup = new Powerup(powerupID, newBlock.x + (newBlock.width / 2), newBlock.y + (newBlock.height / 2));
-
-                        newPowerup.image = (Image)rm.GetObject(Form1.powerupData[powerupID][2]);
-
-                        newBlock.powerupList.Add(newPowerup);
-                    }
-
+                    //Add the block
                     blocks.Add(newBlock);
                 }
             }
@@ -474,7 +464,12 @@ namespace BrickBreaker
                             q.lifeSpan = q.activeTime;
                         }
                     }
-                    if (addAsNewPowerup) { activePowerups.Add(fallingPowerups[p]); }
+                    if (addAsNewPowerup)
+                    {
+                        activePowerups.Add(fallingPowerups[p]);
+
+                    }
+                    fallingPowerups[p].OnPickup();
                 }
                 if (removeAndActivate[0])
                 {
@@ -486,7 +481,20 @@ namespace BrickBreaker
             #region Active Powerups
             for (int p = 0; p < activePowerups.Count; p++)
             {
-                if (activePowerups[p].activeTime < 0) { activePowerups.RemoveAt(p); }
+                activePowerups[p].WhileActive();
+                if (activePowerups[p].activeTime < 0)
+                {
+                    activePowerups[p].OnDeath();
+                    activePowerups.RemoveAt(p);
+                }
+            }
+            #endregion
+            #region Active Projectiles()
+            {
+                for (int p = 0; p < projectiles.Count; p++)
+                {
+                    if (projectiles[p].Move()) { projectiles.RemoveAt(p); }
+                }
             }
             #endregion
             #region Change Light/Shadow Colors
@@ -592,7 +600,7 @@ namespace BrickBreaker
             }
             #endregion
 
-
+            #region Xp Bar
             //Draw Xp Bar
             Color barColor = Color.FromArgb(18, 0, 0, 0);
             SolidBrush barBrush = new SolidBrush(barColor);
@@ -607,9 +615,16 @@ namespace BrickBreaker
             e.Graphics.DrawImage(fullXpBar, xpFullRect);
             e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(180, 0, 0, 0)), xpBarRegion);
             // e.Graphics.DrawImage(xpBar, xpRect);
+            #endregion
 
             //Draw Falling Powerups
             foreach (Powerup p in fallingPowerups)
+            {
+                e.Graphics.DrawImage(p.image, p.rectangle);
+            }
+
+            //Draw Projectiles 
+            foreach (Projectile p in projectiles) 
             {
                 e.Graphics.DrawImage(p.image, p.rectangle);
             }
@@ -618,6 +633,12 @@ namespace BrickBreaker
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
             e.Graphics.DrawImage(snowBall, ballRect);
 
+            //Draw sunlight over everything to get nice sunbeams coloring your paddle effects!
+            e.Graphics.FillRegion(sunlightBrush, sunlightRegion);
+
+            #region UI elements
+       
+            #region Time Limit
             //Draw Time Limit
             int percentage = (timeLimit - currentTime);
             int fontSize = (int)(percentage * fontIncrease) + MIN_FONT_SIZE;
@@ -625,11 +646,7 @@ namespace BrickBreaker
             Color fontColor = Color.FromArgb(255, colorSize, 255, colorSize);
             string timeLimitString = "" + (double)currentTime / timerToSecondsConversion;
             e.Graphics.DrawString(timeLimitString, new Font(Form1.pfc.Families[0], fontSize), new SolidBrush(fontColor), new PointF(timeDisplayPoint.X - fontSize, timeDisplayPoint.Y - fontSize));
-
-            //Draw sunlight over everything to get nice sunbeams coloring your paddle effects!
-            e.Graphics.FillRegion(sunlightBrush, sunlightRegion);
-
-            #region UI elements
+            #endregion
 
             double sinChange = (int)(Math.Sin((double)currentTime / (double)40) * (double)6);
 
