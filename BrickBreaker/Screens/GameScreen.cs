@@ -47,7 +47,7 @@ namespace BrickBreaker
         List<Block> blocks = new List<Block>();
 
         Image stoneBlock = Properties.Resources.stone;
-        Image hearts = Properties.Resources.heart_new;
+        Image hearts = Properties.Resources.heart_flash;
         Image snowBall = Properties.Resources.snowball;
         Image fullXpBar = Properties.Resources.xpBarFull;
         Rectangle xpBarRegion;
