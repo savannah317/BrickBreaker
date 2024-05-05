@@ -49,7 +49,6 @@ namespace BrickBreaker
 
         Image stoneBlock = Properties.Resources.stone;
         Image hearts = Properties.Resources.heart_flash;
-        Image snowBall = Properties.Resources.snowball;
         Image fullXpBar = Properties.Resources.xpBarFull;
         Rectangle xpBarRegion;
 
@@ -418,7 +417,7 @@ namespace BrickBreaker
                 if (ball.BlockCollision(b))
                 {
                     //Application.Exit(); //blow up
-                    b.runCollision(); //should be switched to entirely, no lines below
+                    b.runCollision(ball.tools,ball.strength); //should be switched to entirely, no lines below
                     if (b.hp < 1)
                     {
                         foreach (Powerup p in b.powerupList)
@@ -631,7 +630,7 @@ namespace BrickBreaker
 
             // Draws ball
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
-            e.Graphics.DrawImage(snowBall, ballRect);
+            e.Graphics.DrawImage(ball.image, ballRect);
 
             //Draw sunlight over everything to get nice sunbeams coloring your paddle effects!
             e.Graphics.FillRegion(sunlightBrush, sunlightRegion);

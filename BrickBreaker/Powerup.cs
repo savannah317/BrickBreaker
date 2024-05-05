@@ -27,7 +27,7 @@ namespace BrickBreaker
                 new string[]{"Fallspeed", "Activetime", "Png", "Radius" },
                 new string[]{"3", "400", "apple", "10"},
                 new string[]{"3", "400", "seeds", "10"},
-                new string[]{"3", "400", "stone_pickaxe", "10"},
+                new string[]{"3", "700", "stone_pickaxe", "10"},
             };
             #endregion
 
@@ -78,10 +78,12 @@ namespace BrickBreaker
                         GameScreen.lives++;
                     }
                     break;
-                case 2:
-                    {
-
-                    }
+                case 2: //Seeds
+                    break;
+                case 3: //Stone Pick
+                    GameScreen.ball.image = Resources.stone_pickaxe;
+                    GameScreen.ball.tools.Add("Pick");
+                    GameScreen.ball.strength = strength + 1;
                     break;
 
 
@@ -123,10 +125,11 @@ namespace BrickBreaker
             {
                 case 1: //Apple
                     break;
-                case 2:
-                    {
-
-                    }
+                case 2: //Seeds
+                    break;
+                case 3: //Stone Pick
+                    GameScreen.ball.tools.Remove("Pick");
+                    GameScreen.ball.image = Resources.snowball;
                     break;
 
 

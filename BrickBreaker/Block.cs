@@ -43,7 +43,7 @@ namespace BrickBreaker
         new string [] {"3", "Axe", "oak_log", "1", "1"},                //Oak Wood Log     |
         new string [] {"1", "Shears", "oak_leaves", "13", "1"},         //Oak Leaves       |   //Apple
         new string [] {"3", "Axe", "oak_planks", "1", "1"},             //Oak Planks       |
-        new string [] {"2", "Pick", "stone", "1", "3"},                 //Stone            |   //Stone Pick
+        new string [] {"2", "Pick", "stone", "10", "3"},                 //Stone            |   //Stone Pick
         
         new string [] {"2", "Pick", "iron_ore", "1", "1"},              //Iron Ore         |
         new string [] {"3", "Pick", "gold_ore", "1", "1"},              //Gold Ore         |
@@ -72,13 +72,14 @@ namespace BrickBreaker
         };
             #endregion
 
-            toolWeakness = blockData[id][1];
+
             x = _x;
             y = _y;
             width = width_;
             height = height_;
             id = id_;
 
+            toolWeakness = blockData[id][1];
             hp = Convert.ToInt16(blockData[id][0]);
 
             //Get the correct image
@@ -226,10 +227,15 @@ namespace BrickBreaker
             }
         }
         #endregion
-        public void runCollision()
+        public void runCollision(List<string> tool, int strength)
         {
+            int hpSubtraction = 1;
+            if (tool.Contains(toolWeakness)) 
+            {
+                hpSubtraction += strength;
+            }
             //handle the removal of health
-            hp--;
+            hp -= hpSubtraction;
             alphaValue += (alphaValue + opacityChange > 250) ? 0 : opacityChange;
             //sprite changes
             //any other stuff
