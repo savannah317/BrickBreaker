@@ -9,6 +9,7 @@ namespace BrickBreaker
 {
     public class Projectile
     {
+        public bool shouldRemove = false;
         public Rectangle rectangle;
         public Image image;
         Point location;
@@ -27,10 +28,19 @@ namespace BrickBreaker
             radius = _radius;
             tools.AddRange(_tools);
         }
-
-        public bool Move()
+        public Projectile(int _xSpeed, int _ySpeed, Image _image, int _radius, string[] _tools, int _strength, Point _location)
         {
-            bool removeMe = false;
+            strength = _strength;
+            location = _location;
+            xSpeed = _xSpeed;
+            ySpeed = _ySpeed;
+            image = _image;
+            radius = _radius;
+            tools.AddRange(_tools);
+        }
+
+        public void Move()
+        {
             location.X += xSpeed;
             location.Y += ySpeed;
 
@@ -38,14 +48,13 @@ namespace BrickBreaker
 
             if (location.X > GameScreen.right || location.X < 0 || location.Y > GameScreen.down || location.Y < 0)
             {
-                removeMe = true;
+                shouldRemove = true;
             }
-            return removeMe;
         }
 
         public void OnCollision()
         {
-            GameScreen.projectiles.Remove(this);
+            shouldRemove = true;
         }
     }
 }

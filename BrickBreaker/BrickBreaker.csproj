@@ -420,6 +420,60 @@
   <ItemGroup>
     <None Include="Resources\wheat.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quartz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diamond.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gold_ingot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iron_ingot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bucket_lava.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\water_breathing_effect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bubble_pop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bubble.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ender_eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\netherite_ingot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\netherite_pickaxe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diamond_pickaxe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iron_pickaxe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gold_pickaxe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_enchanted.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apple_golden.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

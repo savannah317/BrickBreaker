@@ -39,35 +39,35 @@ namespace BrickBreaker
         {
         new string [] {"Hp", "Weak To", "Png", "Chance Of Powerup (0 - 10)", "ID of Powerup"},
 
-        new string [] {"1", "Shovel", "grass_block", "10", "2"},        //Grass Block      |   //Seeds
-        new string [] {"3", "Axe", "oak_log", "1", "1"},                //Oak Wood Log     |
-        new string [] {"1", "Shears", "oak_leaves", "13", "1"},         //Oak Leaves       |   //Apple
-        new string [] {"3", "Axe", "oak_planks", "1", "1"},             //Oak Planks       |
-        new string [] {"2", "Pick", "stone", "10", "3"},                 //Stone            |   //Stone Pick
+        new string [] {"1", "Shovel", "grass_block", "10", "2"},        //Grass Block       //Seeds
+        new string [] {"3", "Axe", "oak_log", "1", "1"},                //Oak Wood Log         
+        new string [] {"1", "Shears", "oak_leaves", "13", "1"},         //Oak Leaves        //Apple
+        new string [] {"3", "Axe", "oak_planks", "1", "1"},             //Oak Planks        
+        new string [] {"2", "Pick", "stone", "10", "3"},                //Stone             //Stone Pick
         
-        new string [] {"2", "Pick", "iron_ore", "1", "1"},              //Iron Ore         |
-        new string [] {"3", "Pick", "gold_ore", "1", "1"},              //Gold Ore         |
-        new string [] {"2", "Pick", "diamond_ore", "1", "1"},           //Diamond Ore      |
-        new string [] {"5", "Pick", "obsidian", "1", "1"},              //Obsidian         |
-        new string [] {"2", "Pick", "netherrack", "1", "1"},            //Netherack        |
+        new string [] {"2", "Pick", "iron_ore", "90", "4"},              //Iron Ore          //Iron Ingot
+        new string [] {"3", "Pick", "gold_ore", "90", "5"},              //Gold Ore          //Gold Ingot
+        new string [] {"2", "Pick", "diamond_ore", "90", "6"},           //Diamond Ore       //Diamond
+        new string [] {"5", "Pick", "obsidian", "20", "3"},              //Obsidian         
+        new string [] {"2", "Pick", "netherrack", "11", "3"},            //Netherack        
         
-        new string [] {"3", "Pick", "quartz_ore", "1", "1"},            //Quartz Ore       |
-        new string [] {"4", "Pick", "netherite", "1", "1"},             //Netherite        |
-        new string [] {"10", "Sword", "endframe_top", "4", "1"},        //End Portal Block |
-        new string [] {"4", "Pick", "stonebrick", "2", "1"},            //Stone Bricks     |
-        new string [] {"4", "Pick", "end_stone", "1", "1"},             //Endstone         |
+        new string [] {"3", "Pick", "quartz_ore", "90", "7"},            //Quartz Ore        //Quartz
+        new string [] {"4", "Pick", "netherite", "90", "8"},             //Netherite         //Netherite Ingot
+        new string [] {"10", "Sword", "endframe_top", "90", "9"},        //End Portal Block  //Ender Eye
+        new string [] {"4", "Pick", "stonebrick", "12", "10"},            //Stone Bricks      //Brick
+        new string [] {"4", "Pick", "end_stone", "20", "3"},             //Endstone          
         
-        new string [] {"4", "Pick", "end_bricks", "1", "1"},            //Endstone Bricks  |
-        new string [] {"2", "Shovel", "sand", "1", "1"},                //Sand             |
-        new string [] {"2", "Shovel", "gravel", "1", "1"},              //Gravel           |
-        new string [] {"4", "Pick", "coal_ore", "1", "1"},              //Coal Ore         |
-        new string [] {"2", "Sword", "water", "1", "1"},                //Water            |
+        new string [] {"4", "Pick", "end_bricks", "15", "3"},            //Endstone Bricks   
+        new string [] {"2", "Shovel", "sand", "1", "1"},                //Sand             
+        new string [] {"2", "Shovel", "gravel", "1", "1"},              //Gravel           
+        new string [] {"4", "Pick", "coal_ore", "90", "11"},              //Coal Ore          //Coal
+        new string [] {"2", "Sword", "water", "71", "12"},                //Water             //Bubbles
         
-        new string [] {"2", "Sword", "lava", "1", "1"},                 //Lava             |
-        new string [] {"1", "Sword", "portal", "0", "1"},               //Nether Portal    |
-        new string [] {"2", "Sword", "bedrock", "1", "1"},              //Bedrock          |
-        new string [] {"4", "Sword", "dragon_egg", "1", "1"},           //Dragon Egg       |
-        new string [] {"3", "Pick", "cobblestone", "1", "1"},           //Cobblestone      |
+        new string [] {"2", "Sword", "lava", "71", "13"},                //Lava              //
+        new string [] {"3", "Sword", "portal", "1", "1" },              //Nether Portal     
+        new string [] {"2", "Sword", "bedrock", "1", "1"},              //Bedrock           
+        new string [] {"4", "Sword", "dragon_egg", "1", "1"},           //Dragon Egg        
+        new string [] {"3", "Pick", "cobblestone", "1", "1"},           //Cobblestone      
 
         };
             #endregion
@@ -96,7 +96,7 @@ namespace BrickBreaker
             }
 
 
-            overlay = new Rectangle(x, y, width, height);
+            overlay = new Rectangle(x, y, width + 2, height + 2);
 
             rectanglePoints = new PointF[]
              {
@@ -230,7 +230,7 @@ namespace BrickBreaker
         public void runCollision(List<string> tool, int strength, int initialSubtraction)
         {
             int hpSubtraction = initialSubtraction;
-            if (tool.Contains(toolWeakness)) 
+            if (tool.Contains(toolWeakness))
             {
                 hpSubtraction += strength;
             }

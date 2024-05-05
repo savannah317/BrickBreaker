@@ -32,7 +32,7 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown;
 
         // Game values
-        public const int MAX_LIVES = 3;
+        public const int MAX_LIVES = 13;
         public static int lives;
         int blocksNum;
 
@@ -208,6 +208,7 @@ namespace BrickBreaker
 
         public void OnStart(bool immidiateStart)
         {
+            projectiles.Clear();
             lives = MAX_LIVES;
             timerToSecondsConversion = (double)1000 / (double)(gameTimer.Interval);
 
@@ -373,7 +374,7 @@ namespace BrickBreaker
             ball.yVel = -1 * Math.Abs(ball.yVel);
         }
 
-        void BlockCollision(Block b, List<String> tools, int strength, int initialHitStrength) 
+        void BlockCollision(Block b, List<String> tools, int strength, int initialHitStrength)
         {
             b.runCollision(tools, strength, initialHitStrength); //should be switched to entirely, no lines below
             if (b.hp < 1)
@@ -413,6 +414,11 @@ namespace BrickBreaker
             ball.Move();
             ball.PaddleCollision(paddle);
 
+            for (int p = 0; p < projectiles.Count; p++)
+            {
+                projectiles[p].Move();
+            }
+
             if (ball.WallCollision(this))
             { //run wall collision and respond if the ball has touched the bottom
 
@@ -434,17 +440,17 @@ namespace BrickBreaker
             for (int i = 0; i < blocks.Count; i++)
             {
                 Block b = blocks[i];
-                
+
                 //Get the blocks shadows at the current point in the day
                 shadowPolygons.Add(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), currentLightStrength));
                 exclusionShadowPolygons.Add(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), 1000));
 
-                for (int p = 0; p < projectiles.Count; p++) 
+                for (int p = 0; p < projectiles.Count; p++)
                 {
-                    if (projectiles[p].rectangle.IntersectsWith(new Rectangle(b.x, b.y, b.width, b.height))) 
+                    if (projectiles[p].rectangle.IntersectsWith(new Rectangle(b.x, b.y, b.width, b.height)))
                     {
                         BlockCollision(b, projectiles[p].tools, projectiles[p].strength, 0);
-                        projectiles[p].OnCollision();
+                        if (p < projectiles.Count) { projectiles[p].OnCollision(); }
                     }
                 }
 
@@ -500,14 +506,11 @@ namespace BrickBreaker
                 }
             }
             #endregion
-            #region Active Projectiles()
+
+            for (int p = 0; p < projectiles.Count; p++)
             {
-                for (int p = 0; p < projectiles.Count; p++)
-                {
-                    if (projectiles[p].Move()) { projectiles.RemoveAt(p); }
-                }
+                if (projectiles[p].shouldRemove) { projectiles.RemoveAt(p); }
             }
-            #endregion
             #region Change Light/Shadow Colors
             //Change Light Color depending on Current Time
             double dayPercentage = ((double)(currentTime) / (double)timeLimit);
@@ -635,7 +638,7 @@ namespace BrickBreaker
             }
 
             //Draw Projectiles 
-            foreach (Projectile p in projectiles) 
+            foreach (Projectile p in projectiles)
             {
                 e.Graphics.DrawImage(p.image, p.rectangle);
             }
@@ -648,7 +651,7 @@ namespace BrickBreaker
             e.Graphics.FillRegion(sunlightBrush, sunlightRegion);
 
             #region UI elements
-       
+
             #region Time Limit
             //Draw Time Limit
             int percentage = (timeLimit - currentTime);
