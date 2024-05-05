@@ -131,8 +131,6 @@ namespace BrickBreaker
                     GameScreen.ball.tools.Remove("Pick");
                     GameScreen.ball.image = Resources.snowball;
                     break;
-
-
             }
         }
     }
