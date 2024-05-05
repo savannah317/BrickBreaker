@@ -33,7 +33,6 @@ namespace BrickBreaker
 
         // Game values
         public static int lives;
-        int score;
         int blocksNum;
 
         int x, y, width, height, id;
@@ -47,34 +46,24 @@ namespace BrickBreaker
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
 
-        // Brushes
-        SolidBrush paddleBrush = new SolidBrush(Color.White);
-        SolidBrush ballBrush = new SolidBrush(Color.Transparent);
-        Pen ballPen = new Pen(Color.Black);
-
-        Image dirtBlock = Properties.Resources.dirt;
         Image stoneBlock = Properties.Resources.stone;
-        Image hearts = Properties.Resources.heartIcon2;
+        Image hearts = Properties.Resources.heart_new;
         Image snowBall = Properties.Resources.snowball;
-        Image emptyXpBar = Properties.Resources.xpBarEmpty;
         Image fullXpBar = Properties.Resources.xpBarFull;
         Rectangle xpBarRegion;
 
-
-        //Lives
-        List<Rectangle> lifeRectangles = new List<Rectangle>
-        {
-        new Rectangle(10, 10, 35, 35),
-        new Rectangle(60, 10, 35, 35),
-        new Rectangle(110, 10, 35, 35)
-        };
-        Rectangle xpRect, xpFullRect;
+        Rectangle xpFullRect;
 
 
         ResourceManager rm = Resources.ResourceManager;
 
         List<Powerup> activePowerups = new List<Powerup>();
         List<Powerup> fallingPowerups = new List<Powerup>();
+
+        SolidBrush sunlightBrush = new SolidBrush(Color.FromArgb(43, 255, 255, 120));
+        SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(75, 6, 5, 25));
+
+        Color sunColorTwo, sunColorOne, shadowColorTwo, shadowColorOne;
 
         List<PointF[]> shadowPolygons = new List<PointF[]>();
         List<PointF[]> exclusionShadowPolygons = new List<PointF[]>();
@@ -99,13 +88,38 @@ namespace BrickBreaker
         public GameScreen(bool immidiateStart)
         {
             InitializeComponent();
+            SetLevelColors(Form1.currentLevel);
             OnStart(immidiateStart);
         }
+
+        #region Set Colors On Start
+        void SetLevelColors(int currentLevel)
+        {
+            currentLevel--;
+            Color[][] colors = new Color[][]
+            {
+                //Lv1
+                new Color[]
+                {
+                Color.FromArgb(33, 120, 140, 200), //SunOne 
+                Color.FromArgb(43, 255, 255, 120), //SunTwo
+                Color.FromArgb(55, 1, 5, 25), //ShadowOne
+                Color.FromArgb(75, 6, 5, 25), //ShadowTwo
+                }
+            };
+
+            sunColorOne = colors[currentLevel][0];
+            sunColorTwo = colors[currentLevel][1];
+            shadowColorOne = colors[currentLevel][2];
+            shadowColorTwo = colors[currentLevel][3];
+        }
+        #endregion
 
         #region levelBuilder
 
         public void OnStart(bool immidiateStart)
         {
+            lives = 3;
             timerToSecondsConversion = (double)1000 / (double)(gameTimer.Interval * 1.8); //the 1.8 should be replaced with the exact elapsed time between tick events.
 
             //Start immidiately, or give the player a StartLevelScreen first.
@@ -119,10 +133,7 @@ namespace BrickBreaker
 
             right = this.Right;
             timeDisplayPoint = new PointF(right / 2, this.Bottom - 30);
-            xpRect = xpFullRect = xpBarRegion = new Rectangle(0, this.Bottom - 35, this.Right, 35);
-
-            //set life counter
-            lives = 3;
+            xpFullRect = xpBarRegion = new Rectangle(0, this.Bottom - 35, this.Right, 35);
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
@@ -309,7 +320,6 @@ namespace BrickBreaker
                 // Moves the ball back to origin
                 resetBall();
 
-                lifeRectangles.RemoveAt(lifeRectangles.Count - 1);
             }
 
             if (lives == 0)
@@ -318,6 +328,7 @@ namespace BrickBreaker
                 OnEnd();
             }
 
+            #region Blocks 
             //Check if ball has collided with any blocks
             for (int i = 0; i < blocks.Count; i++)
             {
@@ -353,7 +364,8 @@ namespace BrickBreaker
                     }
                 }
             }
-
+            #endregion
+            #region Falling Powerups
             for (int p = 0; p < fallingPowerups.Count; p++)
             {
                 //Choose to despawn or activate a powerup
@@ -382,15 +394,30 @@ namespace BrickBreaker
                     fallingPowerups.RemoveAt(p);
                 };
             }
-
+            #endregion
+            #region Active Powerups
             for (int p = 0; p < activePowerups.Count; p++)
             {
                 if (activePowerups[p].activeTime < 0) { activePowerups.RemoveAt(p); }
             }
+            #endregion
+            #region Change Light/Shadow Colors
+            //Change Light Color depending on Current Time
+            double dayPercentage = ((double)(currentTime) / (double)timeLimit);
 
+            double aValue = (((double)sunColorOne.A * (dayPercentage)) + ((double)sunColorTwo.A * (1 - dayPercentage)));
+            double rValue = (((double)sunColorOne.R * (dayPercentage)) + ((double)sunColorTwo.R * (1 - dayPercentage)));
+            double gValue = (((double)sunColorOne.G * (dayPercentage)) + ((double)sunColorTwo.G * (1 - dayPercentage)));
+            double bValue = (((double)sunColorOne.B * (dayPercentage)) + ((double)sunColorTwo.B * (1 - dayPercentage)));
+            sunlightBrush.Color = Color.FromArgb((int)aValue, (int)rValue, (int)gValue, (int)bValue);
 
+            aValue = (((double)shadowColorOne.A * (dayPercentage)) + ((double)shadowColorTwo.A * (1 - dayPercentage)));
+            rValue = (((double)shadowColorOne.R * (dayPercentage)) + ((double)shadowColorTwo.R * (1 - dayPercentage)));
+            gValue = (((double)shadowColorOne.G * (dayPercentage)) + ((double)shadowColorTwo.G * (1 - dayPercentage)));
+            bValue = (((double)shadowColorOne.B * (dayPercentage)) + ((double)shadowColorTwo.B * (1 - dayPercentage)));
+            shadowBrush.Color = Color.FromArgb((int)aValue, (int)rValue, (int)gValue, (int)bValue);
+            #endregion
             Refresh();
-
         }
 
 
@@ -432,6 +459,7 @@ namespace BrickBreaker
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+            #region Shadows
             //Draws shadows so everything else is on top
             GraphicsPath gp = new GraphicsPath();
             Region shadowRegion = new Region(gp);
@@ -443,29 +471,26 @@ namespace BrickBreaker
                 gp.Reset();
                 gp.AddPolygon(p);
                 shadowRegion.Union(gp);
-                //e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.Beige),2),p);
+                //e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.Beige),2),p); //Turn on to see polygons 
             }
             foreach (PointF[] p in exclusionShadowPolygons)
             {
                 gp.Reset();
                 gp.AddPolygon(p);
                 exclusionShadows.Union(gp);
-                //e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.FromArgb(50,0,0,255))), p);
+                //e.Graphics.DrawPolygon(new Pen(new SolidBrush(Color.FromArgb(50,0,0,255))), p); //Turn on to see polygons
             }
             sunlightRegion.Exclude(exclusionShadows);
 
-            e.Graphics.FillRegion(new SolidBrush(Color.FromArgb(70, 6, 5, 25)), shadowRegion);
-            e.Graphics.FillRegion(new SolidBrush(Color.FromArgb(43, 255, 255, 120)), sunlightRegion);
-            shadowRegion.Dispose();
-            sunlightRegion.Dispose();
-  
+            e.Graphics.FillRegion(shadowBrush, shadowRegion);
+            #endregion
 
             // Draws paddle
             Rectangle paddleRect = new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height);
             e.Graphics.DrawImage(stoneBlock, paddleRect);
 
+            #region Blocks
             // Draws blocks
-
             foreach (Block b in blocks)
             {
                 e.Graphics.DrawImage(b.image, b.x, b.y, b.width + 2, b.height + 2);
@@ -475,14 +500,9 @@ namespace BrickBreaker
                 }
 
             }
+            #endregion
 
-            //Draw Hearts
-
-            foreach (Rectangle lifeRect in lifeRectangles)
-            {
-                e.Graphics.DrawImage(hearts, lifeRect);
-            }
-
+            
             //Draw Xp Bar
             Color barColor = Color.FromArgb(18, 0, 0, 0);
             SolidBrush barBrush = new SolidBrush(barColor);
@@ -504,17 +524,6 @@ namespace BrickBreaker
                 e.Graphics.DrawImage(p.image, p.rectangle);
             }
 
-            //Draw Active Powerups
-            int powerupYCoord = 80;
-            foreach (Powerup p in activePowerups)
-            {
-                Double age = p.Age();
-                int newSize = (int)(powerUpImageSize * age) + 3;
-                e.Graphics.DrawImage(p.image, new Rectangle(powerUpOffset + ((powerUpImageSize - newSize) / 2), powerupYCoord + ((powerUpImageSize - newSize) / 2), newSize, newSize));
-                // e.Graphics.DrawString("x" + p.strength, powerupFont, new SolidBrush(Color.FromArgb(180, 255, 255, 255)), new Point(powerUpImageSize + (2 * powerUpOffset), powerupYCoord + (powerUpImageSize / 2)));
-                powerupYCoord += 45;
-            }
-
             // Draws ball
             Rectangle ballRect = new Rectangle(ball.x, ball.y, 30, 30);
             e.Graphics.DrawImage(snowBall, ballRect);
@@ -526,6 +535,32 @@ namespace BrickBreaker
             Color fontColor = Color.FromArgb(255, colorSize, 255, colorSize);
             string timeLimitString = "" + (double)currentTime / timerToSecondsConversion;
             e.Graphics.DrawString(timeLimitString, new Font(Form1.pfc.Families[0], fontSize), new SolidBrush(fontColor), new PointF(timeDisplayPoint.X - fontSize, timeDisplayPoint.Y - fontSize));
+
+            //Draw sunlight over everything to get nice sunbeams coloring your paddle effects!
+            e.Graphics.FillRegion(sunlightBrush, sunlightRegion);
+            
+            #region UI elements
+
+            double sinChange = (int)(Math.Sin((double)currentTime / (double)40) * (double)6);
+
+            //Draw Active Powerups
+            int powerupYCoord = 80;
+            foreach (Powerup p in activePowerups)
+            {
+                Double age = p.Age();
+                int newSize = (int)(powerUpImageSize * age) + 3;
+                e.Graphics.DrawImage(p.image, new Rectangle(powerUpOffset + ((powerUpImageSize - newSize) / 2), (int)((double)(powerupYCoord + ((powerUpImageSize - newSize) / 2)) + sinChange), newSize, newSize));
+                // e.Graphics.DrawString("x" + p.strength, powerupFont, new SolidBrush(Color.FromArgb(180, 255, 255, 255)), new Point(powerUpImageSize + (2 * powerUpOffset), powerupYCoord + (powerUpImageSize / 2)));
+                powerupYCoord += 45;
+            }
+
+            //Draw Hearts
+            for (int i = 0; i < lives; i++)
+            {
+                e.Graphics.DrawImage(hearts, new Rectangle(10 + (i * 50), (int)((double)20 + sinChange), 35, 35));
+            }
+
+            #endregion
 
             if (!gameTimer.Enabled)
             {

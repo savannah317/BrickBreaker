@@ -173,6 +173,16 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Friend2 {
+            get {
+                object obj = ResourceManager.GetObject("Friend2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap gold_ore {
             get {
                 object obj = ResourceManager.GetObject("gold_ore", resourceCulture);
@@ -206,6 +216,26 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap heart {
             get {
                 object obj = ResourceManager.GetObject("heart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heart_flash {
+            get {
+                object obj = ResourceManager.GetObject("heart_flash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heart_new {
+            get {
+                object obj = ResourceManager.GetObject("heart_new", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
