@@ -105,7 +105,95 @@ namespace BrickBreaker
                 Color.FromArgb(43, 255, 255, 120), //SunTwo
                 Color.FromArgb(55, 1, 5, 25), //ShadowOne
                 Color.FromArgb(75, 6, 5, 25), //ShadowTwo
-                }
+                },
+                //Lv2
+                new Color[]
+                {
+                Color.FromArgb(43, 255, 255, 120), //SunOne
+                Color.FromArgb(33, 180, 120, 200), //SunTwo 
+                Color.FromArgb(75, 6, 5, 25), //ShadowOne
+                Color.FromArgb(85, 1, 5, 15), //ShadowTwo
+                },
+                //Lv3
+                new Color[]
+                {
+                Color.FromArgb(33, 180, 120, 200), //SunOne
+                Color.FromArgb(23, 130, 160, 220), //SunTwo 
+                Color.FromArgb(85, 1, 5, 15), //ShadowOne
+                Color.FromArgb(95, 2, 1, 7), //ShadowTwo
+                },
+                //Lv4
+                new Color[]
+                {
+                Color.FromArgb(23, 130, 160, 220), //SunOne
+                Color.FromArgb(43, 255, 255, 120), //SunTwo
+                Color.FromArgb(95, 2, 1, 7), //ShadowOne
+                Color.FromArgb(75, 6, 5, 25), //ShadowTwo
+                },
+                //Lv5
+                new Color[]
+                {
+                Color.FromArgb(33, 120, 140, 200), //SunOne 
+                Color.FromArgb(43, 255, 255, 120), //SunTwo
+                Color.FromArgb(55, 1, 5, 25), //ShadowOne
+                Color.FromArgb(75, 6, 5, 25), //ShadowTwo
+                },
+                //Lv6
+                new Color[]
+                {
+                Color.FromArgb(43, 255, 255, 120), //SunOne
+                Color.FromArgb(33, 180, 120, 200), //SunTwo 
+                Color.FromArgb(75, 6, 5, 25), //ShadowOne
+                Color.FromArgb(85, 1, 5, 15), //ShadowTwo
+                },
+                //Lv7
+                new Color[]
+                {
+                Color.FromArgb(33, 180, 120, 200), //SunOne
+                Color.FromArgb(23, 220, 160, 120), //SunTwo 
+                Color.FromArgb(85, 1, 5, 15), //ShadowOne
+                Color.FromArgb(95, 12, 1, 7), //ShadowTwo
+                },
+                //Lv8
+                new Color[]
+                {
+                Color.FromArgb(23, 220, 160, 120), //SunOne
+                Color.FromArgb(53, 255, 100, 120), //SunTwo
+                Color.FromArgb(95, 12, 1, 7), //ShadowOne
+                Color.FromArgb(75, 6, 5, 25), //ShadowTwo
+                },
+                //Lv9
+                new Color[]
+                {
+                Color.FromArgb(53, 255, 100, 120), //SunOne
+                Color.FromArgb(43, 255, 150, 120), //SunTwo
+                Color.FromArgb(75, 6, 5, 25), //ShadowOne
+                Color.FromArgb(85, 65, 5, 25), //ShadowTwo
+                },
+                //Lv10
+                new Color[]
+                {
+                Color.FromArgb(43, 255, 150, 120), //SunOne
+                Color.FromArgb(60, 255, 50, 220), //SunTwo
+                Color.FromArgb(85, 65, 5, 25), //ShadowOne
+                Color.FromArgb(85, 65, 5, 50), //ShadowTwo
+                },
+                //Lv11
+                new Color[]
+                {
+                Color.FromArgb(60, 255, 50, 220), //SunOne
+                Color.FromArgb(50, 105, 50, 250), //SunTwo
+                Color.FromArgb(85, 65, 5, 50), //ShadowOne
+                Color.FromArgb(65, 5, 25, 70), //ShadowTwo
+                },
+                //Lv12
+                new Color[]
+                {
+                Color.FromArgb(50, 105, 50, 250), //SunOne
+                Color.FromArgb(150, 255, 255, 255), //SunTwo
+                Color.FromArgb(65, 5, 25, 70), //ShadowOne
+                Color.FromArgb(80, 255, 255, 255), //ShadowTwo
+                },
             };
 
             sunColorOne = colors[currentLevel][0];
@@ -120,7 +208,7 @@ namespace BrickBreaker
         public void OnStart(bool immidiateStart)
         {
             lives = 3;
-            timerToSecondsConversion = (double)1000 / (double)(gameTimer.Interval * 1.8); //the 1.8 should be replaced with the exact elapsed time between tick events.
+            timerToSecondsConversion = (double)1000 / (double)(gameTimer.Interval);
 
             //Start immidiately, or give the player a StartLevelScreen first.
             if (immidiateStart) { gameTimer.Enabled = true; }
@@ -496,13 +584,15 @@ namespace BrickBreaker
                 e.Graphics.DrawImage(b.image, b.x, b.y, b.width + 2, b.height + 2);
                 if (b.alphaValue != 0)
                 {
-                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(b.alphaValue, 0, 0, 0)), b.overlay);
+                    int newAlpha = (b.alphaValue * 2 > 220) ? 220 : b.alphaValue * 2;
+                    Color color = shadowBrush.Color;
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(newAlpha, color.R, color.G, color.B)), b.overlay);
                 }
 
             }
             #endregion
 
-            
+
             //Draw Xp Bar
             Color barColor = Color.FromArgb(18, 0, 0, 0);
             SolidBrush barBrush = new SolidBrush(barColor);
@@ -538,7 +628,7 @@ namespace BrickBreaker
 
             //Draw sunlight over everything to get nice sunbeams coloring your paddle effects!
             e.Graphics.FillRegion(sunlightBrush, sunlightRegion);
-            
+
             #region UI elements
 
             double sinChange = (int)(Math.Sin((double)currentTime / (double)40) * (double)6);
