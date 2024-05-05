@@ -41,7 +41,7 @@ namespace BrickBreaker
 
         new string [] {"1", "Shovel", "grass_block", "10", "2"},        //Grass Block      |   //Seeds
         new string [] {"3", "Axe", "oak_log", "1", "1"},                //Oak Wood Log     |
-        new string [] {"1", "Shears", "oak_leaves", "20", "1"},         //Oak Leaves       |   //Apple
+        new string [] {"1", "Shears", "oak_leaves", "13", "1"},         //Oak Leaves       |   //Apple
         new string [] {"3", "Axe", "oak_planks", "1", "1"},             //Oak Planks       |
         new string [] {"2", "Pick", "stone", "1", "3"},                 //Stone            |   //Stone Pick
         
