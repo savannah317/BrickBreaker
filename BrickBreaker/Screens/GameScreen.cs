@@ -32,7 +32,7 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown;
 
         // Game values
-        public const int MAX_LIVES = 13;
+        public const int MAX_LIVES = 4;
         public static int lives;
         int blocksNum;
 
