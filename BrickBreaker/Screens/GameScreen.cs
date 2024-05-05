@@ -115,7 +115,7 @@ namespace BrickBreaker
         }
         #endregion
 
-        #region levelBuilder
+        #region On Start
 
         public void OnStart(bool immidiateStart)
         {
@@ -160,9 +160,9 @@ namespace BrickBreaker
             resetBall();
             LevelReader(Form1.currentLevel);
         }
+        #endregion
 
-
-
+        #region Level Reader
         public void LevelReader(int levelNumber)
         {
             int totalLevelHp = 0;
