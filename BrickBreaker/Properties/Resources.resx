@@ -376,4 +376,19 @@
   <data name="wheat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wheat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="longerStev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\longerStev.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="longestStev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\longestStev.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="longStev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\longstev.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sidewaysSteve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sidewaysSteve.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stev.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

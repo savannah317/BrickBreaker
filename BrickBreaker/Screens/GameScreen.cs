@@ -47,6 +47,7 @@ namespace BrickBreaker
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
 
+        Image longStev = Properties.Resources.sidewaysSteve;
         Image stoneBlock = Properties.Resources.stone;
         Image hearts = Properties.Resources.heart_flash;
         Image fullXpBar = Properties.Resources.xpBarFull;
@@ -231,7 +232,7 @@ namespace BrickBreaker
 
             // setup starting paddle values and create paddle object
             int paddleWidth = 80;
-            int paddleHeight = 20;
+            int paddleHeight = 30;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
             int paddleSpeed = 9;
@@ -597,7 +598,7 @@ namespace BrickBreaker
 
             // Draws paddle
             Rectangle paddleRect = new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height);
-            e.Graphics.DrawImage(stoneBlock, paddleRect);
+            e.Graphics.DrawImage(longStev, paddleRect);
 
             #region Blocks
             // Draws blocks

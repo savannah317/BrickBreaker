@@ -121,6 +121,9 @@ namespace BrickBreaker
                     GameScreen.ball.strength = strength + 5;
                     break;
                 case 9: //Ender Eye
+                    GameScreen.ball.image = Resources.ender_eye;
+                    GameScreen.ball.tools.Add("Pick");
+                    GameScreen.ball.strength = strength + 6;
                     break;
                 case 10: //Brick
                     break;
