@@ -9,13 +9,14 @@ using System.Xml.Linq;
 using System.Reflection.Emit;
 using System.Resources;
 using BrickBreaker.Properties;
+using System.Media;
 
 namespace BrickBreaker
 {
     public class Block
     {
         //tool id order: neutral, pickaxe, axe, shovel (0-3)
-
+        SoundPlayer onBreak;
         public int x, y, width, height, hp, id, heldPowerID, lastCollisionTimeStamp;
         public Image image;
         string toolWeakness;
@@ -37,39 +38,73 @@ namespace BrickBreaker
             #region Block Data
             string[][] blockData = new string[][]
         {
-        new string [] {"Hp", "Weak To", "Png", "Chance Of Powerup (0 - 10)", "ID of Powerup"},
+        new string [] {"Hp", "Weak To", "Png", "Chance Of Powerup (0 - 10)", "ID of Powerup", "Sound On Break"},
 
-        new string [] {"1", "Shovel", "grass_block", "10", "2"},        //Grass Block       //Seeds
-        new string [] {"3", "Axe", "oak_log", "1", "1"},                //Oak Wood Log         
-        new string [] {"1", "Shears", "oak_leaves", "13", "1"},         //Oak Leaves        //Apple
-        new string [] {"3", "Axe", "oak_planks", "1", "1"},             //Oak Planks        
-        new string [] {"2", "Pick", "stone", "10", "3"},                //Stone             //Stone Pick
+        new string [] {"1", "Shovel", "grass_block", "10", "2", "grass"},        //Grass Block       //Seeds
+        new string [] {"3", "Axe", "oak_log", "1", "1", "grass"},                //Oak Wood Log         
+        new string [] {"1", "Shears", "oak_leaves", "13", "1", "grass"},         //Oak Leaves        //Apple
+        new string [] {"3", "Axe", "oak_planks", "1", "1", "grass"},             //Oak Planks        
+        new string [] {"2", "Pick", "stone", "10", "3", "grass"},                //Stone             //Stone Pick
         
-        new string [] {"2", "Pick", "iron_ore", "90", "4"},              //Iron Ore          //Iron Ingot
-        new string [] {"3", "Pick", "gold_ore", "90", "5"},              //Gold Ore          //Gold Ingot
-        new string [] {"2", "Pick", "diamond_ore", "90", "6"},           //Diamond Ore       //Diamond
-        new string [] {"5", "Pick", "obsidian", "20", "3"},              //Obsidian         
-        new string [] {"2", "Pick", "netherrack", "11", "3"},            //Netherack        
+        new string [] {"2", "Pick", "iron_ore", "90", "4", "grass"},              //Iron Ore          //Iron Ingot
+        new string [] {"3", "Pick", "gold_ore", "90", "5", "grass"},              //Gold Ore          //Gold Ingot
+        new string [] {"2", "Pick", "diamond_ore", "90", "6", "grass"},           //Diamond Ore       //Diamond
+        new string [] {"5", "Pick", "obsidian", "20", "3", "grass"},              //Obsidian         
+        new string [] {"2", "Pick", "netherrack", "11", "3", "grass"},            //Netherack        
         
-        new string [] {"3", "Pick", "quartz_ore", "90", "7"},            //Quartz Ore        //Quartz
-        new string [] {"4", "Pick", "netherite", "90", "8"},             //Netherite         //Netherite Ingot
-        new string [] {"10", "Sword", "endframe_top", "90", "9"},        //End Portal Block  //Ender Eye
-        new string [] {"4", "Pick", "stonebrick", "12", "10"},            //Stone Bricks      //Brick
-        new string [] {"4", "Pick", "end_stone", "20", "3"},             //Endstone          
+        new string [] {"3", "Pick", "quartz_ore", "90", "7", "grass"},            //Quartz Ore        //Quartz
+        new string [] {"4", "Pick", "netherite", "90", "8", "grass"},             //Netherite         //Netherite Ingot
+        new string [] {"10", "Sword", "endframe_top", "90", "9", "grass"},        //End Portal Block  //Ender Eye
+        new string [] {"4", "Pick", "stonebrick", "12", "10", "grass"},            //Stone Bricks      //Brick
+        new string [] {"4", "Pick", "end_stone", "20", "3", "grass"},             //Endstone          
         
-        new string [] {"4", "Pick", "end_bricks", "15", "3"},            //Endstone Bricks   
-        new string [] {"2", "Shovel", "sand", "1", "1"},                //Sand             
-        new string [] {"2", "Shovel", "gravel", "1", "1"},              //Gravel           
-        new string [] {"4", "Pick", "coal_ore", "90", "11"},              //Coal Ore          //Coal
-        new string [] {"2", "Sword", "water", "71", "12"},                //Water             //Bubbles
+        new string [] {"4", "Pick", "end_bricks", "15", "3", "grass"},            //Endstone Bricks   
+        new string [] {"2", "Shovel", "sand", "1", "1", "grass"},                //Sand             
+        new string [] {"2", "Shovel", "gravel", "1", "1", "grass"},              //Gravel           
+        new string [] {"4", "Pick", "coal_ore", "90", "11", "grass"},              //Coal Ore          //Coal
+        new string [] {"2", "Sword", "water", "71", "12", "grass"},                //Water             //Bubbles
         
-        new string [] {"2", "Sword", "lava", "71", "13"},                //Lava              //
-        new string [] {"3", "Sword", "portal", "1", "1" },              //Nether Portal     
-        new string [] {"2", "Sword", "bedrock", "1", "1"},              //Bedrock           
-        new string [] {"4", "Sword", "dragon_egg", "1", "1"},           //Dragon Egg        
-        new string [] {"3", "Pick", "cobblestone", "1", "1"},           //Cobblestone      
+        new string [] {"2", "Sword", "lava", "71", "13", "grass"},                //Lava              //
+        new string [] {"3", "Sword", "portal", "1", "1", "grass" },              //Nether Portal     
+        new string [] {"2", "Sword", "bedrock", "1", "1", "grass"},              //Bedrock           
+        new string [] {"4", "Sword", "dragon_egg", "1", "1", "grass"},           //Dragon Egg        
+        new string [] {"3", "Pick", "cobblestone", "1", "1", "grass"},           //Cobblestone      
 
         };
+            SoundPlayer[] soundData = new SoundPlayer[]
+            {
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+                new SoundPlayer(Resources.grass),
+
+            };
+
             #endregion
 
 
@@ -82,9 +117,13 @@ namespace BrickBreaker
             toolWeakness = blockData[id][1];
             hp = Convert.ToInt16(blockData[id][0]);
 
+
             //Get the correct image
             ResourceManager rm = Resources.ResourceManager;
             image = (Image)rm.GetObject(blockData[id][2]);
+
+            //Get the correct Sound
+            onBreak = soundData[id];
 
             //Find if the block should contain powerups
             if (randomOneHundred <= Convert.ToInt16(blockData[id][3]))
@@ -148,7 +187,7 @@ namespace BrickBreaker
         {
             return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
         }
-
+        #region Shadows
         public PointF[] shadowPoints(PointF lightSource, double lightStrength)
         {
 
@@ -227,8 +266,10 @@ namespace BrickBreaker
             }
         }
         #endregion
+        #endregion
         public void runCollision(List<string> tool, int strength, int initialSubtraction)
         {
+            onBreak.Play();
             int hpSubtraction = initialSubtraction;
             if (tool.Contains(toolWeakness))
             {
