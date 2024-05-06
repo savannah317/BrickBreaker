@@ -88,12 +88,13 @@ namespace BrickBreaker
         double fontIncrease;
         double timerToSecondsConversion;
 
-        const int TIMER_POWER = 70;
+        const int TIMER_POWER = 85;
 
         #endregion
         public GameScreen(bool immidiateStart)
         {
             InitializeComponent();
+            this.Size = new Size(975, 667);
             SetLevelColors(Form1.currentLevel);
             OnStart(immidiateStart);
         }
