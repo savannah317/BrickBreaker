@@ -475,9 +475,23 @@
     <None Include="Resources\apple_golden.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\empty2.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\minecraftDieSound.wav.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minecraftPop.wav.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dirtBreak.wav.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ancientDebrisBreak.wav.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\waterBreak.wav.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\click.wav" />
+
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
