@@ -15,10 +15,13 @@ namespace BrickBreaker
     {
 
         Image minecraftLogo = Properties.Resources.minecraftLogo;
-        Rectangle titleRec = new Rectangle(25, -150, 800, 500);
+        Rectangle titleRec;
         public MenuScreen()
         {
             InitializeComponent();
+            Form1.SetLevelFonts(this);
+
+            titleRec = new Rectangle(0,-50,this.Right, 500);
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -29,7 +32,7 @@ namespace BrickBreaker
         private void playButton_Click(object sender, EventArgs e)
         {
             // Goes to the game screen
-            GameScreen gs = new GameScreen();
+            GameScreen gs = new GameScreen(false);
             Form form = this.FindForm();
 
             form.Controls.Add(gs);

@@ -12,9 +12,14 @@ namespace BrickBreaker.Screens
 {
     public partial class PauseScreen : UserControl
     {
-        public PauseScreen()
+        GameScreen parentScreen;
+        public PauseScreen(GameScreen _parentScreen, double score)
         {
+            parentScreen = _parentScreen;
             InitializeComponent();
+            Form1.SetLevelFonts(this);
+            this.Focus();
+            scoreLabel.Text = score + "%";
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -28,7 +33,9 @@ namespace BrickBreaker.Screens
             LevelScreen ls = new LevelScreen();
             Form form = this.FindForm();
 
+
             form.Controls.Add(ls);
+            form.Controls.Remove(parentScreen);
             form.Controls.Remove(this);
 
             ls.Location = new Point((form.Width - ls.Width) / 2, (form.Height - ls.Height) / 2);
@@ -36,7 +43,23 @@ namespace BrickBreaker.Screens
 
         private void continueButton_Click(object sender, EventArgs e)
         {
+            unPause();
+        }
 
+        private void PauseScreen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Keys)e.KeyChar == Keys.Space || (Keys)e.KeyChar == Keys.Enter)
+            {
+                unPause();
+            }
+        }
+
+        void unPause()
+        {
+            parentScreen.gameTimer.Enabled = true;
+            parentScreen.Controls.Remove(this);
+            parentScreen.isPaused = false;
+            parentScreen.Focus();
         }
     }
 }

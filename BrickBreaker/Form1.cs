@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Numerics;
 using System.Xml;
+using System.Drawing.Text;
+using System.Runtime.InteropServices;
+using System.Reflection.Emit;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BrickBreaker
 {
@@ -18,51 +22,38 @@ namespace BrickBreaker
         public Form1()
         {
             InitializeComponent();
+            #region Creating Minecraft Font
+
+            int fontLength = Properties.Resources.MinecraftFont.Length;
+            byte[] fontdata = Properties.Resources.MinecraftFont;
+            System.IntPtr data = Marshal.AllocCoTaskMem(fontLength);
+            Marshal.Copy(fontdata, 0, data, fontLength);
+
+            //Add this font to the private font collection
+            pfc.AddMemoryFont(data, fontLength);
+            #endregion
         }
 
-        #region Block ID & Powerup ID Data
-        public static string[][] blockData = new string[][]
+        public static void SetLevelFonts(UserControl uc)
         {
-        new string [] {"Hp", "Weak To", "Png", "Chance Of Powerup (0 - 10)", "ID of Powerup"},
+            foreach (System.Windows.Forms.Button b in uc.Controls.OfType<System.Windows.Forms.Button>())
+            {
+                b.UseCompatibleTextRendering = true;
+                b.Font = new Font(pfc.Families[0], b.Font.Size);
+            }
+            foreach (System.Windows.Forms.Label l in uc.Controls.OfType<System.Windows.Forms.Label>())
+            {
+                l.UseCompatibleTextRendering = true;
+                l.Font = new Font(pfc.Families[0], l.Font.Size);
+            }
 
-        new string [] {"1", "Shovel", "grass_block", "0.2", "1"}, //Grass Block
-        new string [] {"3", "Axe", "oak_log", "0.1", "1"}, //Oak Wood Log
-        new string [] {"1", "Hoe", "oak_leaves", "2", "1"}, //Oak Leaves
-        new string [] {"3", "Axe", "oak_planks", "0.1", "1"}, //Oak Planks
-        new string [] {"2", "Pick", "stone", "0.1", "1"}, //Stone
-        
-        new string [] {"2", "Pick", "iron_ore", "1", "1"}, //Iron Ore
-        new string [] {"3", "Pick", "gold_ore", "1", "1"}, //Gold Ore
-        new string [] {"2", "Pick", "diamond_ore", "1", "1"}, //Diamond Ore
-        new string [] {"5", "Pick", "obsidian", "0.1", "1"}, //Obsidian
-        new string [] {"2", "Pick", "netherrack", "0.1", "1"}, //Netherack
-        
-        new string [] {"3", "Pick", "quartz_ore", "1", "1"}, //Quartz Ore
-        new string [] {"4", "Pick", "netherite", "1", "1"}, //Netherite
-        new string [] {"10", "Sword", "endframe_side", "0.4", "1"}, //End Portal Block
-        new string [] {"4", "Pick", "stonebrick", "0.2", "1"}, //Stone Bricks
-        new string [] {"4", "Pick", "end_stone", "0.1", "1"}, //Endstone
-        
-        new string [] {"4", "Pick", "end_bricks", "0.1", "1"}, //Endstone Bricks
-        new string [] {"2", "Shovel", "sand", "0.1", "1"}, //Sand
-        new string [] {"2", "Shovel", "gravel", "0.1", "1"}, //Gravel
-        new string [] {"4", "Pick", "coal_ore", "1", "1"}, //Coal Ore
-        new string [] {"2", "Sword", "water", "0.1", "1"}, //Water
-        
-        new string [] {"2", "Sword", "lava", "0.1", "1"}, //Lava
-        new string [] {"1", "Sword", "portal", "0", "1"}, //Nether Portal
-        new string [] {"2", "Sword", "bedrock", "0.1", "1"}, //Bedrock
-        new string [] {"4", "Sword", "dragon_egg", "1", "1"}, //Dragon Egg
-        new string [] {"3", "Pick", "cobblestone", "0.1", "1"}, //Cobblestone
+        }
 
-        };
 
-        public static string[][] powerupData = new string[][]
-     {
-        new string[]{"Fallspeed (working with %)", "Activetime", "Png", "Radius" },
-        new string[]{"9", "400", "apple", "10"},
-     };
-        #endregion
+
+        //Create new private font collection
+        public static PrivateFontCollection pfc = new PrivateFontCollection();
+
         public static int globalTimer;
         public static int tickDeltaTime = 10;
 
@@ -111,6 +102,8 @@ namespace BrickBreaker
 
         #endregion
 
+
+
         #region gameLogic
 
         public static int CheckCollision(Ball ball, Paddle rectObject, int collisionTimeStamp)
@@ -137,7 +130,7 @@ namespace BrickBreaker
                 return (ball.y > rectObject.y) ? 3 : 1;
             }
 
-            return 0; //return 0 if no collision was detected
+            return 0; //return 0 if no collision was detected (shouln't really be used if things are working properly but it yells at me if I delete)
         }
 
         public static int CheckCollision(Ball ball, Block rectObject, int collisionTimeStamp)
