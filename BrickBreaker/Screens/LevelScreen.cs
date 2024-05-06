@@ -40,6 +40,7 @@ namespace BrickBreaker.Screens
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
         }
 
+        #region label clicks
         private void level1_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 1;
@@ -172,5 +173,6 @@ namespace BrickBreaker.Screens
             Form1.currentLevel = 12;
             ToGameScreen();
         }
+        #endregion
     }
 }
