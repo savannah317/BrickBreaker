@@ -85,6 +85,8 @@ namespace BrickBreaker
         double fontIncrease;
         double timerToSecondsConversion;
 
+        const int TIMER_POWER = 70;
+
         #endregion
         public GameScreen(bool immidiateStart)
         {
@@ -295,9 +297,8 @@ namespace BrickBreaker
 
 
             blocksNum = blocks.Count;
-            timeLimit = currentTime = totalLevelHp * 60;
+            timeLimit = currentTime = totalLevelHp * TIMER_POWER;
             fontIncrease = (double)(MAX_FONT_SIZE - MIN_FONT_SIZE) / timeLimit;
-
         }
 
         #endregion
