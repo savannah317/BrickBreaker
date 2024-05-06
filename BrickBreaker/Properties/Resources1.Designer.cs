@@ -63,7 +63,7 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream blockBreak {
+        internal static System.IO.UnmanagedMemoryStream ancientDebrisBreak_wav {
             get {
                 return ResourceManager.GetStream("ancientDebrisBreak_wav", resourceCulture);
             }
@@ -334,15 +334,6 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("gold_pickaxe", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream grass {
-            get {
-                return ResourceManager.GetStream("grass", resourceCulture);
             }
         }
         
@@ -1066,6 +1057,16 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap level9Img {
             get {
                 object obj = ResourceManager.GetObject("level9Img", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap magma_cream {
+            get {
+                object obj = ResourceManager.GetObject("magma_cream", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

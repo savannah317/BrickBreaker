@@ -47,7 +47,6 @@ namespace BrickBreaker
                 l.UseCompatibleTextRendering = true;
                 l.Font = new Font(pfc.Families[0], l.Font.Size);
             }
-
         }
 
 

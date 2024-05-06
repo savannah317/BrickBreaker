@@ -73,35 +73,35 @@ namespace BrickBreaker
         };
             SoundPlayer[] soundData = new SoundPlayer[]
             {
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
+                new SoundPlayer(Resources.dirtBreak_wav),   //Grass
+                new SoundPlayer(Resources.dirtBreak_wav),   //Oak Wood Log
+                new SoundPlayer(Resources.dirtBreak_wav),   //Oak Leaves
+                new SoundPlayer(Resources.dirtBreak_wav),   //Oak Planks
+                new SoundPlayer(Resources.dirtBreak_wav),   //Stone
 
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
+                new SoundPlayer(Resources.dirtBreak_wav),   //Iron Ore
+                new SoundPlayer(Resources.dirtBreak_wav),   //Gold Ore
+                new SoundPlayer(Resources.dirtBreak_wav),   //Diamond Ore
+                new SoundPlayer(Resources.dirtBreak_wav),   //Obsidian
+                new SoundPlayer(Resources.dirtBreak_wav),   //Netherrack
 
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
+                new SoundPlayer(Resources.dirtBreak_wav),   //Quartz Ore
+                new SoundPlayer(Resources.dirtBreak_wav),   //Netherite
+                new SoundPlayer(Resources.dirtBreak_wav),   //End Portal Block
+                new SoundPlayer(Resources.dirtBreak_wav),   //Stone Bricks
+                new SoundPlayer(Resources.dirtBreak_wav),   //Endstone
+                        
+                new SoundPlayer(Resources.dirtBreak_wav),   //Endstone Bricks
+                new SoundPlayer(Resources.dirtBreak_wav),   //Sand
+                new SoundPlayer(Resources.dirtBreak_wav),   //Gravel
+                new SoundPlayer(Resources.dirtBreak_wav),   //Coal Ore
+                new SoundPlayer(Resources.dirtBreak_wav),   //Water
 
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
-                new SoundPlayer(Resources.dirtBreak_wav),
+                new SoundPlayer(Resources.dirtBreak_wav),   //Lava
+                new SoundPlayer(Resources.dirtBreak_wav),   //Nether Portal
+                new SoundPlayer(Resources.dirtBreak_wav),   //Bedrock
+                new SoundPlayer(Resources.dirtBreak_wav),   //Dragon Egg
+                new SoundPlayer(Resources.dirtBreak_wav),   //Cobblestone
 
             };
 
@@ -135,7 +135,7 @@ namespace BrickBreaker
             }
 
 
-            overlay = new Rectangle(x, y, width + 2, height + 2);
+            overlay = new Rectangle(x, y, width + 1, height + 1);
 
             rectanglePoints = new PointF[]
              {
