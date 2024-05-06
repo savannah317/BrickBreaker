@@ -36,6 +36,7 @@ namespace BrickBreaker
 
         public static void SetLevelFonts(UserControl uc)
         {
+            uc.AutoScaleMode = AutoScaleMode.Font;
             foreach (System.Windows.Forms.Button b in uc.Controls.OfType<System.Windows.Forms.Button>())
             {
                 b.UseCompatibleTextRendering = true;
