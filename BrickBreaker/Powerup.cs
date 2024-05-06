@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BrickBreaker.Properties;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.Automation;
@@ -19,13 +21,39 @@ namespace BrickBreaker
         public int strength = 1;
         public Powerup(int _id, int _x, int _y)
         {
+            #region Powerup Data
+            string[][] powerupData = new string[][]
+            {
+                new string[]{"Fallspeed", "Activetime", "Png", "Radius" },
+
+                new string[]{"3", "400", "apple", "10"},
+                new string[]{"3", "400", "seeds", "10"},
+                new string[]{"3", "700", "stone_pickaxe", "10"},
+                new string[]{"4", "70", "iron_ingot", "10"},
+                new string[]{"4", "30", "gold_ingot", "10"},
+
+                new string[]{"4", "50", "diamond", "10"},
+                new string[]{"4", "300", "quartz", "10"},
+                new string[]{"4", "300", "netherite_ingot", "10"},
+                new string[]{"4", "700", "ender_eye", "10"},
+                new string[]{"4", "700", "brick", "10"},
+
+                new string[]{"4", "700", "coal", "10"},
+                new string[]{"4", "700", "water_breathing_effect", "10"},
+                new string[]{"4", "700", "bucket_lava", "10"},
+            };
+            #endregion
+
             id = _id;
             x = _x;
             y = _y;
-            fallSpeed = Convert.ToInt16(Form1.powerupData[id][0]);
-            activeTime = lifeSpan = Convert.ToDouble(Form1.powerupData[id][1]);
-            radius = Convert.ToInt16(Form1.powerupData[id][3]);
+            fallSpeed = Convert.ToInt16(powerupData[id][0]);
+            activeTime = lifeSpan = Convert.ToDouble(powerupData[id][1]);
+            radius = Convert.ToInt16(powerupData[id][3]);
+            ResourceManager rm = Resources.ResourceManager;
+            image = (Image)rm.GetObject(powerupData[id][2]);
         }
+
 
         public double Age()
         {
@@ -53,23 +81,199 @@ namespace BrickBreaker
             return removeMyself;
         }
 
-        public void GivePowerup()
+        public void OnPickup()
         {
-            switch(id)
+            switch (id)
             {
-                case 0:
-                    if (GameScreen.lives < 3 && activeTime > 0)
+                case 1: //Apple
+                    if (GameScreen.lives < GameScreen.MAX_LIVES)
                     {
                         GameScreen.lives++;
                     }
                     break;
-                case 1:
+                case 2: //Seeds
+                    break;
+                case 3: //Stone Pick
+                    GameScreen.ball.image = Resources.stone_pickaxe;
+                    GameScreen.ball.tools.Add("Pick");
+                    GameScreen.ball.strength = strength + 1;
+                    break;
+                case 4: //Iron Ingot
+                    GameScreen.ball.image = Resources.iron_pickaxe;
+                    GameScreen.ball.tools.Add("Pick");
+                    GameScreen.ball.strength = strength + 2;
+                    break;
+                case 5: //Gold Ingot
+                    GameScreen.ball.image = Resources.gold_pickaxe;
+                    GameScreen.ball.tools.Add("Pick");
+                    GameScreen.ball.strength = strength + 3;
+                    break;
+                case 6: //Diamond
+                    GameScreen.ball.image = Resources.diamond_pickaxe;
+                    GameScreen.ball.tools.Add("Pick");
+                    GameScreen.ball.strength = strength + 4;
+                    break;
+                case 7: //Quartz
+                    break;
+                case 8: //Netherite
+                    GameScreen.ball.image = Resources.netherite_pickaxe;
+                    GameScreen.ball.tools.Add("Pick");
+                    GameScreen.ball.strength = strength + 5;
+                    break;
+                case 9: //Ender Eye
+                    break;
+                case 10: //Brick
+                    break;
+                case 11: //Coal
+                    break;
+                case 12: //Water
+                    break;
+                case 13: //Lava
+                    break;
+            }
+        }
+        public void WhileActive()
+        {
+            switch (id)
+            {
+                case 1: //Apple
+                    if (activeTime % (57 - (3 * strength)) == 0)
                     {
-
+                        string[] tools = new string[]
+                     {
+                            "Shears", "Axe", "Shovel"
+                    };
+                        Projectile p = new Projectile(0, -4 - (3 * strength), Resources.heart, 10 + (3 * strength), tools, strength);
+                        GameScreen.projectiles.Add(p);
                     }
                     break;
+                case 2: //Seeds
+                    if (activeTime % (14 - (3 * strength)) == 0)
+                    {
+                        string[] tools = new string[]
+                        {
+                            "Shears", "Shovel"
+                        };
+                        Projectile p = new Projectile((int)(10.1 * Math.Sin(activeTime)), -12 - (3 * strength), Resources.wheat, 7 + (3 * strength), tools, strength);
+                        GameScreen.projectiles.Add(p);
+                    }
+                    break;
+                case 3: //Stone Pickaxe
+                    break;
+                case 4: //Iron Ingot
+                    if (activeTime % Math.Abs(4 - (3 * strength)) == 0)
+                    {
+                        string[] tools = new string[]
+                        {
+                            "Pick"
+                        };
+                        Projectile p = new Projectile((int)(10.1 * Math.Sin(activeTime)), (int)(10.1 * (Math.Cos(activeTime))), Resources.iron_ingot, 8 + (3 * strength), tools, strength, new Point(GameScreen.ball.x, GameScreen.ball.y));
+                        GameScreen.projectiles.Add(p);
+                    }
+                    break;
+                case 5: //Gold Ingot
+                    if (activeTime % (2 - Math.Abs(3 * strength)) == 0)
+                    {
+                        string[] tools = new string[]
+                        {
+                            "Pick"
+                        };
+                        Projectile p = new Projectile((int)(10.1 * Math.Sin(activeTime)), (int)(10.1 * (Math.Cos(activeTime))), Resources.gold_ingot, 8 + (3 * strength), tools, strength, new Point(GameScreen.ball.x, GameScreen.ball.y));
+                        GameScreen.projectiles.Add(p);
+                    }
+                    break;
+                case 6: //Diamond
+                    if (activeTime % 3 == 0)
+                    {
+                        string[] tools = new string[]
+                        {
+                            "Pick"
+                        };
+                        Projectile p = new Projectile((int)(10.1 * Math.Sin(activeTime)), (int)(10.1 * (Math.Cos(activeTime))), Resources.diamond, (8 + (3 * strength) > 20) ? 20 : (8 + (3 * strength)), tools, strength, new Point(GameScreen.ball.x, GameScreen.ball.y));
+                        GameScreen.projectiles.Add(p);
+                    }
+                    break;
+                case 7: //Quartz
+                    if (activeTime % (37 - (3 * strength)) == 0)
+                    {
+                        string[] tools = new string[]
+                     {
+                            "Pick"
+                    };
+                        Projectile p = new Projectile(0, -4 - (3 * strength), Resources.quartz, 10 + (3 * strength), tools, strength);
+                        GameScreen.projectiles.Add(p);
+                    }
+                    break;
+                case 8: //Netherite
+                    if (activeTime % 28 == 0)
+                    {
+                        string[] tools = new string[]
+                        {
+                            "Pick"
+                        };
+                        Projectile pOne = new Projectile(9, 0, Resources.netherite_ingot, (8 + (3 * strength) > 20) ? 20 : (8 + (3 * strength)), tools, strength, new Point(GameScreen.ball.x, GameScreen.ball.y));
+                        Projectile pTwo = new Projectile(0, 9, Resources.netherite_ingot, (8 + (3 * strength) > 20) ? 20 : (8 + (3 * strength)), tools, strength, new Point(GameScreen.ball.x, GameScreen.ball.y));
+                        Projectile pThree = new Projectile(-9, 0, Resources.netherite_ingot, (8 + (3 * strength) > 20) ? 20 : (8 + (3 * strength)), tools, strength, new Point(GameScreen.ball.x, GameScreen.ball.y));
+                        Projectile pFour = new Projectile(0, -9, Resources.netherite_ingot, (8 + (3 * strength) > 20) ? 20 : (8 + (3 * strength)), tools, strength, new Point(GameScreen.ball.x, GameScreen.ball.y));
+                        GameScreen.projectiles.Add(pOne);
+                        GameScreen.projectiles.Add(pTwo);
+                        GameScreen.projectiles.Add(pThree);
+                        GameScreen.projectiles.Add(pFour);
+                    }
+                    break;
+                case 9: //Ender Eye
+                    break;
+                case 10: //Brick
+                    break;
+                case 11: //Coal
+                    break;
+                case 12: //Water
+                    break;
+                case 13: //Lava
+                    break;
 
-                
+            }
+        }
+        public void OnDeath()
+        {
+            switch (id)
+            {
+                case 1: //Apple
+                    break;
+                case 2: //Seeds
+                    break;
+                case 3: //Stone Pick
+                    GameScreen.ball.tools.Remove("Pick");
+                    GameScreen.ball.image = Resources.snowball;
+                    break;
+                case 4: //Iron Ingot
+                    GameScreen.ball.tools.Remove("Pick");
+                    GameScreen.ball.image = Resources.snowball;
+                    break;
+                case 5: //Gold Ingot
+                    GameScreen.ball.tools.Remove("Pick");
+                    GameScreen.ball.image = Resources.snowball;
+                    break;
+                case 6: //Diamond
+                    GameScreen.ball.tools.Remove("Pick");
+                    GameScreen.ball.image = Resources.snowball;
+                    break;
+                case 7: //Quartz
+                    break;
+                case 8: //Netherite
+                    GameScreen.ball.tools.Remove("Pick");
+                    GameScreen.ball.image = Resources.snowball;
+                    break;
+                case 9: //Ender Eye
+                    break;
+                case 10: //Brick
+                    break;
+                case 11: //Coal
+                    break;
+                case 12: //Water
+                    break;
+                case 13: //Lava
+                    break;
             }
         }
     }
