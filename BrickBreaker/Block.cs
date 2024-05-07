@@ -82,7 +82,7 @@ namespace BrickBreaker
                 new SoundPlayer(Resources.dirtBreak_wav),   //Iron Ore
                 new SoundPlayer(Resources.dirtBreak_wav),   //Gold Ore
                 new SoundPlayer(Resources.dirtBreak_wav),   //Diamond Ore
-                new SoundPlayer(Resources.dirtBreak_wav),   //Obsidian
+                new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Obsidian
                 new SoundPlayer(Resources.dirtBreak_wav),   //Netherrack
 
                 new SoundPlayer(Resources.dirtBreak_wav),   //Quartz Ore
@@ -123,7 +123,7 @@ namespace BrickBreaker
             image = (Image)rm.GetObject(blockData[id][2]);
 
             //Get the correct Sound
-            onBreak = soundData[id];
+            onBreak = soundData[id]; //blow up
 
             //Find if the block should contain powerups
             if (randomOneHundred <= Convert.ToInt16(blockData[id][3]))
