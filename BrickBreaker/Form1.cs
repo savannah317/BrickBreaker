@@ -61,6 +61,7 @@ namespace BrickBreaker
         public static int currentLevel = 1;
 
         public static SoundPlayer titleMusic = new SoundPlayer(Properties.Resources.titleMusic_wav);
+        public static SoundPlayer clickSound = new SoundPlayer(Properties.Resources.click);
 
 
         #region helperFunctions
