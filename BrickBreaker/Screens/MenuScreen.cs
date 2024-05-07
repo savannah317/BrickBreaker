@@ -20,6 +20,7 @@ namespace BrickBreaker
         {
             InitializeComponent();
             Form1.SetLevelFonts(this);
+            Form1.titleMusic.Play();
 
             titleRec = new Rectangle(0,-50,this.Right, 500);
         }
