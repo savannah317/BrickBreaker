@@ -215,6 +215,9 @@ namespace BrickBreaker
         public void OnStart(bool immidiateStart)
         {
             projectiles.Clear();
+            activePowerups.Clear();
+            fallingPowerups.Clear();
+  
             lives = MAX_LIVES;
             timerToSecondsConversion = (double)1000 / (double)(gameTimer.Interval);
 
@@ -251,7 +254,6 @@ namespace BrickBreaker
             int xSpeed = 5;
             int ySpeed = 5;
             int ballSize = 20;
-
 
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             resetBall();
@@ -374,6 +376,9 @@ namespace BrickBreaker
 
         void resetBall()
         {
+            paddle.x = (this.Width / 2) - (paddle.width / 2);
+            paddle.y = (this.Height - paddle.height) - 60;
+            
             ball.x = ((paddle.x - (ball.radius * 2)) + (paddle.width / 2));
             ball.y = paddle.y - (ball.radius * 2) - paddle.height;
             ball.yVel = -1 * Math.Abs(ball.yVel);
@@ -430,8 +435,6 @@ namespace BrickBreaker
             { //run wall collision and respond if the ball has touched the bottom
 
                 lives--;
-
-                //Application.Exit(); //Blow Up
 
                 // Moves the ball back to origin
                 resetBall();
