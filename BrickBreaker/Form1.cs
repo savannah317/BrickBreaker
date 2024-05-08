@@ -14,6 +14,7 @@ using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Reflection.Emit;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Media;
 
 namespace BrickBreaker
 {
@@ -58,6 +59,9 @@ namespace BrickBreaker
         public static int tickDeltaTime = 10;
 
         public static int currentLevel = 1;
+
+        public static SoundPlayer titleMusic = new SoundPlayer(Properties.Resources.titleMusic_wav);
+        public static SoundPlayer clickSound = new SoundPlayer(Properties.Resources.click);
 
 
         #region helperFunctions
