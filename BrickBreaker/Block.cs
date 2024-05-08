@@ -52,6 +52,7 @@ namespace BrickBreaker
         new string [] {"3", "Pick", "obsidian", "20", "3", "grass"},              //Obsidian         
         new string [] {"1", "Pick", "netherrack", "11", "3", "grass"},            //Netherack        
         
+
         new string [] {"2", "Pick", "quartz_ore", "90", "7", "grass"},            //Quartz Ore        //Quartz
         new string [] {"4", "Pick", "netherite", "90", "8", "grass"},             //Netherite         //Netherite Ingot
         new string [] {"10", "Sword", "endframe_top", "90", "9", "grass"},        //End Portal Block  //Ender Eye
@@ -63,6 +64,7 @@ namespace BrickBreaker
         new string [] {"1", "Shovel", "gravel", "1", "1", "grass"},              //Gravel           
         new string [] {"2", "Pick", "coal_ore", "90", "11", "grass"},              //Coal Ore          //Coal
         new string [] {"1", "Sword", "water", "71", "12", "grass"},                //Water             //Bubbles
+
         
         new string [] {"1", "Sword", "lava", "71", "13", "grass"},                //Lava              //
         new string [] {"3", "Sword", "portal", "1", "1", "grass" },              //Nether Portal     
