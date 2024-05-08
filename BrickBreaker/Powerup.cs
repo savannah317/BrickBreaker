@@ -127,8 +127,16 @@ namespace BrickBreaker
                 case 11: //Coal
                     break;
                 case 12: //Water
+                    for (int i = 0; i < GameScreen.activePowerups.Count; i++)
+                    {
+                        if (GameScreen.activePowerups[i].id == 13) { GameScreen.activePowerups.RemoveAt(i); }
+                    }
                     break;
                 case 13: //Lava
+                    for (int i = 0; i < GameScreen.activePowerups.Count; i++)
+                    {
+                        if (GameScreen.activePowerups[i].id == 12) { GameScreen.activePowerups.RemoveAt(i); }
+                    }
                     break;
             }
         }
@@ -233,21 +241,45 @@ namespace BrickBreaker
                     }
                     break;
                 case 10: //Brick
-                    if (activeTime % (40 - (3 * strength)) == 0)
+
+                    if (activeTime % (37 - (3 * strength)) == 0)
                     {
                         string[] tools = new string[]
                      {
-                            "Pick"
+                            "Shears", "Axe", "Shovel", "Pick", "Sword"
                     };
-                        Projectile p = new Projectile(0, -4 - (3 * strength), Resources.brick, 10 + (5 * strength), tools, 1);
+                        Projectile p = new Projectile(0, -4 - (3 * strength), Resources.brick, 10 + (3 * strength), tools, strength);
+
                         GameScreen.projectiles.Add(p);
                     }
                     break;
                 case 11: //Coal
                     break;
                 case 12: //Water
+                    if (activeTime % 8 == 0)
+                    {
+                        string[] tools = new string[]
+                        {
+                            "Shears", "Axe", "Shovel", "Pick", "Sword"
+                        };
+                        Projectile p = new Projectile((int)(10.1 * Math.Sin(activeTime)), (int)Math.Abs(10.1 * (Math.Cos(activeTime))), Resources.bubble, (8 + (3 * strength) > 20) ? 20 : (8 + (3 * strength)), tools, strength, new Point((int)GameScreen.sunPoint.X, (int)GameScreen.sunPoint.Y));
+                        GameScreen.projectiles.Add(p);
+                        GameScreen.sunColorTwo = Color.FromArgb(43, 105, 105, 255);
+                        GameScreen.sunColorOne = Color.FromArgb(43, 105, 105, 255);
+                    }
                     break;
                 case 13: //Lava
+                    if (activeTime % 8 == 0)
+                    {
+                        string[] tools = new string[]
+                        {
+                            "Shears", "Axe", "Shovel", "Pick", "Sword"
+                        };
+                        Projectile p = new Projectile((int)(10.1 * Math.Sin(activeTime)),(int)Math.Abs(10.1 * (Math.Cos(activeTime))), Resources.magma_cream, (8 + (3 * strength) > 20) ? 20 : (8 + (3 * strength)), tools, strength, new Point((int)GameScreen.sunPoint.X, (int)GameScreen.sunPoint.Y));
+                        GameScreen.projectiles.Add(p);
+                        GameScreen.sunColorTwo = Color.FromArgb(43, 255, 105, 5);
+                        GameScreen.sunColorOne = Color.FromArgb(43, 255, 105, 5);
+                    }
                     break;
 
             }
@@ -289,8 +321,12 @@ namespace BrickBreaker
                 case 11: //Coal
                     break;
                 case 12: //Water
+                    GameScreen.sunColorOne = Color.FromArgb(33, 180, 120, 200); //SunOne
+                    GameScreen.sunColorTwo = Color.FromArgb(23, 130, 160, 220); //SunTwo 
                     break;
                 case 13: //Lava
+                    GameScreen.sunColorOne = Color.FromArgb(33, 180, 120, 200); //SunOne
+                    GameScreen.sunColorTwo = Color.FromArgb(23, 130, 160, 220); //SunTwo 
                     break;
             }
         }

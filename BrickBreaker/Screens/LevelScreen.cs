@@ -20,6 +20,8 @@ namespace BrickBreaker.Screens
 
         private void backButton_Click(object sender, EventArgs e)
         {
+            Form1.clickSound.Play();
+
             //goes to title screen
             MenuScreen ms = new MenuScreen();
             Form form = this.FindForm();
@@ -31,6 +33,8 @@ namespace BrickBreaker.Screens
         }
         public void ToGameScreen()
         {
+            Form1.clickSound.Play();
+
             GameScreen gs = new GameScreen(false);
             Form form = this.FindForm();
 
@@ -40,6 +44,7 @@ namespace BrickBreaker.Screens
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
         }
 
+        #region label clicks
         private void level1_Click(object sender, EventArgs e)
         {
             Form1.currentLevel = 1;
@@ -172,5 +177,6 @@ namespace BrickBreaker.Screens
             Form1.currentLevel = 12;
             ToGameScreen();
         }
+        #endregion
     }
 }

@@ -21,6 +21,7 @@ using BrickBreaker.Screens;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using System.Drawing.Drawing2D;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BrickBreaker
 {
@@ -44,12 +45,16 @@ namespace BrickBreaker
         public static Paddle paddle;
         public static Ball ball;
 
+        public static PointF sunPoint;
+
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
 
-        Image longStev = Properties.Resources.sidewaysSteve;
-        Image hearts = Properties.Resources.heart_flash;
-        Image fullXpBar = Properties.Resources.xpBarFull;
+
+        System.Drawing.Image player = Properties.Resources.Friend2;
+        System.Drawing.Image hearts = Properties.Resources.heart_flash;
+        System.Drawing.Image fullXpBar = Properties.Resources.xpBarFull;
+
         Rectangle xpBarRegion;
 
         Rectangle xpFullRect;
@@ -57,14 +62,14 @@ namespace BrickBreaker
 
         ResourceManager rm = Resources.ResourceManager;
 
-        List<Powerup> activePowerups = new List<Powerup>();
+        public static List<Powerup> activePowerups = new List<Powerup>();
         List<Powerup> fallingPowerups = new List<Powerup>();
         public static List<Projectile> projectiles = new List<Projectile>();
 
         SolidBrush sunlightBrush = new SolidBrush(Color.FromArgb(43, 255, 255, 120));
         SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(75, 6, 5, 25));
 
-        Color sunColorTwo, sunColorOne, shadowColorTwo, shadowColorOne;
+        public static Color sunColorTwo, sunColorOne, shadowColorTwo, shadowColorOne;
 
         List<PointF[]> shadowPolygons = new List<PointF[]>();
         List<PointF[]> exclusionShadowPolygons = new List<PointF[]>();
@@ -85,10 +90,13 @@ namespace BrickBreaker
         double fontIncrease;
         double timerToSecondsConversion;
 
+        const int TIMER_POWER = 85;
+
         #endregion
         public GameScreen(bool immidiateStart)
         {
             InitializeComponent();
+            this.Size = new Size(975, 667);
             SetLevelColors(Form1.currentLevel);
             OnStart(immidiateStart);
         }
@@ -209,6 +217,9 @@ namespace BrickBreaker
         public void OnStart(bool immidiateStart)
         {
             projectiles.Clear();
+            activePowerups.Clear();
+            fallingPowerups.Clear();
+  
             lives = MAX_LIVES;
             timerToSecondsConversion = (double)1000 / (double)(gameTimer.Interval);
 
@@ -245,7 +256,6 @@ namespace BrickBreaker
             int xSpeed = 5;
             int ySpeed = 5;
             int ballSize = 20;
-
 
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
             resetBall();
@@ -295,9 +305,8 @@ namespace BrickBreaker
 
 
             blocksNum = blocks.Count;
-            timeLimit = currentTime = totalLevelHp * 60;
+            timeLimit = currentTime = totalLevelHp * TIMER_POWER;
             fontIncrease = (double)(MAX_FONT_SIZE - MIN_FONT_SIZE) / timeLimit;
-
         }
 
         #endregion
@@ -369,6 +378,9 @@ namespace BrickBreaker
 
         void resetBall()
         {
+            paddle.x = (this.Width / 2) - (paddle.width / 2);
+            paddle.y = (this.Height - paddle.height) - 60;
+            
             ball.x = ((paddle.x - (ball.radius * 2)) + (paddle.width / 2));
             ball.y = paddle.y - (ball.radius * 2) - paddle.height;
             ball.yVel = -1 * Math.Abs(ball.yVel);
@@ -404,6 +416,8 @@ namespace BrickBreaker
             currentTime--;
             if (currentTime < 0) { lives = 0; }
 
+            sunPoint = new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0);
+
             currentLightStrength = LIGHT_STRENGTH + Math.Sin((double)currentTime / (double)100) * (double)30;
             shadowPolygons.Clear();
             exclusionShadowPolygons.Clear();
@@ -426,7 +440,6 @@ namespace BrickBreaker
 
                 // Moves the ball back to origin
                 resetBall();
-
             }
 
             if (lives == 0)
@@ -442,8 +455,8 @@ namespace BrickBreaker
                 Block b = blocks[i];
 
                 //Get the blocks shadows at the current point in the day
-                shadowPolygons.Add(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), currentLightStrength));
-                exclusionShadowPolygons.Add(b.shadowPoints(new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0), 1000));
+                shadowPolygons.Add(b.shadowPoints(sunPoint, currentLightStrength));
+                exclusionShadowPolygons.Add(b.shadowPoints(sunPoint, 1000));
 
                 for (int p = 0; p < projectiles.Count; p++)
                 {
@@ -597,7 +610,9 @@ namespace BrickBreaker
 
             // Draws paddle
             Rectangle paddleRect = new Rectangle(paddle.x, paddle.y, paddle.width, paddle.height);
-            e.Graphics.DrawImage(longStev, paddleRect);
+
+            e.Graphics.DrawImage(player, paddleRect);
+
 
             #region Blocks
             // Draws blocks

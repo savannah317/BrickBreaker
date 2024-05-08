@@ -61,6 +61,15 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ancientDebrisBreak_wav {
+            get {
+                return ResourceManager.GetStream("ancientDebrisBreak_wav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap apple {
@@ -141,6 +150,15 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream click {
+            get {
+                return ResourceManager.GetStream("click", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap coal {
@@ -207,6 +225,15 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("dirt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream dirtBreak_wav {
+            get {
+                return ResourceManager.GetStream("dirtBreak_wav", resourceCulture);
             }
         }
         
@@ -453,7 +480,8 @@ namespace BrickBreaker.Properties {
         ///	&lt;/brick&gt;
         ///	&lt;brick&gt;
         ///		&lt;x&gt;461&lt;/x&gt;
-        ///		&lt;y&gt;173&lt;/y&gt;        /// [rest of string was truncated]&quot;;.
+        ///		&lt;y&gt;173&lt;/y&gt;
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Level1 {
             get {
@@ -760,7 +788,8 @@ namespace BrickBreaker.Properties {
         ///	&lt;/brick&gt;
         ///	&lt;brick&gt;
         ///		&lt;x&gt;511&lt;/x&gt;
-        ///		&lt;y&gt;223&lt;/y&gt;        /// [rest of string was truncated]&quot;;.
+        ///		&lt;y&gt;223&lt;/y&gt;
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Level4 {
             get {
@@ -863,7 +892,8 @@ namespace BrickBreaker.Properties {
         ///	&lt;/brick&gt;
         ///	&lt;brick&gt;
         ///		&lt;x&gt;161&lt;/x&gt;
-        ///		&lt;y&gt;93&lt;/y&gt;        /// [rest of string was truncated]&quot;;.
+        ///		&lt;y&gt;93&lt;/y&gt;
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Level6 {
             get {
@@ -914,7 +944,8 @@ namespace BrickBreaker.Properties {
         ///	&lt;/brick&gt;
         ///	&lt;brick&gt;
         ///		&lt;x&gt;472&lt;/x&gt;
-        ///		&lt;y&gt;190&lt;/y&gt;        /// [rest of string was truncated]&quot;;.
+        ///		&lt;y&gt;190&lt;/y&gt;
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Level7 {
             get {
@@ -1060,6 +1091,12 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap longStev {
             get {
                 object obj = ResourceManager.GetObject("longStev", resourceCulture);
+                   return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        internal static System.Drawing.Bitmap magma_cream {
+            get {
+                object obj = ResourceManager.GetObject("magma_cream", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1071,6 +1108,15 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("minecraftBkgd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream minecraftDieSound_wav {
+            get {
+                return ResourceManager.GetStream("minecraftDieSound_wav", resourceCulture);
             }
         }
         
@@ -1091,6 +1137,15 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("minecraftLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream minecraftPop_wav {
+            get {
+                return ResourceManager.GetStream("minecraftPop_wav", resourceCulture);
             }
         }
         
@@ -1295,6 +1350,15 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream titleMusic_wav {
+            get {
+                return ResourceManager.GetStream("titleMusic_wav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap water {
@@ -1311,6 +1375,15 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("water_breathing_effect", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream waterBreak_wav {
+            get {
+                return ResourceManager.GetStream("waterBreak_wav", resourceCulture);
             }
         }
         

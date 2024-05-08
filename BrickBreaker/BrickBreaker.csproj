@@ -492,6 +492,30 @@
   <ItemGroup>
     <None Include="Resources\smallStev.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minecraftDieSound.wav.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minecraftPop.wav.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dirtBreak.wav.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ancientDebrisBreak.wav.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\waterBreak.wav.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\click.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magma_cream.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\titleMusic.wav.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
