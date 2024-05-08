@@ -74,15 +74,18 @@ namespace BrickBreaker
             SoundPlayer[] soundData = new SoundPlayer[]
             {
                 new SoundPlayer(),
+
                 new SoundPlayer(Resources.dirtBreak_wav),   //Grass
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Oak Wood Log
                 new SoundPlayer(Resources.dirtBreak_wav),   //Oak Leaves
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Oak Planks
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Stone
 
+
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Iron Ore
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Gold Ore
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Diamond Ore
+
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Obsidian
                 new SoundPlayer(Resources.dirtBreak_wav),   //Netherrack
 
@@ -95,6 +98,7 @@ namespace BrickBreaker
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Endstone Bricks
                 new SoundPlayer(Resources.dirtBreak_wav),   //Sand
                 new SoundPlayer(Resources.dirtBreak_wav),   //Gravel
+
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Coal Ore
                 new SoundPlayer(Resources.waterBreak_wav),   //Water
 
@@ -104,14 +108,15 @@ namespace BrickBreaker
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Dragon Egg
                 new SoundPlayer(Resources.ancientDebrisBreak_wav),   //Cobblestone
 
+
             };
 
             #endregion
 
 
             x = _x;
-            y = _y;
             width = width_;
+            y = _y;
             height = height_;
             id = id_;
 
@@ -124,7 +129,7 @@ namespace BrickBreaker
             image = (Image)rm.GetObject(blockData[id][2]);
 
             //Get the correct Sound
-            onBreak = soundData[id];
+            onBreak = soundData[id]; //blow up
 
             //Find if the block should contain powerups
             if (randomOneHundred <= Convert.ToInt16(blockData[id][3]))

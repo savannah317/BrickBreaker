@@ -431,6 +431,8 @@ namespace BrickBreaker
 
                 lives--;
 
+                //Application.Exit(); //Blow Up
+
                 // Moves the ball back to origin
                 resetBall();
             }
