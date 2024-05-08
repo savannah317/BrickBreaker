@@ -73,6 +73,8 @@ namespace BrickBreaker
         };
             SoundPlayer[] soundData = new SoundPlayer[]
             {
+                new SoundPlayer(), 
+
                 new SoundPlayer(Resources.dirtBreak_wav),   //Grass
                 new SoundPlayer(Resources.dirtBreak_wav),   //Oak Wood Log
                 new SoundPlayer(Resources.dirtBreak_wav),   //Oak Leaves
@@ -102,6 +104,7 @@ namespace BrickBreaker
                 new SoundPlayer(Resources.dirtBreak_wav),   //Bedrock
                 new SoundPlayer(Resources.dirtBreak_wav),   //Dragon Egg
                 new SoundPlayer(Resources.dirtBreak_wav),   //Cobblestone
+new SoundPlayer(Resources.dirtBreak_wav),   //Cobblestone
 
             };
 
@@ -109,8 +112,8 @@ namespace BrickBreaker
 
 
             x = _x;
-            y = _y;
             width = width_;
+            y = _y;
             height = height_;
             id = id_;
 

@@ -42,7 +42,7 @@ namespace BrickBreaker
 
             Random rand = new Random();
             float speedMultX = (float)(rand.Next((-10 - xVelDeviation), (10 - xVelDeviation)) * 0.01 + 1);
-            float speedMultY = (float)(rand.Next((-10 - yVelDeviation), (10 - xVelDeviation)) * 0.01 + 1);
+            float speedMultY = (float)(rand.Next((-10 - yVelDeviation), (10 - yVelDeviation)) * 0.01 + 1);
 
             switch (Form1.CheckCollision(this, brick, brick.lastCollisionTimeStamp))
             {
@@ -89,7 +89,7 @@ namespace BrickBreaker
 
             Random rand = new Random();
             float speedMultX = (float)(rand.Next((-10 - xVelDeviation), (10 - xVelDeviation)) * 0.01 + 1);
-            float speedMultY = (float)(rand.Next((-10 - yVelDeviation), (10 - xVelDeviation)) * 0.01 + 1);
+            float speedMultY = (float)(rand.Next((-10 - yVelDeviation), (10 - yVelDeviation)) * 0.01 + 1);
 
             switch (Form1.CheckCollision(this, paddle, paddle.lastCollisionTimeStamp))
             {
