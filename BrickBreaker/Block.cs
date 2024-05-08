@@ -54,14 +54,14 @@ namespace BrickBreaker
         new string [] {"3", "Pick", "quartz_ore", "90", "7"},            //Quartz Ore        //Quartz
         new string [] {"4", "Pick", "netherite", "90", "8"},             //Netherite         //Netherite Ingot
         new string [] {"10", "Sword", "endframe_top", "90", "9"},        //End Portal Block  //Ender Eye
-        new string [] {"4", "Pick", "stonebrick", "12", "10"},            //Stone Bricks      //Brick
+        new string [] {"4", "Pick", "stonebrick", "12", "10"},           //Stone Bricks      //Brick
         new string [] {"4", "Pick", "end_stone", "20", "3"},             //Endstone          
         
         new string [] {"4", "Pick", "end_bricks", "15", "3"},            //Endstone Bricks   
-        new string [] {"2", "Shovel", "sand", "1", "1"},                //Sand             
-        new string [] {"2", "Shovel", "gravel", "1", "1"},              //Gravel           
-        new string [] {"4", "Pick", "coal_ore", "90", "11"},              //Coal Ore          //Coal
-        new string [] {"2", "Sword", "water", "71", "12"},                //Water             //Bubbles
+        new string [] {"2", "Shovel", "sand", "1", "1"},                 //Sand             
+        new string [] {"2", "Shovel", "gravel", "1", "1"},               //Gravel           
+        new string [] {"4", "Pick", "coal_ore", "90", "11"},             //Coal Ore          //Coal
+        new string [] {"2", "Sword", "water", "71", "12"},               //Water             //Bubbles
         
         new string [] {"2", "Sword", "lava", "71", "13"},                //Lava              //
         new string [] {"3", "Sword", "portal", "1", "1" },              //Nether Portal     

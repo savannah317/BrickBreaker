@@ -121,9 +121,6 @@ namespace BrickBreaker
                     GameScreen.ball.strength = strength + 5;
                     break;
                 case 9: //Ender Eye
-                    GameScreen.ball.image = Resources.ender_eye;
-                    GameScreen.ball.tools.Add("Pick");
-                    GameScreen.ball.strength = strength + 6;
                     break;
                 case 10: //Brick
                     break;
@@ -225,8 +222,26 @@ namespace BrickBreaker
                     }
                     break;
                 case 9: //Ender Eye
+                    if (activeTime % (57 - (3 * strength)) == 0)
+                    {
+                        string[] tools = new string[]
+                     {
+                            "Pick", "Sword"
+                    };
+                        Projectile p = new Projectile(0, -4 - (3 * strength), Resources.ender_eye, 10 + (5 * strength), tools, 1);
+                        GameScreen.projectiles.Add(p);
+                    }
                     break;
                 case 10: //Brick
+                    if (activeTime % (40 - (3 * strength)) == 0)
+                    {
+                        string[] tools = new string[]
+                     {
+                            "Pick"
+                    };
+                        Projectile p = new Projectile(0, -4 - (3 * strength), Resources.brick, 10 + (5 * strength), tools, 1);
+                        GameScreen.projectiles.Add(p);
+                    }
                     break;
                 case 11: //Coal
                     break;

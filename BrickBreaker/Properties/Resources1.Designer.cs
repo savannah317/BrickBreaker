@@ -1247,9 +1247,9 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap snowball {
+        internal static System.Drawing.Bitmap smallStev {
             get {
-                object obj = ResourceManager.GetObject("snowball", resourceCulture);
+                object obj = ResourceManager.GetObject("smallStev", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1257,9 +1257,9 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap stev {
+        internal static System.Drawing.Bitmap snowball {
             get {
-                object obj = ResourceManager.GetObject("stev", resourceCulture);
+                object obj = ResourceManager.GetObject("snowball", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
