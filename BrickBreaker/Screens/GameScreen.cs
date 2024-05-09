@@ -204,7 +204,7 @@ namespace BrickBreaker
                 Color.FromArgb(50, 105, 50, 250), //SunOne
                 Color.FromArgb(150, 255, 255, 255), //SunTwo
                 Color.FromArgb(65, 5, 25, 70), //ShadowOne
-                Color.FromArgb(80, 255, 255, 255), //ShadowTwo
+                Color.FromArgb(80, 0, 0, 0), //ShadowTwo
                 },
             };
 
@@ -390,7 +390,7 @@ namespace BrickBreaker
 
             Refresh();
             Graphics g = this.CreateGraphics();
-            g.FillRectangle(new SolidBrush(Color.FromArgb(30, 0, 0, 0)), new Rectangle(0, 0, right, down));
+            g.FillRectangle(new SolidBrush(Color.FromArgb(50, 0, 0, 0)), new Rectangle(0, 0, right, down));
 
             Task.Delay(800).Wait();
 
