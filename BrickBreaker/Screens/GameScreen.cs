@@ -389,8 +389,10 @@ namespace BrickBreaker
             ball.yVel = -1 * Math.Abs(ball.yVel);
 
             Refresh();
+            Graphics g = this.CreateGraphics();
+            g.FillRectangle(new SolidBrush(Color.FromArgb(30, 0, 0, 0)), new Rectangle(0, 0, right, down));
 
-            Task.Delay(1000).Wait();
+            Task.Delay(800).Wait();
 
         }
 
@@ -442,20 +444,6 @@ namespace BrickBreaker
                 projectiles[p].Move();
             }
 
-            if (ball.WallCollision(this))
-            { //run wall collision and respond if the ball has touched the bottom
-
-                lives--;
-
-                // Moves the ball back to origin
-                resetBall();
-            }
-
-            if (lives == 0)
-            {
-                gameTimer.Enabled = false;
-                OnEnd();
-            }
 
             #region Blocks 
             //Check if ball has collided with any blocks
@@ -549,6 +537,21 @@ namespace BrickBreaker
             bValue = (((double)shadowColorOne.B * (dayPercentage)) + ((double)shadowColorTwo.B * (1 - dayPercentage)));
             shadowBrush.Color = Color.FromArgb((int)aValue, (int)rValue, (int)gValue, (int)bValue);
             #endregion
+
+            if (ball.WallCollision(this))
+            { //run wall collision and respond if the ball has touched the bottom
+
+                lives--;
+
+                // Moves the ball back to origin
+                resetBall();
+            }
+
+            if (lives == 0)
+            {
+                gameTimer.Enabled = false;
+                OnEnd();
+            }
             Refresh();
         }
 
