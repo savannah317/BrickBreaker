@@ -40,6 +40,7 @@ namespace BrickBreaker
         int x, y, width, height, id;
         public bool isPaused = false;
         public static int right, down;
+        int timerIncreases = 0;
 
         // Paddle and Ball objects
         public static Paddle paddle;
@@ -413,8 +414,9 @@ namespace BrickBreaker
         }
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            timerIncreases++;
             currentTime--;
-            if (currentTime < 0) { lives = 0; }
+            //if (currentTime < 0) { lives = 0; } //This was another thing we used for when you could also die from the timer running out, we just decided it doesnt fit the game.
 
             sunPoint = new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0);
 
@@ -672,8 +674,12 @@ namespace BrickBreaker
             int percentage = (timeLimit - currentTime);
             int fontSize = (int)(percentage * fontIncrease) + MIN_FONT_SIZE;
             int colorSize = (int)(percentage * ((double)255 / (double)timeLimit));
+            colorSize = (colorSize > 255) ? 255 : colorSize; 
             Color fontColor = Color.FromArgb(255, colorSize, 255, colorSize);
-            string timeLimitString = "" + (double)currentTime / timerToSecondsConversion;
+            //string timeLimitString = "" + (double)currentTime / timerToSecondsConversion; //This would display your time compared to the max time in the level,
+            //We found this a bit confusing on the final days because its pretty much random whether you go faster or slower, so we changed this to just be a timer up.
+            string timeLimitString = "" + timerIncreases / timerToSecondsConversion;
+            fontSize = (fontSize > MAX_FONT_SIZE) ? MAX_FONT_SIZE : fontSize;
             e.Graphics.DrawString(timeLimitString, new Font(Form1.pfc.Families[0], fontSize), new SolidBrush(fontColor), new PointF(timeDisplayPoint.X - fontSize, timeDisplayPoint.Y - fontSize));
             #endregion
 
