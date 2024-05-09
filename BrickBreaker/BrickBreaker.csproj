@@ -484,6 +484,24 @@
     <None Include="Resources\apple_golden.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\longstev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\longerStev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\longestStev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sidewaysSteve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smallStev.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\minecraftDieSound.wav.wav" />
   </ItemGroup>
   <ItemGroup>
