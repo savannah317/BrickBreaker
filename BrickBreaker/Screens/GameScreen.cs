@@ -411,7 +411,7 @@ namespace BrickBreaker
 
         void BlockCollision(Block b, List<String> tools, int strength, int initialHitStrength)
         {
-            //WinCondition(); //used for testing
+            WinCondition(); //used for testing
 
             b.runCollision(tools, strength, initialHitStrength); //should be switched to entirely, no lines below
             if (b.hp < 1)
