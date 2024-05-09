@@ -270,6 +270,16 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap endBkgd {
+            get {
+                object obj = ResourceManager.GetObject("endBkgd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ender_eye {
             get {
                 object obj = ResourceManager.GetObject("ender_eye", resourceCulture);
@@ -1155,6 +1165,16 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap nether_portal {
             get {
                 object obj = ResourceManager.GetObject("nether_portal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap netherackBkgd1 {
+            get {
+                object obj = ResourceManager.GetObject("netherackBkgd1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

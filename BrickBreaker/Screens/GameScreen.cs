@@ -226,6 +226,19 @@ namespace BrickBreaker
             lives = MAX_LIVES;
             timerToSecondsConversion = (double)1000 / (double)(gameTimer.Interval);
 
+            if (Form1.IsWithinRange(Form1.currentLevel, 1, 7) || (Form1.IsWithinRange(Form1.currentLevel, 10, 11)))
+            {
+                BackgroundImage = Properties.Resources.minecraftBkgd;
+            }
+            if (Form1.IsWithinRange(Form1.currentLevel, 8, 9))
+            {
+                BackgroundImage = Properties.Resources.netherackBkgd1;
+            }
+            if (Form1.IsWithinRange(Form1.currentLevel, 12, 12))
+            {
+                BackgroundImage = Properties.Resources.endBkgd;
+            }
+
             //Start immidiately, or give the player a StartLevelScreen first.
             if (immidiateStart) { gameTimer.Enabled = true; }
             else
@@ -594,6 +607,7 @@ namespace BrickBreaker
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+
             #region Shadows
             //Draws shadows so everything else is on top
             GraphicsPath gp = new GraphicsPath();
