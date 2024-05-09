@@ -64,6 +64,13 @@ namespace BrickBreaker
         public static SoundPlayer titleMusic = new SoundPlayer(Properties.Resources.titleMusic_wav);
         public static SoundPlayer clickSound = new SoundPlayer(Properties.Resources.click);
 
+        public static void Music()
+        {
+            var bkgdSound = new System.Windows.Media.MediaPlayer();
+            bkgdSound.Open(new Uri(Application.StartupPath + "/Resources/bkgdMusic"));
+            bkgdSound.Play();
+        }
+
 
         #region helperFunctions
 

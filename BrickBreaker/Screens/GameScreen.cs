@@ -101,6 +101,8 @@ namespace BrickBreaker
             InitializeComponent();
             this.Size = new Size(975, 667);
             SetLevelColors(Form1.currentLevel);
+            Form1.Music();
+
             OnStart(immidiateStart);
         }
 
