@@ -411,6 +411,8 @@ namespace BrickBreaker
 
         void BlockCollision(Block b, List<String> tools, int strength, int initialHitStrength)
         {
+            //WinCondition(); //used for testing
+
             b.runCollision(tools, strength, initialHitStrength); //should be switched to entirely, no lines below
             if (b.hp < 1)
             {
@@ -571,15 +573,32 @@ namespace BrickBreaker
 
         public void WinCondition()
         {
-            Form1.currentLevel = (Form1.currentLevel == 12) ? 1 : (Form1.currentLevel + 1);
+            if (Form1.currentLevel == 12)
+            {
+                Form1.currentLevel = 1;
+                gameTimer.Enabled = false;
 
-            Form form = this.FindForm();
-            GameScreen gs = new GameScreen(false);
+                Form form = this.FindForm();
+                WinScreen ws = new WinScreen();
 
-            gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+                ws.Location = new Point((form.Width - ws.Width) / 2, (form.Height - ws.Height) / 2);
 
-            form.Controls.Add(gs);
-            form.Controls.Remove(this);
+                form.Controls.Add(ws);
+                form.Controls.Remove(this);
+            }
+            else
+            {
+                Form1.currentLevel++;
+                gameTimer.Enabled = false;
+
+                Form form = this.FindForm();
+                GameScreen gs = new GameScreen(false);
+
+                gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+
+                form.Controls.Add(gs);
+                form.Controls.Remove(this);
+            }
         }
 
         double calculateScore()
