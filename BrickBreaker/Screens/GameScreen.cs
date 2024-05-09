@@ -23,6 +23,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using System.Drawing.Drawing2D;
 using static System.Net.Mime.MediaTypeNames;
 
+
 namespace BrickBreaker
 {
     public partial class GameScreen : UserControl
@@ -386,6 +387,11 @@ namespace BrickBreaker
             ball.x = ((paddle.x - (ball.radius * 2)) + (paddle.width / 2));
             ball.y = paddle.y - (ball.radius * 2) - paddle.height;
             ball.yVel = -1 * Math.Abs(ball.yVel);
+
+            Refresh();
+
+            Task.Delay(1000).Wait();
+
         }
 
         void BlockCollision(Block b, List<String> tools, int strength, int initialHitStrength)
