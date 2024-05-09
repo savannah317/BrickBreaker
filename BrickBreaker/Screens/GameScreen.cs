@@ -27,6 +27,7 @@ namespace BrickBreaker
 {
     public partial class GameScreen : UserControl
     {
+        bool timerKills = false; //Set to true if you want the game to have a timer that can kill you
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
@@ -220,7 +221,7 @@ namespace BrickBreaker
             projectiles.Clear();
             activePowerups.Clear();
             fallingPowerups.Clear();
-  
+
             lives = MAX_LIVES;
             timerToSecondsConversion = (double)1000 / (double)(gameTimer.Interval);
 
@@ -381,7 +382,7 @@ namespace BrickBreaker
         {
             paddle.x = (this.Width / 2) - (paddle.width / 2);
             paddle.y = (this.Height - paddle.height) - 60;
-            
+
             ball.x = ((paddle.x - (ball.radius * 2)) + (paddle.width / 2));
             ball.y = paddle.y - (ball.radius * 2) - paddle.height;
             ball.yVel = -1 * Math.Abs(ball.yVel);
@@ -416,7 +417,7 @@ namespace BrickBreaker
         {
             timerIncreases++;
             currentTime--;
-            //if (currentTime < 0) { lives = 0; } //This was another thing we used for when you could also die from the timer running out, we just decided it doesnt fit the game.
+            if (currentTime < 0 && timerKills) { lives = 0; } //This was another thing we used for when you could also die from the timer running out, we just decided it doesnt fit the game.
 
             sunPoint = new PointF(right - (float)(((double)right / (double)timeLimit) * (double)currentTime), 0);
 
@@ -674,11 +675,14 @@ namespace BrickBreaker
             int percentage = (timeLimit - currentTime);
             int fontSize = (int)(percentage * fontIncrease) + MIN_FONT_SIZE;
             int colorSize = (int)(percentage * ((double)255 / (double)timeLimit));
-            colorSize = (colorSize > 255) ? 255 : colorSize; 
+            colorSize = (colorSize > 255) ? 255 : colorSize;
             Color fontColor = Color.FromArgb(255, colorSize, 255, colorSize);
-            //string timeLimitString = "" + (double)currentTime / timerToSecondsConversion; //This would display your time compared to the max time in the level,
             //We found this a bit confusing on the final days because its pretty much random whether you go faster or slower, so we changed this to just be a timer up.
             string timeLimitString = "" + timerIncreases / timerToSecondsConversion;
+            if (timerKills)
+            {
+                timeLimitString = "" + (double)currentTime / timerToSecondsConversion; //This would display your time compared to the max time in the level,
+            }
             fontSize = (fontSize > MAX_FONT_SIZE) ? MAX_FONT_SIZE : fontSize;
             e.Graphics.DrawString(timeLimitString, new Font(Form1.pfc.Families[0], fontSize), new SolidBrush(fontColor), new PointF(timeDisplayPoint.X - fontSize, timeDisplayPoint.Y - fontSize));
             #endregion
